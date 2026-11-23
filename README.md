@@ -79,7 +79,12 @@ This tree is rebuilt to a **Pure 64-Bit (`arm64-v8a`) architecture**, upgrades t
 - **Elimination of 32-Bit Overhead**: Removed over 1,200 redundant 32-bit legacy blobs, trimming repository bloat and eliminating 32-bit zygote RAM overhead.
 - **`TARGET_ARCH := arm64`**: Configured `BoardConfigVendor.mk` with pure 64-bit architecture (`TARGET_2ND_ARCH :=` unset) and tablet properties (`ro.build.characteristics=tablet`).
 - **Redmi Pad 2 Pro (`organ` / `flute`) Compatibility**: Redmi Pad 2 Pro (Cortex-A720) is a hardware 64-bit-only platform. Rebuilding `Clyra-Vendor` to pure 64-bit enables seamless binder and FCM communication when porting Redmi Pad 2 Pro stock HyperOS system images to Redmi Pad Pro (`ruan`).
-  - `vendor/qcom/opensource/vibrator`, `thermal-engine`, `power`, `location`, `usb`
+
+### 6. Removal of Xiaomi Locks & Security Restrictions
+- **DM-Verity (AVB) Unlocked**: Removed strict Android Verified Boot (`avb=vbmeta_system`, `avb`) partition signature enforcement from `fstab.default` and `fstab.emmc`, preventing bootloops when booting modified, ported, or custom ROM images.
+- **Forced Encryption Unlocked**: Stripped proprietary Qualcomm/Xiaomi `wrappedkey_v0` hardware-bound encryption tokens from userdata mounts, ensuring standard Android FBE and non-encrypting filesystems mount without decryption failure.
+- **ADB & Root Debugging Enabled**: Configured `ro.adb.secure=0`, `ro.secure=0`, `ro.debuggable=1`, and `persist.sys.usb.config=adb` for instant, unrestricted early-boot ADB access.
+- **Xiaomi DRM & Telemetry Daemons Neutralized**: Disabled execution of Xiaomi background tracking and rights management daemons (`mrmd`, `mimd-service`, `mtdservice`, `mfidoca`, `mlipay`, `tidaservice`, `vsimservice`).
 
 ---
 

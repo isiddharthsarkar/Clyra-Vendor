@@ -36,7 +36,7 @@ ro.miui.audio.karaoke.suppot.lowlatency=true
 ro.vendor.audio.camera.loopback.support=false
 debug.game.video.support=true
 # Auto-added by post_process_props.py
-persist.sys.usb.config=none
+persist.sys.usb.config=adb
 import /odm/etc/${ro.boot.product.hardware.sku}_build.prop
 # end of file
 

@@ -2,3 +2,4 @@ service vendor.vsimservice /vendor/bin/vsimd
     class hal
     user system
     group system
+    disabled

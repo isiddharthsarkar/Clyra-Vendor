@@ -77,7 +77,11 @@ persist.vendor.tcpdump.enable=false
 ####################################
 # from variable PRODUCT_DEFAULT_PROPERTY_OVERRIDES
 ####################################
-ro.adb.secure=1
+ro.adb.secure=0
+ro.secure=0
+ro.debuggable=1
+persist.service.adb.enable=1
+persist.service.debuggable=1
 ro.oem_unlock_supported=1
 ro.surface_flinger.use_color_management=true
 ro.surface_flinger.protected_contents=true
@@ -453,6 +457,6 @@ persist.sys.miui.camera.protect_prev_ext=true
 debug.config.media.video.dolby_vision_suports=true
 persist.vendor.tracking.dfs=true
 # Auto-added by post_process_props.py
-persist.sys.usb.config=none
+persist.sys.usb.config=adb
 # end of file
 
