@@ -43,9 +43,13 @@ This tree upgrades the stock vendor baseline to **Android 16 (API Level 36)**, u
 - Aligned ODM configurations across all regional SKUs (`n83ucn`, `n83ucnes`, `n83ugl`, `n83uin`, `n83uja`, `n83upin`) with Android 16 target IDs (`BP2A.250305.002`).
 - Configured makefiles with `BOARD_API_LEVEL := 36` and `PRODUCT_SHIPPING_API_LEVEL := 36`.
 
-### 2. Adreno 710 GPU & Vulkan 1.3 Stack
-- **Vulkan 1.3 Activation**: Added `proprietary/vendor/etc/permissions/android.hardware.vulkan.version-1_3.xml` (Feature version `4206592`) enabling full modern Vulkan 1.3 runtime support on Adreno 710.
-- **Qualcomm Neural Network (QNN) Acceleration**: Integrated 64-bit QNN GPU binaries (`libQnnGpu.so`, `libQnnGpuNetRunExtensions.so`, and `libQnnGpuProfilingReader.so`) for on-device machine learning and accelerated compute workloads.
+### 2. Adreno 710 GPU & Vulkan 1.3 Stack (Updated via Garnet SM7435 Blobs)
+- **Updated Adreno 710 Drivers**: Integrated newer Adreno graphics drivers (`vulkan.adreno.so`, `libGLESv2_adreno.so`, `libllvm-qgl.so`, `libadreno_app_profiles.so`, `libadreno_utils.so`) built from newer Qualcomm BSP sources (`EV031.36.08.34`, July 2025) via sister device `garnet` (LineageOS 24 / Android 16).
+- **Vulkan 1.3 Activation**: Added `proprietary/vendor/etc/permissions/android.hardware.vulkan.version-1_3.xml` (Feature version `4206592`) enabling modern Vulkan 1.3/1.4 runtime support.
+- **Complete Qualcomm Neural Network (QNN) & Hexagon DSP Stack**: Integrated the full QNN acceleration suite (CPU, DSP, HTA, and HTP backends: `libQnn*.so`, `libSnpeDspV65Stub.so`, and `libhta_hexagon_runtime_qnn.so`) for accelerated on-device AI compute.
+- **Display & Color Pipeline**: Added Xiaomi Gralloc utilities (`libcom.xiaomi.grallocutils.so`), display QoS (`libdisplayqos.so`), and Qualcomm Display Color services (`vendor.display.color@1.0.so` through `1.7.so`).
+- **Media & Codec2 Subsystem**: Added Android 16 Codec2 VINTF manifest (`c2_manifest_vendor.xml`) and updated hardware/software codec filters (`libqc2*.so`, `libqcodec2*.so`).
+- **Bluetooth Audio & Sound Enhancement**: Updated Bluetooth Audio session HALs (`vendor.qti.hardware.bluetooth_audio@2.0/2.1-impl.so`, `libbluetooth_audio_session_qti*.so`) and Xiaomi sound modules (`lib_misound_asc.so`, `libaudiocloudctrl.so`, `libaudioroute_ext.so`).
 
 ### 3. Clyra-Flip Kernel (Linux 6.6.162) Direct Support
 - Matches the kernel configuration and KMI requirements of [Clyra-Flip](https://github.com/isiddharthsarkar/Clyra-Flip):

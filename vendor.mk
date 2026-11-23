@@ -4437,4 +4437,40 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/etc/permissions/android.hardware.vulkan.version-1_3.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.version-1_3.xml \
     vendor/ruan/proprietary/vendor/lib64/libQnnGpu.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnGpu.so \
     vendor/ruan/proprietary/vendor/lib64/libQnnGpuNetRunExtensions.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnGpuNetRunExtensions.so \
-    vendor/ruan/proprietary/vendor/lib64/libQnnGpuProfilingReader.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnGpuProfilingReader.so
+    vendor/ruan/proprietary/vendor/lib64/libQnnGpuProfilingReader.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnGpuProfilingReader.so \
+    vendor/ruan/proprietary/vendor/lib64/libcom.xiaomi.grallocutils.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libcom.xiaomi.grallocutils.so \
+    vendor/ruan/proprietary/vendor/lib64/lib_misound_asc.so:$(TARGET_COPY_OUT_VENDOR)/lib64/lib_misound_asc.so \
+    vendor/ruan/proprietary/vendor/lib64/libaudiocloudctrl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libaudiocloudctrl.so \
+    vendor/ruan/proprietary/vendor/lib64/libaudioroute_ext.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libaudioroute_ext.so \
+    vendor/ruan/proprietary/vendor/etc/audio_cloud_control_white_list.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_cloud_control_white_list.xml \
+    vendor/ruan/proprietary/vendor/etc/vintf/manifest/c2_manifest_vendor.xml:$(TARGET_COPY_OUT_VENDOR)/etc/vintf/manifest/c2_manifest_vendor.xml \
+    vendor/ruan/proprietary/vendor/lib64/camera/plugins/com.xiaomi.plugin.gpu.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/plugins/com.xiaomi.plugin.gpu.so \
+    vendor/ruan/proprietary/vendor/etc/camera/GpuKernelRepo.pb:$(TARGET_COPY_OUT_VENDOR)/etc/camera/GpuKernelRepo.pb \
+    vendor/ruan/proprietary/vendor/etc/camera/resources/render/glsl/binShaders32/shader_GLPROGRAM_MEDIAN_BLUR.bin:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/glsl/binShaders32/shader_GLPROGRAM_MEDIAN_BLUR.bin \
+    vendor/ruan/proprietary/vendor/etc/camera/resources/render/glsl/binShaders64/shader_GLPROGRAM_MEDIAN_BLUR.bin:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/glsl/binShaders64/shader_GLPROGRAM_MEDIAN_BLUR.bin \
+    vendor/ruan/proprietary/vendor/lib64/libQnnCpu.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnCpu.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnDsp.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnDsp.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnDspNetRunExtensions.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnDspNetRunExtensions.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnDspV65CalculatorStub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnDspV65CalculatorStub.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnDspV65Stub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnDspV65Stub.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnDspV65StubInternal.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnDspV65StubInternal.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnDspV66CalculatorStub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnDspV66CalculatorStub.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnDspV66Stub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnDspV66Stub.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnDspV66StubInternal.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnDspV66StubInternal.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnHta.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHta.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnHtaNetRunExtensions.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtaNetRunExtensions.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnHtp.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtp.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnHtpNetRunExtensions.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtpNetRunExtensions.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnHtpPrepare.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtpPrepare.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnHtpProfilingReader.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtpProfilingReader.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnHtpV68CalculatorStub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtpV68CalculatorStub.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnHtpV68Stub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtpV68Stub.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnHtpV69CalculatorStub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtpV69CalculatorStub.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnHtpV69Stub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtpV69Stub.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnHtpV73CalculatorStub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtpV73CalculatorStub.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnHtpV73Stub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtpV73Stub.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnSaver.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnSaver.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnSystem.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnSystem.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnChrometraceProfilingReader.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnChrometraceProfilingReader.so \
+    vendor/ruan/proprietary/vendor/lib64/libSnpeDspV65Stub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libSnpeDspV65Stub.so \
+    vendor/ruan/proprietary/vendor/lib64/libhta_hexagon_runtime_qnn.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libhta_hexagon_runtime_qnn.so
