@@ -9,8 +9,9 @@ Proprietary vendor blobs and open-source HAL definitions for **Redmi Pad Pro 5G 
 | Platform | Qualcomm SM7435 (`parrot` / Snapdragon 7s Gen 2) |
 | Region | India (`in`) |
 | Official ROM | `ruan_in_global_images_OS3.0.306.0.WFSINXM_20261021.0000.00_16.0_in_e97cbecd4c.tgz` |
-| Vendor Base | Android 12L (SDK 32 / `SKQ1.231214.001`) |
-| Kernel Support | [Clyra-Flip](https://github.com/isiddharthsarkar/Clyra-Flip) (Linux 6.6 / GKI 3.1 / Android 16) |
+| Android & API | Android 16 (API 36 / `BP2A.250305.002`) |
+| Graphics / Vulkan | Adreno 710, Vulkan 1.3 (`android.hardware.vulkan.version-1_3.xml`), Qualcomm QNN |
+| Kernel Support | [Clyra-Flip](https://github.com/isiddharthsarkar/Clyra-Flip) (Linux 6.6.162 / GKI 3.1 / Android 16) |
 
 ---
 

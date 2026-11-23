@@ -12,21 +12,21 @@ ro.vendor.product.cpu.abilist32=armeabi-v7a,armeabi
 ro.vendor.product.cpu.abilist64=arm64-v8a
 ro.vendor.build.date=Wed Oct 21 18:56:42 CST 2026
 ro.vendor.build.date.utc=1792580202
-ro.vendor.build.fingerprint=Redmi/ruan/ruan:12/SKQ1.231214.001/OS3.0.306.0.WFSINXM:user/release-keys
-ro.vendor.build.id=SKQ1.231214.001
+ro.vendor.build.fingerprint=Redmi/ruan/ruan:16/BP2A.250305.002/OS3.0.306.0.WFSINXM:user/release-keys
+ro.vendor.build.id=BP2A.250305.002
 ro.vendor.build.tags=release-keys
 ro.vendor.build.type=user
 ro.vendor.build.version.incremental=OS3.0.306.0.WFSINXM
-ro.vendor.build.version.release=12
-ro.vendor.build.version.release_or_codename=12
-ro.vendor.build.version.sdk=32
+ro.vendor.build.version.release=16
+ro.vendor.build.version.release_or_codename=16
+ro.vendor.build.version.sdk=36
 ####################################
 # from out/target/product/ruan/obj/ETC/android_info_prop_intermediates/android_info.prop
 ####################################
 ####################################
 # from variable ADDITIONAL_VENDOR_PROPERTIES
 ####################################
-ro.vndk.version=32
+ro.vndk.version=36
 ro.bionic.arch=arm64
 ro.bionic.cpu_variant=kryo300
 ro.bionic.2nd_arch=arm
@@ -39,8 +39,9 @@ dalvik.vm.isa.arm.features=default
 ro.minui.pixel_format=RGBX_8888
 ro.boot.dynamic_partitions=true
 ro.product.first_api_level=34
-ro.board.first_api_level=31
-ro.board.api_level=31
+ro.board.first_api_level=34
+ro.board.api_level=36
+ro.vendor.api_level=36
 ro.vendor.build.security_patch=2026-02-01
 ro.product.board=parrot
 ro.board.platform=parrot

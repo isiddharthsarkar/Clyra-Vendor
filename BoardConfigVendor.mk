@@ -15,8 +15,10 @@ TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_VARIANT := generic
 
 # Kernel & GKI (Clyra-Flip: https://github.com/isiddharthsarkar/Clyra-Flip)
-# Linux 6.6 / Android 16 / GKI 3.1 / CONFIG_ARCH_QCOM_CAF=y
+# Linux 6.6.162 / Android 16 (API 36) / GKI 3.1 / CONFIG_ARCH_QCOM_CAF=y
 TARGET_KERNEL_ARCH := arm64
+TARGET_KERNEL_VERSION := 6.6.162
+TARGET_LINUX_KERNEL_VERSION := 6.6
 TARGET_KERNEL_SOURCE ?= kernel/xiaomi/ruan
 TARGET_KERNEL_CONFIG ?= gki_defconfig vendor/parrot_GKI.config vendor/ruan_GKI.config vendor/ruan_android16.config
 BOARD_KERNEL_PAGESIZE := 4096
@@ -30,7 +32,9 @@ BOARD_VENDOR_KERNEL_MODULES_LOAD := $(wildcard vendor/ruan/proprietary/vendor_dl
 BOARD_USES_QCOM_HARDWARE := true
 TARGET_USES_QCOM_BSP := true
 BOARD_VNDK_VERSION := current
-PRODUCT_SHIPPING_API_LEVEL := 32
+BOARD_API_LEVEL := 36
+BOARD_SHIPPING_API_LEVEL := 36
+PRODUCT_SHIPPING_API_LEVEL := 36
 
 # Qualcomm Modular Android Architecture (QMAA) Overrides
 TARGET_USES_QMAA := true

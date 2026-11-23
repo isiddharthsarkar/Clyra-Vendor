@@ -24,7 +24,7 @@ PRODUCT_SOONG_NAMESPACES += \
     vendor/qcom/opensource/location \
     vendor/qcom/opensource/usb
 
-PRODUCT_SHIPPING_API_LEVEL := 32
+PRODUCT_SHIPPING_API_LEVEL := 36
 
 # Code Aurora Forum (CAF) Properties
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -4433,4 +4433,8 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor_dlkm/lib/modules/xiaomi_touch.ko:$(TARGET_COPY_OUT_VENDOR_DLKM)/lib/modules/xiaomi_touch.ko \
     vendor/ruan/proprietary/vendor_dlkm/lib/modules/xlogchar.ko:$(TARGET_COPY_OUT_VENDOR_DLKM)/lib/modules/xlogchar.ko \
     vendor/ruan/proprietary/vendor_dlkm/lib/modules/zram.ko:$(TARGET_COPY_OUT_VENDOR_DLKM)/lib/modules/zram.ko \
-    vendor/ruan/proprietary/vendor_dlkm/lib/modules/zsmalloc.ko:$(TARGET_COPY_OUT_VENDOR_DLKM)/lib/modules/zsmalloc.ko
+    vendor/ruan/proprietary/vendor_dlkm/lib/modules/zsmalloc.ko:$(TARGET_COPY_OUT_VENDOR_DLKM)/lib/modules/zsmalloc.ko \
+    vendor/ruan/proprietary/vendor/etc/permissions/android.hardware.vulkan.version-1_3.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.version-1_3.xml \
+    vendor/ruan/proprietary/vendor/lib64/libQnnGpu.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnGpu.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnGpuNetRunExtensions.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnGpuNetRunExtensions.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnGpuProfilingReader.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnGpuProfilingReader.so
