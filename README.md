@@ -6,8 +6,8 @@
   <img src="https://img.shields.io/badge/Kernel-6.6.162--Clyra--Flip-blue?style=for-the-badge&logo=linux&logoColor=white" alt="Kernel 6.6.162" />
   <img src="https://img.shields.io/badge/Platform-Qualcomm%20SM7435-D32F2F?style=for-the-badge&logo=qualcomm&logoColor=white" alt="Qualcomm SM7435" />
   <img src="https://img.shields.io/badge/GPU-Adreno%20710%20%7C%20Vulkan%201.3-E91E63?style=for-the-badge&logo=vulkan&logoColor=white" alt="Vulkan 1.3" />
-  <img src="https://img.shields.io/badge/CAF-Code%20Aurora%20Forum-orange?style=for-the-badge" alt="CAF Supported" />
-  <img src="https://img.shields.io/badge/Target-Redmi%20Pad%202%20Pro%20Ready-00ACC1?style=for-the-badge" alt="Pad 2 Pro Ready" />
+  <img src="https://img.shields.io/badge/ROMs-HyperOS%203%20%7C%20OneUI%208%20%7C%20ColorOS%20%7C%20AOSP%2016-green?style=for-the-badge" alt="Multi-ROM" />
+  <img src="https://img.shields.io/badge/Cross--Port-Garnet%20%26%20Pad%202%20Pro-00ACC1?style=for-the-badge" alt="Cross-Port Ready" />
 </p>
 
 ---
@@ -16,7 +16,7 @@
 
 **Clyra-Vendor** provides proprietary vendor binaries, firmware configs, and open-source HAL definitions for the **Redmi Pad Pro 5G (`ruan`)**, built on the **Qualcomm SM7435 (Snapdragon 7s Gen 2 / `parrot`)** mobile platform. 
 
-This tree is rebuilt to a **Pure 64-Bit (`arm64-v8a`) architecture**, upgrades the vendor baseline to **Android 16 (API Level 36)**, unlocks **Vulkan 1.3** and **Qualcomm Neural Network (QNN) GPU acceleration**, conforms to **Code Aurora Forum (CAF)** standards, and enables seamless forward compatibility for running **Redmi Pad 2 Pro (`organ` / `flute`)** stock HyperOS system ports alongside the [**Clyra-Flip Linux 6.6.162 Kernel**](https://github.com/isiddharthsarkar/Clyra-Flip).
+This tree is rebuilt to a **Pure 64-Bit (`arm64-v8a`) architecture**, upgrades the vendor baseline to **Android 16 (API Level 36)**, unlocks **Vulkan 1.3** and **Qualcomm Neural Network (QNN) GPU acceleration**, conforms to **Code Aurora Forum (CAF)** standards, and enables seamless compatibility for running **HyperOS 3+**, **OneUI 8+**, **ColorOS 15/16+**, **AOSP 16+**, **Redmi Pad 2 Pro (`organ` / `flute`)**, and **Redmi Note 13 Pro 5G (`garnet`)** cross-ports alongside the [**Clyra-Flip Linux 6.6.162 Kernel**](https://github.com/isiddharthsarkar/Clyra-Flip).
 
 ---
 
@@ -26,6 +26,8 @@ This tree is rebuilt to a **Pure 64-Bit (`arm64-v8a`) architecture**, upgrades t
 |---|---|
 | **Device Model** | Redmi Pad Pro 5G (`24074RPD2G` / `24074RPD2I`) |
 | **Codename** | `ruan` (5G) / Compatible with `dizi` (Wi-Fi) |
+| **Cross-Port Targets** | `garnet` (Redmi Note 13 Pro 5G), `organ` / `flute` (Redmi Pad 2 Pro) |
+| **Compatible ROMs** | **HyperOS 3+**, **OneUI 8+**, **ColorOS 15/16+**, **AOSP 16+ (GSI / LineageOS 23)** |
 | **SoC / Chipset** | Qualcomm SM7435 (Snapdragon 7s Gen 2 / `parrot`) |
 | **CPU Architecture** | **`arm64-v8a` (Pure 64-bit only / No 32-bit overhead)** |
 | **Form Factor** | `tablet` (`ro.build.characteristics=tablet`) |
@@ -36,7 +38,6 @@ This tree is rebuilt to a **Pure 64-Bit (`arm64-v8a`) architecture**, upgrades t
 | **Build Fingerprint** | `Redmi/ruan/ruan:16/BP2A.250305.002/OS3.0.306.0.WFSINXM:user/release-keys` |
 | **Stock Firmware Source** | `ruan_in_global_images_OS3.0.306.0.WFSINXM_20261021.0000.00_16.0_in_e97cbecd4c.tgz` |
 | **Primary Kernel** | [Clyra-Flip](https://github.com/isiddharthsarkar/Clyra-Flip) (Linux 6.6.162 / GKI 3.1) |
-| **System Port Target** | Redmi Pad 2 Pro (`organ` / `flute` / SM7635 HyperOS) |
 
 ---
 
@@ -75,16 +76,17 @@ This tree is rebuilt to a **Pure 64-Bit (`arm64-v8a`) architecture**, upgrades t
   - `vendor/qcom/opensource/data-ipa-cfg-mgr`, `dataservices`
   - `vendor/qcom/opensource/vibrator`, `thermal-engine`, `power`, `location`, `usb`
 
-### 5. Pure 64-Bit Architecture & Redmi Pad 2 Pro Port Target
-- **Elimination of 32-Bit Overhead**: Removed over 1,200 redundant 32-bit legacy blobs, trimming repository bloat and eliminating 32-bit zygote RAM overhead.
-- **`TARGET_ARCH := arm64`**: Configured `BoardConfigVendor.mk` with pure 64-bit architecture (`TARGET_2ND_ARCH :=` unset) and tablet properties (`ro.build.characteristics=tablet`).
-- **Redmi Pad 2 Pro (`organ` / `flute`) Compatibility**: Redmi Pad 2 Pro (Cortex-A720) is a hardware 64-bit-only platform. Rebuilding `Clyra-Vendor` to pure 64-bit enables seamless binder and FCM communication when porting Redmi Pad 2 Pro stock HyperOS system images to Redmi Pad Pro (`ruan`).
+### 5. Pure 64-Bit Architecture & Cross-Port Targets (Garnet & Redmi Pad 2 Pro)
+- **Elimination of 32-Bit Overhead**: Removed all 32-bit legacy blobs, trimming repository bloat and eliminating 32-bit zygote RAM overhead.
+- **`TARGET_ARCH := arm64`**: Configured `BoardConfigVendor.mk` with pure 64-bit architecture (`TARGET_2ND_ARCH :=` unset, `TARGET_USES_64_BIT_BINDER := true`).
+- **Garnet & Redmi Pad 2 Pro Compatibility**: Seamless binder, HIDL, and AIDL interoperability for cross-porting between `garnet` (Redmi Note 13 Pro 5G) and `ruan` / `organ` / `flute` (Redmi Pad 2 Pro).
+- **Multi-ROM Support**: Native compatibility for **HyperOS 3+**, **OneUI 8+**, **ColorOS 15/16+**, and **AOSP 16+** (LineageOS 23 / GSI).
 
 ### 6. Removal of Xiaomi Locks & Security Restrictions
-- **DM-Verity (AVB) Unlocked**: Removed strict Android Verified Boot (`avb=vbmeta_system`, `avb`) partition signature enforcement from `fstab.default` and `fstab.emmc`, preventing bootloops when booting modified, ported, or custom ROM images.
-- **Forced Encryption Unlocked**: Stripped proprietary Qualcomm/Xiaomi `wrappedkey_v0` hardware-bound encryption tokens from userdata mounts, ensuring standard Android FBE and non-encrypting filesystems mount without decryption failure.
+- **DM-Verity (AVB) Unlocked**: Removed strict Android Verified Boot (`avb=vbmeta_system`, `avb`) partition signature enforcement from `fstab.default` and `fstab.emmc`.
+- **Forced Encryption Unlocked**: Stripped proprietary Qualcomm/Xiaomi `wrappedkey_v0` hardware-bound encryption tokens from userdata mounts.
 - **ADB & Root Debugging Enabled**: Configured `ro.adb.secure=0`, `ro.secure=0`, `ro.debuggable=1`, and `persist.sys.usb.config=adb` for instant, unrestricted early-boot ADB access.
-- **Xiaomi DRM & Telemetry Daemons Neutralized**: Disabled execution of Xiaomi background tracking and rights management daemons (`mrmd`, `mimd-service`, `mtdservice`, `mfidoca`, `mlipay`, `tidaservice`, `vsimservice`).
+- **Xiaomi DRM & Telemetry Daemons Neutralized**: Disabled execution of Xiaomi background tracking daemons (`mrmd`, `mimd-service`, `mtdservice`, `mfidoca`, `mlipay`, `tidaservice`, `vsimservice`).
 
 ---
 
@@ -93,6 +95,7 @@ This tree is rebuilt to a **Pure 64-Bit (`arm64-v8a`) architecture**, upgrades t
 ```text
 Clyra-Vendor/
 ├── Android.bp                  # Soong namespace imports & prebuilt definitions
+├── Android.mk                  # Target symlink generation (Qualcomm RFS & WLAN)
 ├── BoardConfigVendor.mk        # Platform, architecture, kernel & CAF variables
 ├── vendor.mk                   # Complete PRODUCT_COPY_FILES & property mappings
 ├── proprietary/                # Extracted and upgraded proprietary blobs
@@ -100,12 +103,11 @@ Clyra-Vendor/
 │   ├── vendor/                 # Core HALs, binaries, Adreno/Vulkan libraries, QNN
 │   └── vendor_dlkm/            # Loadable kernel modules (.ko) for Clyra-Flip
 ├── firmware/                   # Firmware profile and partition metadata
-├── scripts/                    # Zero-root EROFS unpacker & maintenance tools
-│   ├── extract_super.py        # Python sparse/raw super.img unpacker
-│   ├── make_vendor_tree.py     # EROFS filesystem tree builder
-│   ├── extract-vendor.sh       # Pipeline orchestration script
-│   └── tests/                  # Self-contained test suite (26 passing tests)
-└── .github/                    # CI verification workflows
+└── scripts/                    # Maintenance tools and automated test suites
+    ├── extract_super.py        # Python sparse/raw super.img unpacker
+    ├── make_vendor_tree.py     # EROFS filesystem tree builder
+    ├── extract-vendor.sh       # Pipeline orchestration script
+    └── tests/                  # Self-contained test suite (31 passing tests)
 ```
 
 ---
@@ -133,7 +135,7 @@ To integrate this vendor tree into an AOSP, LineageOS, or custom ROM build:
 
 ## Verification & Self-Test Suite
 
-This repository includes a test suite verifying super image unpacking, EROFS parsing, fixture validation, and makefile generation:
+This repository includes a test suite verifying super image unpacking, EROFS parsing, fixture validation, makefile generation, 64-bit integrity, and service sanity:
 
 ```bash
 ./scripts/tests/run-tests.sh
@@ -148,8 +150,9 @@ This repository includes a test suite verifying super image unpacking, EROFS par
 6. slot-suffixed metadata: PASS
 7. tree builder & makefile generation: PASS
 8. integrity checks & device.json coherence: PASS
+9. tree integrity & 64-bit architecture verification: PASS (5/5)
 -----------------------------------------------
-Result: 26 passed, 0 failed
+Result: 31 passed, 0 failed
 ```
 
 ---

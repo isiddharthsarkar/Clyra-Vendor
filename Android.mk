@@ -5,7 +5,7 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifeq ($(TARGET_DEVICE),ruan)
+ifneq ($(filter ruan garnet organ flute,$(TARGET_DEVICE)),)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := rfs_symlinks
