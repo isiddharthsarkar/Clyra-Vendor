@@ -21,3 +21,4 @@ service toucheventcheck /vendor/bin/toucheventcheck
     user root
     group system
     oneshot
+    disabled

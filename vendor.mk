@@ -32,9 +32,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.soc.model=SM7435 \
     ro.vendor.qspm.enable=true
 
+# Target Symlinks & Subsystem RFS Packages
+PRODUCT_PACKAGES += \
+    rfs_symlinks
+
 PRODUCT_COPY_FILES += \
-    vendor/ruan/proprietary/odm/bin/mrmd:$(TARGET_COPY_OUT_ODM)/bin/mrmd \
     vendor/ruan/proprietary/odm/bin/hw/vendor.xiaomi.sensor.citsensorservice.aidl:$(TARGET_COPY_OUT_ODM)/bin/hw/vendor.xiaomi.sensor.citsensorservice.aidl \
+    vendor/ruan/proprietary/odm/bin/mrmd:$(TARGET_COPY_OUT_ODM)/bin/mrmd \
     vendor/ruan/proprietary/odm/etc/NOTICE.xml.gz:$(TARGET_COPY_OUT_ODM)/etc/NOTICE.xml.gz \
     vendor/ruan/proprietary/odm/etc/NOTICE_GPL.xml.gz:$(TARGET_COPY_OUT_ODM)/etc/NOTICE_GPL.xml.gz \
     vendor/ruan/proprietary/odm/etc/Redmi_Keyboard_OTA.zip:$(TARGET_COPY_OUT_ODM)/etc/Redmi_Keyboard_OTA.zip \
@@ -43,22 +47,22 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/odm/etc/audio_policy_engine_product_strategies.xml:$(TARGET_COPY_OUT_ODM)/etc/audio_policy_engine_product_strategies.xml \
     vendor/ruan/proprietary/odm/etc/audio_policy_engine_stream_volumes.xml:$(TARGET_COPY_OUT_ODM)/etc/audio_policy_engine_stream_volumes.xml \
     vendor/ruan/proprietary/odm/etc/build.prop:$(TARGET_COPY_OUT_ODM)/etc/build.prop \
+    vendor/ruan/proprietary/odm/etc/camera/camerabooster.json:$(TARGET_COPY_OUT_ODM)/etc/camera/camerabooster.json \
     vendor/ruan/proprietary/odm/etc/default_cloud.json:$(TARGET_COPY_OUT_ODM)/etc/default_cloud.json \
     vendor/ruan/proprietary/odm/etc/device_info_qr_config.yml:$(TARGET_COPY_OUT_ODM)/etc/device_info_qr_config.yml \
-    vendor/ruan/proprietary/odm/etc/fs_config_dirs:$(TARGET_COPY_OUT_ODM)/etc/fs_config_dirs \
-    vendor/ruan/proprietary/odm/etc/fs_config_files:$(TARGET_COPY_OUT_ODM)/etc/fs_config_files \
-    vendor/ruan/proprietary/odm/etc/group:$(TARGET_COPY_OUT_ODM)/etc/group \
-    vendor/ruan/proprietary/odm/etc/mimdconfig:$(TARGET_COPY_OUT_ODM)/etc/mimdconfig \
-    vendor/ruan/proprietary/odm/etc/n83ucn_build.prop:$(TARGET_COPY_OUT_ODM)/etc/n83ucn_build.prop \
-    vendor/ruan/proprietary/odm/etc/n83ucnes_build.prop:$(TARGET_COPY_OUT_ODM)/etc/n83ucnes_build.prop \
-    vendor/ruan/proprietary/odm/etc/n83ugl_build.prop:$(TARGET_COPY_OUT_ODM)/etc/n83ugl_build.prop \
-    vendor/ruan/proprietary/odm/etc/n83uin_build.prop:$(TARGET_COPY_OUT_ODM)/etc/n83uin_build.prop \
-    vendor/ruan/proprietary/odm/etc/n83uja_build.prop:$(TARGET_COPY_OUT_ODM)/etc/n83uja_build.prop \
-    vendor/ruan/proprietary/odm/etc/n83upin_build.prop:$(TARGET_COPY_OUT_ODM)/etc/n83upin_build.prop \
-    vendor/ruan/proprietary/odm/etc/passwd:$(TARGET_COPY_OUT_ODM)/etc/passwd \
-    vendor/ruan/proprietary/odm/etc/ueventd.rc:$(TARGET_COPY_OUT_ODM)/etc/ueventd.rc \
-    vendor/ruan/proprietary/odm/etc/camera/camerabooster.json:$(TARGET_COPY_OUT_ODM)/etc/camera/camerabooster.json \
     vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/cct_pcc.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/cct_pcc.txt \
+    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut0.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut0.txt \
+    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut1.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut1.txt \
+    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut2.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut2.txt \
+    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut3.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut3.txt \
+    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut4.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut4.txt \
+    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut5.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut5.txt \
+    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut6.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut6.txt \
+    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut7.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut7.txt \
+    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLutInfo.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLutInfo.txt \
+    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/PicHDRLchIn.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/PicHDRLchIn.txt \
+    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/clstc_gc_0.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/clstc_gc_0.txt \
+    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/clstc_igc_0.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/clstc_igc_0.txt \
     vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/miLutInfo.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/miLutInfo.txt \
     vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/miLut_0.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/miLut_0.txt \
     vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/miLut_1.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/miLut_1.txt \
@@ -84,19 +88,19 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/mi_gc_0.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/mi_gc_0.txt \
     vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/mi_gc_1.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/mi_gc_1.txt \
     vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/mi_gc_2.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/mi_gc_2.txt \
-    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut0.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut0.txt \
-    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut1.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut1.txt \
-    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut2.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut2.txt \
-    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut3.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut3.txt \
-    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut4.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut4.txt \
-    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut5.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut5.txt \
-    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut6.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut6.txt \
-    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut7.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLut7.txt \
-    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLutInfo.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/ClstcLutInfo.txt \
-    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/PicHDRLchIn.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/PicHDRLchIn.txt \
-    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/clstc_gc_0.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/clstc_gc_0.txt \
-    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/clstc_igc_0.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_35_02_0a_wqxga_video_cphy/clstc/clstc_igc_0.txt \
     vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/cct_pcc.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/cct_pcc.txt \
+    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut0.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut0.txt \
+    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut1.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut1.txt \
+    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut2.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut2.txt \
+    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut3.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut3.txt \
+    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut4.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut4.txt \
+    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut5.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut5.txt \
+    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut6.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut6.txt \
+    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut7.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut7.txt \
+    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLutInfo.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLutInfo.txt \
+    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/PicHDRLchIn.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/PicHDRLchIn.txt \
+    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/clstc_gc_0.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/clstc_gc_0.txt \
+    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/clstc_igc_0.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/clstc_igc_0.txt \
     vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/miLutInfo.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/miLutInfo.txt \
     vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/miLut_0.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/miLut_0.txt \
     vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/miLut_1.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/miLut_1.txt \
@@ -122,40 +126,39 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/mi_gc_0.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/mi_gc_0.txt \
     vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/mi_gc_1.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/mi_gc_1.txt \
     vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/mi_gc_2.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/mi_gc_2.txt \
-    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut0.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut0.txt \
-    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut1.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut1.txt \
-    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut2.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut2.txt \
-    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut3.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut3.txt \
-    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut4.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut4.txt \
-    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut5.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut5.txt \
-    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut6.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut6.txt \
-    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut7.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLut7.txt \
-    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLutInfo.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/ClstcLutInfo.txt \
-    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/PicHDRLchIn.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/PicHDRLchIn.txt \
-    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/clstc_gc_0.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/clstc_gc_0.txt \
-    vendor/ruan/proprietary/odm/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/clstc_igc_0.txt:$(TARGET_COPY_OUT_ODM)/etc/disp0/mdss_dsi_n83_42_02_0b_wqxga_video_cphy/clstc/clstc_igc_0.txt \
     vendor/ruan/proprietary/odm/etc/display/qdcm_calib_data_xiaomi_n83_35_02_0a_cphy_nt36532_boe.json:$(TARGET_COPY_OUT_ODM)/etc/display/qdcm_calib_data_xiaomi_n83_35_02_0a_cphy_nt36532_boe.json \
     vendor/ruan/proprietary/odm/etc/display/qdcm_calib_data_xiaomi_n83_42_02_0b_cphy_nt36532_csot.json:$(TARGET_COPY_OUT_ODM)/etc/display/qdcm_calib_data_xiaomi_n83_42_02_0b_cphy_nt36532_csot.json \
+    vendor/ruan/proprietary/odm/etc/fs_config_dirs:$(TARGET_COPY_OUT_ODM)/etc/fs_config_dirs \
+    vendor/ruan/proprietary/odm/etc/fs_config_files:$(TARGET_COPY_OUT_ODM)/etc/fs_config_files \
+    vendor/ruan/proprietary/odm/etc/group:$(TARGET_COPY_OUT_ODM)/etc/group \
     vendor/ruan/proprietary/odm/etc/init/mrm.rc:$(TARGET_COPY_OUT_ODM)/etc/init/mrm.rc \
     vendor/ruan/proprietary/odm/etc/init/vendor.xiaomi.sensor.citsensorservice.aidl.rc:$(TARGET_COPY_OUT_ODM)/etc/init/vendor.xiaomi.sensor.citsensorservice.aidl.rc \
-    vendor/ruan/proprietary/odm/etc/selinux/precompiled_sepolicy:$(TARGET_COPY_OUT_ODM)/etc/selinux/precompiled_sepolicy \
+    vendor/ruan/proprietary/odm/etc/mimdconfig:$(TARGET_COPY_OUT_ODM)/etc/mimdconfig \
+    vendor/ruan/proprietary/odm/etc/n83ucn_build.prop:$(TARGET_COPY_OUT_ODM)/etc/n83ucn_build.prop \
+    vendor/ruan/proprietary/odm/etc/n83ucnes_build.prop:$(TARGET_COPY_OUT_ODM)/etc/n83ucnes_build.prop \
+    vendor/ruan/proprietary/odm/etc/n83ugl_build.prop:$(TARGET_COPY_OUT_ODM)/etc/n83ugl_build.prop \
+    vendor/ruan/proprietary/odm/etc/n83uin_build.prop:$(TARGET_COPY_OUT_ODM)/etc/n83uin_build.prop \
+    vendor/ruan/proprietary/odm/etc/n83uja_build.prop:$(TARGET_COPY_OUT_ODM)/etc/n83uja_build.prop \
+    vendor/ruan/proprietary/odm/etc/n83upin_build.prop:$(TARGET_COPY_OUT_ODM)/etc/n83upin_build.prop \
+    vendor/ruan/proprietary/odm/etc/passwd:$(TARGET_COPY_OUT_ODM)/etc/passwd \
     vendor/ruan/proprietary/odm/etc/selinux/precompiled_sepolicy.plat_sepolicy_and_mapping.sha256:$(TARGET_COPY_OUT_ODM)/etc/selinux/precompiled_sepolicy.plat_sepolicy_and_mapping.sha256 \
     vendor/ruan/proprietary/odm/etc/selinux/precompiled_sepolicy.product_sepolicy_and_mapping.sha256:$(TARGET_COPY_OUT_ODM)/etc/selinux/precompiled_sepolicy.product_sepolicy_and_mapping.sha256 \
     vendor/ruan/proprietary/odm/etc/selinux/precompiled_sepolicy.system_ext_sepolicy_and_mapping.sha256:$(TARGET_COPY_OUT_ODM)/etc/selinux/precompiled_sepolicy.system_ext_sepolicy_and_mapping.sha256 \
+    vendor/ruan/proprietary/odm/etc/selinux/precompiled_sepolicy:$(TARGET_COPY_OUT_ODM)/etc/selinux/precompiled_sepolicy \
+    vendor/ruan/proprietary/odm/etc/ueventd.rc:$(TARGET_COPY_OUT_ODM)/etc/ueventd.rc \
+    vendor/ruan/proprietary/odm/etc/vintf/manifest/mrm.xml:$(TARGET_COPY_OUT_ODM)/etc/vintf/manifest/mrm.xml \
+    vendor/ruan/proprietary/odm/etc/vintf/manifest/vendor.xiaomi.sensor.citsensorservice.aidl.xml:$(TARGET_COPY_OUT_ODM)/etc/vintf/manifest/vendor.xiaomi.sensor.citsensorservice.aidl.xml \
     vendor/ruan/proprietary/odm/etc/vintf/manifest_n83ucn.xml:$(TARGET_COPY_OUT_ODM)/etc/vintf/manifest_n83ucn.xml \
     vendor/ruan/proprietary/odm/etc/vintf/manifest_n83ucnes.xml:$(TARGET_COPY_OUT_ODM)/etc/vintf/manifest_n83ucnes.xml \
     vendor/ruan/proprietary/odm/etc/vintf/manifest_n83ugl.xml:$(TARGET_COPY_OUT_ODM)/etc/vintf/manifest_n83ugl.xml \
     vendor/ruan/proprietary/odm/etc/vintf/manifest_n83uin.xml:$(TARGET_COPY_OUT_ODM)/etc/vintf/manifest_n83uin.xml \
     vendor/ruan/proprietary/odm/etc/vintf/manifest_n83uja.xml:$(TARGET_COPY_OUT_ODM)/etc/vintf/manifest_n83uja.xml \
     vendor/ruan/proprietary/odm/etc/vintf/manifest_n83upin.xml:$(TARGET_COPY_OUT_ODM)/etc/vintf/manifest_n83upin.xml \
-    vendor/ruan/proprietary/odm/etc/vintf/manifest/mrm.xml:$(TARGET_COPY_OUT_ODM)/etc/vintf/manifest/mrm.xml \
-    vendor/ruan/proprietary/odm/etc/vintf/manifest/vendor.xiaomi.sensor.citsensorservice.aidl.xml:$(TARGET_COPY_OUT_ODM)/etc/vintf/manifest/vendor.xiaomi.sensor.citsensorservice.aidl.xml \
     vendor/ruan/proprietary/odm/lib64/libdisplaycount.so:$(TARGET_COPY_OUT_ODM)/lib64/libdisplaycount.so \
     vendor/ruan/proprietary/odm/lib64/libmiriskmanager.so:$(TARGET_COPY_OUT_ODM)/lib64/libmiriskmanager.so \
     vendor/ruan/proprietary/odm/lib64/librhytheyecare.so:$(TARGET_COPY_OUT_ODM)/lib64/librhytheyecare.so \
     vendor/ruan/proprietary/odm/lib64/vendor.xiaomi.hardware.misauth-V1-ndk_platform.so:$(TARGET_COPY_OUT_ODM)/lib64/vendor.xiaomi.hardware.misauth-V1-ndk_platform.so \
     vendor/ruan/proprietary/odm/lib64/vendor.xiaomi.hardware.mrm-V1-ndk_platform.so:$(TARGET_COPY_OUT_ODM)/lib64/vendor.xiaomi.hardware.mrm-V1-ndk_platform.so \
-    vendor/ruan/proprietary/vendor/build.prop:$(TARGET_COPY_OUT_VENDOR)/build.prop \
     vendor/ruan/proprietary/vendor/app/CACertService/CACertService.apk:$(TARGET_COPY_OUT_VENDOR)/app/CACertService/CACertService.apk \
     vendor/ruan/proprietary/vendor/app/CACertService/oat/arm64/CACertService.odex:$(TARGET_COPY_OUT_VENDOR)/app/CACertService/oat/arm64/CACertService.odex \
     vendor/ruan/proprietary/vendor/app/CACertService/oat/arm64/CACertService.vdex:$(TARGET_COPY_OUT_VENDOR)/app/CACertService/oat/arm64/CACertService.vdex \
@@ -206,8 +209,8 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/bin/bluedut.sh:$(TARGET_COPY_OUT_VENDOR)/bin/bluedut.sh \
     vendor/ruan/proprietary/vendor/bin/blueduttest:$(TARGET_COPY_OUT_VENDOR)/bin/blueduttest \
     vendor/ruan/proprietary/vendor/bin/boringssl_self_test64:$(TARGET_COPY_OUT_VENDOR)/bin/boringssl_self_test64 \
-    vendor/ruan/proprietary/vendor/bin/bt_close:$(TARGET_COPY_OUT_VENDOR)/bin/bt_close \
     vendor/ruan/proprietary/vendor/bin/bt_close.sh:$(TARGET_COPY_OUT_VENDOR)/bin/bt_close.sh \
+    vendor/ruan/proprietary/vendor/bin/bt_close:$(TARGET_COPY_OUT_VENDOR)/bin/bt_close \
     vendor/ruan/proprietary/vendor/bin/cal:$(TARGET_COPY_OUT_VENDOR)/bin/cal \
     vendor/ruan/proprietary/vendor/bin/cat:$(TARGET_COPY_OUT_VENDOR)/bin/cat \
     vendor/ruan/proprietary/vendor/bin/ccid_daemon_nr:$(TARGET_COPY_OUT_VENDOR)/bin/ccid_daemon_nr \
@@ -301,6 +304,69 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/bin/head:$(TARGET_COPY_OUT_VENDOR)/bin/head \
     vendor/ruan/proprietary/vendor/bin/hostapd_cli:$(TARGET_COPY_OUT_VENDOR)/bin/hostapd_cli \
     vendor/ruan/proprietary/vendor/bin/hostname:$(TARGET_COPY_OUT_VENDOR)/bin/hostname \
+    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.atrace@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.atrace@1.0-service \
+    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.audio.service_64:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.audio.service_64 \
+    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.biometrics.face@1.0-service.face:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.biometrics.face@1.0-service.face \
+    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.bluetooth@1.0-service-qti \
+    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.boot@1.2-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.boot@1.2-service \
+    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.drm@1.4-service.clearkey:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.drm@1.4-service.clearkey \
+    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.drm@1.4-service.widevine:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.drm@1.4-service.widevine \
+    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.dumpstate@1.1-service.xiaomi:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.dumpstate@1.1-service.xiaomi \
+    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.gatekeeper@1.0-service-qti:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.gatekeeper@1.0-service-qti \
+    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.gnss-aidl-service-qti:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.gnss-aidl-service-qti \
+    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.health@2.1-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.health@2.1-service \
+    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.keymaster@4.0-service-qti:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.keymaster@4.0-service-qti \
+    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.keymaster@4.1-service-qti:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.keymaster@4.1-service-qti \
+    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.power-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.power-service \
+    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.security.keymint-service-qti:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.security.keymint-service-qti \
+    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.sensors@2.1-service.multihal:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.sensors@2.1-service.multihal \
+    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.thermal@2.0-service.qti-v2:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.thermal@2.0-service.qti-v2 \
+    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.usb.gadget@1.2-service-qti:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.usb.gadget@1.2-service-qti \
+    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.usb@1.2-service-qti:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.usb@1.2-service-qti \
+    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.wifi@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.wifi@1.0-service \
+    vendor/ruan/proprietary/vendor/bin/hw/capabilityconfigstoretest:$(TARGET_COPY_OUT_VENDOR)/bin/hw/capabilityconfigstoretest \
+    vendor/ruan/proprietary/vendor/bin/hw/hostapd:$(TARGET_COPY_OUT_VENDOR)/bin/hw/hostapd \
+    vendor/ruan/proprietary/vendor/bin/hw/qcrilNrd:$(TARGET_COPY_OUT_VENDOR)/bin/hw/qcrilNrd \
+    vendor/ruan/proprietary/vendor/bin/hw/qfp-daemon:$(TARGET_COPY_OUT_VENDOR)/bin/hw/qfp-daemon \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.display.color@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.display.color@1.0-service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.dolby.hardware.dms@2.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.dolby.hardware.dms@2.0-service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.dolby.media.c2@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.dolby.media.c2@1.0-service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.camera.provider@2.7-service_64:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.camera.provider@2.7-service_64 \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.AGMIPC@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.AGMIPC@1.0-service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.alarm@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.alarm@1.0-service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.capabilityconfigstore@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.capabilityconfigstore@1.0-service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.display.allocator-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.display.allocator-service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.display.composer-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.display.composer-service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.display.demura-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.display.demura-service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.factory@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.factory@1.0-service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.iop@2.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.iop@2.0-service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.lights.service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.lights.service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.limits@1.1-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.limits@1.1-service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.perf-hal-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.perf-hal-service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.qseecom@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.qseecom@1.0-service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.qteeconnector@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.qteeconnector@1.0-service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.secureprocessor@1.0:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.secureprocessor@1.0 \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.sensorscalibrate@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.sensorscalibrate@1.0-service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.servicetracker@1.2-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.servicetracker@1.2-service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.soter@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.soter@1.0-service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.trustedui@1.0-service-qti:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.trustedui@1.0-service-qti \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.tui_comm@1.0-service-qti:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.tui_comm@1.0-service-qti \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.media.c2@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.media.c2@1.0-service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.media.c2audio@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.media.c2audio@1.0-service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.memory.pasrmanager@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.memory.pasrmanager@1.0-service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.psiclient@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.psiclient@1.0-service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.xiaomi.hardware.blackbox.service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.xiaomi.hardware.blackbox.service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.xiaomi.hardware.cld@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.xiaomi.hardware.cld@1.0-service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.xiaomi.hardware.displayfeature@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.xiaomi.hardware.displayfeature@1.0-service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.xiaomi.hardware.micharge@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.xiaomi.hardware.micharge@1.0-service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.xiaomi.hardware.mimd@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.xiaomi.hardware.mimd@1.0-service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.xiaomi.hardware.misight.service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.xiaomi.hardware.misight.service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.xiaomi.hardware.misys@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.xiaomi.hardware.misys@1.0-service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.xiaomi.hardware.misys@2.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.xiaomi.hardware.misys@2.0-service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.xiaomi.hardware.misys@3.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.xiaomi.hardware.misys@3.0-service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.xiaomi.hardware.misys@4.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.xiaomi.hardware.misys@4.0-service \
+    vendor/ruan/proprietary/vendor/bin/hw/vendor.xiaomi.hw.touchfeature@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.xiaomi.hw.touchfeature@1.0-service \
+    vendor/ruan/proprietary/vendor/bin/hw/wpa_supplicant:$(TARGET_COPY_OUT_VENDOR)/bin/hw/wpa_supplicant \
     vendor/ruan/proprietary/vendor/bin/hwclock:$(TARGET_COPY_OUT_VENDOR)/bin/hwclock \
     vendor/ruan/proprietary/vendor/bin/hwinfo:$(TARGET_COPY_OUT_VENDOR)/bin/hwinfo \
     vendor/ruan/proprietary/vendor/bin/i2cdetect:$(TARGET_COPY_OUT_VENDOR)/bin/i2cdetect \
@@ -343,8 +409,8 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/bin/install:$(TARGET_COPY_OUT_VENDOR)/bin/install \
     vendor/ruan/proprietary/vendor/bin/ionice:$(TARGET_COPY_OUT_VENDOR)/bin/ionice \
     vendor/ruan/proprietary/vendor/bin/iorenice:$(TARGET_COPY_OUT_VENDOR)/bin/iorenice \
-    vendor/ruan/proprietary/vendor/bin/ipacm:$(TARGET_COPY_OUT_VENDOR)/bin/ipacm \
     vendor/ruan/proprietary/vendor/bin/ipacm-diag:$(TARGET_COPY_OUT_VENDOR)/bin/ipacm-diag \
+    vendor/ruan/proprietary/vendor/bin/ipacm:$(TARGET_COPY_OUT_VENDOR)/bin/ipacm \
     vendor/ruan/proprietary/vendor/bin/irsc_util:$(TARGET_COPY_OUT_VENDOR)/bin/irsc_util \
     vendor/ruan/proprietary/vendor/bin/iw:$(TARGET_COPY_OUT_VENDOR)/bin/iw \
     vendor/ruan/proprietary/vendor/bin/iwlist:$(TARGET_COPY_OUT_VENDOR)/bin/iwlist \
@@ -390,8 +456,8 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/bin/mtb:$(TARGET_COPY_OUT_VENDOR)/bin/mtb \
     vendor/ruan/proprietary/vendor/bin/mtd@1.3:$(TARGET_COPY_OUT_VENDOR)/bin/mtd@1.3 \
     vendor/ruan/proprietary/vendor/bin/mv:$(TARGET_COPY_OUT_VENDOR)/bin/mv \
-    vendor/ruan/proprietary/vendor/bin/myftm:$(TARGET_COPY_OUT_VENDOR)/bin/myftm \
     vendor/ruan/proprietary/vendor/bin/myftm.agent.sh:$(TARGET_COPY_OUT_VENDOR)/bin/myftm.agent.sh \
+    vendor/ruan/proprietary/vendor/bin/myftm:$(TARGET_COPY_OUT_VENDOR)/bin/myftm \
     vendor/ruan/proprietary/vendor/bin/myftmftm:$(TARGET_COPY_OUT_VENDOR)/bin/myftmftm \
     vendor/ruan/proprietary/vendor/bin/nativechitest:$(TARGET_COPY_OUT_VENDOR)/bin/nativechitest \
     vendor/ruan/proprietary/vendor/bin/nativehaltest:$(TARGET_COPY_OUT_VENDOR)/bin/nativehaltest \
@@ -434,6 +500,7 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/bin/qdcmss:$(TARGET_COPY_OUT_VENDOR)/bin/qdcmss \
     vendor/ruan/proprietary/vendor/bin/qesdk-manager:$(TARGET_COPY_OUT_VENDOR)/bin/qesdk-manager \
     vendor/ruan/proprietary/vendor/bin/qguard:$(TARGET_COPY_OUT_VENDOR)/bin/qguard \
+    vendor/ruan/proprietary/vendor/bin/qmi-framework-tests/qmi_test_mt_client_init_instance:$(TARGET_COPY_OUT_VENDOR)/bin/qmi-framework-tests/qmi_test_mt_client_init_instance \
     vendor/ruan/proprietary/vendor/bin/qmipriod:$(TARGET_COPY_OUT_VENDOR)/bin/qmipriod \
     vendor/ruan/proprietary/vendor/bin/qms:$(TARGET_COPY_OUT_VENDOR)/bin/qms \
     vendor/ruan/proprietary/vendor/bin/qrtr-cfg:$(TARGET_COPY_OUT_VENDOR)/bin/qrtr-cfg \
@@ -483,6 +550,8 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/bin/spectraltool:$(TARGET_COPY_OUT_VENDOR)/bin/spectraltool \
     vendor/ruan/proprietary/vendor/bin/split:$(TARGET_COPY_OUT_VENDOR)/bin/split \
     vendor/ruan/proprietary/vendor/bin/sscrpcd:$(TARGET_COPY_OUT_VENDOR)/bin/sscrpcd \
+    vendor/ruan/proprietary/vendor/bin/ssgqmigd64:$(TARGET_COPY_OUT_VENDOR)/bin/ssgqmigd64 \
+    vendor/ruan/proprietary/vendor/bin/ssgqmigd:$(TARGET_COPY_OUT_VENDOR)/bin/ssgqmigd \
     vendor/ruan/proprietary/vendor/bin/ssgtzd:$(TARGET_COPY_OUT_VENDOR)/bin/ssgtzd \
     vendor/ruan/proprietary/vendor/bin/ssr_diag:$(TARGET_COPY_OUT_VENDOR)/bin/ssr_diag \
     vendor/ruan/proprietary/vendor/bin/ssr_setup:$(TARGET_COPY_OUT_VENDOR)/bin/ssr_setup \
@@ -564,70 +633,7 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/bin/xxd:$(TARGET_COPY_OUT_VENDOR)/bin/xxd \
     vendor/ruan/proprietary/vendor/bin/yes:$(TARGET_COPY_OUT_VENDOR)/bin/yes \
     vendor/ruan/proprietary/vendor/bin/zcat:$(TARGET_COPY_OUT_VENDOR)/bin/zcat \
-    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.atrace@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.atrace@1.0-service \
-    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.audio.service_64:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.audio.service_64 \
-    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.biometrics.face@1.0-service.face:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.biometrics.face@1.0-service.face \
-    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.bluetooth@1.0-service-qti \
-    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.boot@1.2-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.boot@1.2-service \
-    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.drm@1.4-service.clearkey:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.drm@1.4-service.clearkey \
-    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.drm@1.4-service.widevine:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.drm@1.4-service.widevine \
-    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.dumpstate@1.1-service.xiaomi:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.dumpstate@1.1-service.xiaomi \
-    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.gatekeeper@1.0-service-qti:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.gatekeeper@1.0-service-qti \
-    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.gnss-aidl-service-qti:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.gnss-aidl-service-qti \
-    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.health@2.1-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.health@2.1-service \
-    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.keymaster@4.0-service-qti:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.keymaster@4.0-service-qti \
-    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.keymaster@4.1-service-qti:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.keymaster@4.1-service-qti \
-    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.power-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.power-service \
-    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.security.keymint-service-qti:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.security.keymint-service-qti \
-    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.sensors@2.1-service.multihal:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.sensors@2.1-service.multihal \
-    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.thermal@2.0-service.qti-v2:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.thermal@2.0-service.qti-v2 \
-    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.usb.gadget@1.2-service-qti:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.usb.gadget@1.2-service-qti \
-    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.usb@1.2-service-qti:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.usb@1.2-service-qti \
-    vendor/ruan/proprietary/vendor/bin/hw/android.hardware.wifi@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.wifi@1.0-service \
-    vendor/ruan/proprietary/vendor/bin/hw/capabilityconfigstoretest:$(TARGET_COPY_OUT_VENDOR)/bin/hw/capabilityconfigstoretest \
-    vendor/ruan/proprietary/vendor/bin/hw/hostapd:$(TARGET_COPY_OUT_VENDOR)/bin/hw/hostapd \
-    vendor/ruan/proprietary/vendor/bin/hw/qcrilNrd:$(TARGET_COPY_OUT_VENDOR)/bin/hw/qcrilNrd \
-    vendor/ruan/proprietary/vendor/bin/hw/qfp-daemon:$(TARGET_COPY_OUT_VENDOR)/bin/hw/qfp-daemon \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.display.color@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.display.color@1.0-service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.dolby.hardware.dms@2.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.dolby.hardware.dms@2.0-service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.dolby.media.c2@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.dolby.media.c2@1.0-service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.camera.provider@2.7-service_64:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.camera.provider@2.7-service_64 \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.AGMIPC@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.AGMIPC@1.0-service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.alarm@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.alarm@1.0-service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.capabilityconfigstore@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.capabilityconfigstore@1.0-service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.display.allocator-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.display.allocator-service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.display.composer-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.display.composer-service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.display.demura-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.display.demura-service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.factory@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.factory@1.0-service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.iop@2.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.iop@2.0-service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.lights.service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.lights.service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.limits@1.1-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.limits@1.1-service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.perf-hal-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.perf-hal-service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.qseecom@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.qseecom@1.0-service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.qteeconnector@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.qteeconnector@1.0-service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.secureprocessor@1.0:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.secureprocessor@1.0 \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.sensorscalibrate@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.sensorscalibrate@1.0-service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.servicetracker@1.2-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.servicetracker@1.2-service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.soter@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.soter@1.0-service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.trustedui@1.0-service-qti:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.trustedui@1.0-service-qti \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.hardware.tui_comm@1.0-service-qti:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.tui_comm@1.0-service-qti \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.media.c2@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.media.c2@1.0-service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.media.c2audio@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.media.c2audio@1.0-service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.memory.pasrmanager@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.memory.pasrmanager@1.0-service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.qti.psiclient@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.psiclient@1.0-service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.xiaomi.hardware.blackbox.service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.xiaomi.hardware.blackbox.service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.xiaomi.hardware.cld@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.xiaomi.hardware.cld@1.0-service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.xiaomi.hardware.displayfeature@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.xiaomi.hardware.displayfeature@1.0-service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.xiaomi.hardware.micharge@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.xiaomi.hardware.micharge@1.0-service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.xiaomi.hardware.mimd@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.xiaomi.hardware.mimd@1.0-service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.xiaomi.hardware.misight.service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.xiaomi.hardware.misight.service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.xiaomi.hardware.misys@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.xiaomi.hardware.misys@1.0-service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.xiaomi.hardware.misys@2.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.xiaomi.hardware.misys@2.0-service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.xiaomi.hardware.misys@3.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.xiaomi.hardware.misys@3.0-service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.xiaomi.hardware.misys@4.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.xiaomi.hardware.misys@4.0-service \
-    vendor/ruan/proprietary/vendor/bin/hw/vendor.xiaomi.hw.touchfeature@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.xiaomi.hw.touchfeature@1.0-service \
-    vendor/ruan/proprietary/vendor/bin/hw/wpa_supplicant:$(TARGET_COPY_OUT_VENDOR)/bin/hw/wpa_supplicant \
-    vendor/ruan/proprietary/vendor/bin/qmi-framework-tests/qmi_test_mt_client_init_instance:$(TARGET_COPY_OUT_VENDOR)/bin/qmi-framework-tests/qmi_test_mt_client_init_instance \
+    vendor/ruan/proprietary/vendor/build.prop:$(TARGET_COPY_OUT_VENDOR)/build.prop \
     vendor/ruan/proprietary/vendor/etc/Diag.cfg:$(TARGET_COPY_OUT_VENDOR)/etc/Diag.cfg \
     vendor/ruan/proprietary/vendor/etc/IPACM_Filter_cfg.xml:$(TARGET_COPY_OUT_VENDOR)/etc/IPACM_Filter_cfg.xml \
     vendor/ruan/proprietary/vendor/etc/IPACM_cfg.xml:$(TARGET_COPY_OUT_VENDOR)/etc/IPACM_cfg.xml \
@@ -635,126 +641,6 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/etc/NOTICE_GPL.html.gz:$(TARGET_COPY_OUT_VENDOR)/etc/NOTICE_GPL.html.gz \
     vendor/ruan/proprietary/vendor/etc/XiaoAiTongXue.uim:$(TARGET_COPY_OUT_VENDOR)/etc/XiaoAiTongXue.uim \
     vendor/ruan/proprietary/vendor/etc/a2dp_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_audio_policy_configuration.xml \
-    vendor/ruan/proprietary/vendor/etc/apdr.conf:$(TARGET_COPY_OUT_VENDOR)/etc/apdr.conf \
-    vendor/ruan/proprietary/vendor/etc/audio_diag.cfg:$(TARGET_COPY_OUT_VENDOR)/etc/audio_diag.cfg \
-    vendor/ruan/proprietary/vendor/etc/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
-    vendor/ruan/proprietary/vendor/etc/audio_policy_engine_configuration_mi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_engine_configuration_mi.xml \
-    vendor/ruan/proprietary/vendor/etc/audio_policy_engine_default_stream_volumes.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_engine_default_stream_volumes.xml \
-    vendor/ruan/proprietary/vendor/etc/audio_policy_engine_product_strategies.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_engine_product_strategies.xml \
-    vendor/ruan/proprietary/vendor/etc/audio_policy_engine_stream_volumes.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_engine_stream_volumes.xml \
-    vendor/ruan/proprietary/vendor/etc/audio_policy_volumes.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_volumes.xml \
-    vendor/ruan/proprietary/vendor/etc/backend_conf.xml:$(TARGET_COPY_OUT_VENDOR)/etc/backend_conf.xml \
-    vendor/ruan/proprietary/vendor/etc/batching.conf:$(TARGET_COPY_OUT_VENDOR)/etc/batching.conf \
-    vendor/ruan/proprietary/vendor/etc/battery_info.xml:$(TARGET_COPY_OUT_VENDOR)/etc/battery_info.xml \
-    vendor/ruan/proprietary/vendor/etc/bluetooth_qti_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_qti_audio_policy_configuration.xml \
-    vendor/ruan/proprietary/vendor/etc/bluetooth_qti_hearing_aid_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_qti_hearing_aid_audio_policy_configuration.xml \
-    vendor/ruan/proprietary/vendor/etc/bt_diag.cfg:$(TARGET_COPY_OUT_VENDOR)/etc/bt_diag.cfg \
-    vendor/ruan/proprietary/vendor/etc/card-defs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/card-defs.xml \
-    vendor/ruan/proprietary/vendor/etc/charger_diag.cfg:$(TARGET_COPY_OUT_VENDOR)/etc/charger_diag.cfg \
-    vendor/ruan/proprietary/vendor/etc/charger_fw_fstab.qti:$(TARGET_COPY_OUT_VENDOR)/etc/charger_fw_fstab.qti \
-    vendor/ruan/proprietary/vendor/etc/cit_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/cit_config.xml \
-    vendor/ruan/proprietary/vendor/etc/default.lm:$(TARGET_COPY_OUT_VENDOR)/etc/default.lm \
-    vendor/ruan/proprietary/vendor/etc/default_volume_tables.xml:$(TARGET_COPY_OUT_VENDOR)/etc/default_volume_tables.xml \
-    vendor/ruan/proprietary/vendor/etc/df_default.xml:$(TARGET_COPY_OUT_VENDOR)/etc/df_default.xml \
-    vendor/ruan/proprietary/vendor/etc/dolby_vision.cfg:$(TARGET_COPY_OUT_VENDOR)/etc/dolby_vision.cfg \
-    vendor/ruan/proprietary/vendor/etc/fs_config_dirs:$(TARGET_COPY_OUT_VENDOR)/etc/fs_config_dirs \
-    vendor/ruan/proprietary/vendor/etc/fs_config_files:$(TARGET_COPY_OUT_VENDOR)/etc/fs_config_files \
-    vendor/ruan/proprietary/vendor/etc/fstab.default:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.default \
-    vendor/ruan/proprietary/vendor/etc/fstab.emmc:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.emmc \
-    vendor/ruan/proprietary/vendor/etc/ftm_test_config_parrot-idp-sku1-snd-card:$(TARGET_COPY_OUT_VENDOR)/etc/ftm_test_config_parrot-idp-sku1-snd-card \
-    vendor/ruan/proprietary/vendor/etc/ftm_test_config_parrot-idp-snd-card:$(TARGET_COPY_OUT_VENDOR)/etc/ftm_test_config_parrot-idp-snd-card \
-    vendor/ruan/proprietary/vendor/etc/ftm_test_config_parrot-qrd-sku1-snd-card:$(TARGET_COPY_OUT_VENDOR)/etc/ftm_test_config_parrot-qrd-sku1-snd-card \
-    vendor/ruan/proprietary/vendor/etc/ftm_test_config_parrot-qrd-snd-card:$(TARGET_COPY_OUT_VENDOR)/etc/ftm_test_config_parrot-qrd-snd-card \
-    vendor/ruan/proprietary/vendor/etc/ftm_test_config_ravelin-idp-snd-card:$(TARGET_COPY_OUT_VENDOR)/etc/ftm_test_config_ravelin-idp-snd-card \
-    vendor/ruan/proprietary/vendor/etc/ftm_test_config_ravelin-qrd-snd-card:$(TARGET_COPY_OUT_VENDOR)/etc/ftm_test_config_ravelin-qrd-snd-card \
-    vendor/ruan/proprietary/vendor/etc/gpfspath_oem_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/gpfspath_oem_config.xml \
-    vendor/ruan/proprietary/vendor/etc/gps.conf:$(TARGET_COPY_OUT_VENDOR)/etc/gps.conf \
-    vendor/ruan/proprietary/vendor/etc/gps_diag.cfg:$(TARGET_COPY_OUT_VENDOR)/etc/gps_diag.cfg \
-    vendor/ruan/proprietary/vendor/etc/group:$(TARGET_COPY_OUT_VENDOR)/etc/group \
-    vendor/ruan/proprietary/vendor/etc/init.qti.fm.sh:$(TARGET_COPY_OUT_VENDOR)/etc/init.qti.fm.sh \
-    vendor/ruan/proprietary/vendor/etc/izat.conf:$(TARGET_COPY_OUT_VENDOR)/etc/izat.conf \
-    vendor/ruan/proprietary/vendor/etc/kvh2xml.xml:$(TARGET_COPY_OUT_VENDOR)/etc/kvh2xml.xml \
-    vendor/ruan/proprietary/vendor/etc/lowi.conf:$(TARGET_COPY_OUT_VENDOR)/etc/lowi.conf \
-    vendor/ruan/proprietary/vendor/etc/mdss_dsi_n83_35_02_0a_wqxga_video_cphy_mi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mdss_dsi_n83_35_02_0a_wqxga_video_cphy_mi.xml \
-    vendor/ruan/proprietary/vendor/etc/mdss_dsi_n83_42_02_0b_wqxga_video_cphy_mi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mdss_dsi_n83_42_02_0b_wqxga_video_cphy_mi.xml \
-    vendor/ruan/proprietary/vendor/etc/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
-    vendor/ruan/proprietary/vendor/etc/media_codecs_c2_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_c2_audio.xml \
-    vendor/ruan/proprietary/vendor/etc/media_codecs_dolby_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_dolby_audio.xml \
-    vendor/ruan/proprietary/vendor/etc/media_codecs_google_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_audio.xml \
-    vendor/ruan/proprietary/vendor/etc/media_codecs_google_c2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2.xml \
-    vendor/ruan/proprietary/vendor/etc/media_codecs_google_c2_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2_audio.xml \
-    vendor/ruan/proprietary/vendor/etc/media_codecs_google_c2_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2_video.xml \
-    vendor/ruan/proprietary/vendor/etc/media_codecs_google_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video.xml \
-    vendor/ruan/proprietary/vendor/etc/media_codecs_google_video_le.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video_le.xml \
-    vendor/ruan/proprietary/vendor/etc/media_codecs_parrot_v0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_parrot_v0.xml \
-    vendor/ruan/proprietary/vendor/etc/media_codecs_parrot_v1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_parrot_v1.xml \
-    vendor/ruan/proprietary/vendor/etc/media_codecs_parrot_v2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_parrot_v2.xml \
-    vendor/ruan/proprietary/vendor/etc/media_codecs_performance_parrot_v0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance_parrot_v0.xml \
-    vendor/ruan/proprietary/vendor/etc/media_codecs_performance_parrot_v1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance_parrot_v1.xml \
-    vendor/ruan/proprietary/vendor/etc/media_codecs_performance_parrot_v2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance_parrot_v2.xml \
-    vendor/ruan/proprietary/vendor/etc/media_codecs_performance_ravelin.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance_ravelin.xml \
-    vendor/ruan/proprietary/vendor/etc/media_codecs_ravelin.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_ravelin.xml \
-    vendor/ruan/proprietary/vendor/etc/media_codecs_vendor_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_vendor_audio.xml \
-    vendor/ruan/proprietary/vendor/etc/media_profiles.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles.xml \
-    vendor/ruan/proprietary/vendor/etc/media_profiles_V1_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml \
-    vendor/ruan/proprietary/vendor/etc/media_profiles_parrot_v0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_parrot_v0.xml \
-    vendor/ruan/proprietary/vendor/etc/media_profiles_parrot_v1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_parrot_v1.xml \
-    vendor/ruan/proprietary/vendor/etc/media_profiles_parrot_v2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_parrot_v2.xml \
-    vendor/ruan/proprietary/vendor/etc/media_profiles_ravelin.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_ravelin.xml \
-    vendor/ruan/proprietary/vendor/etc/merged_language_model.lat:$(TARGET_COPY_OUT_VENDOR)/etc/merged_language_model.lat \
-    vendor/ruan/proprietary/vendor/etc/microphone_characteristics.xml:$(TARGET_COPY_OUT_VENDOR)/etc/microphone_characteristics.xml \
-    vendor/ruan/proprietary/vendor/etc/mkshrc:$(TARGET_COPY_OUT_VENDOR)/etc/mkshrc \
-    vendor/ruan/proprietary/vendor/etc/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf \
-    vendor/ruan/proprietary/vendor/etc/passwd:$(TARGET_COPY_OUT_VENDOR)/etc/passwd \
-    vendor/ruan/proprietary/vendor/etc/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml \
-    vendor/ruan/proprietary/vendor/etc/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt \
-    vendor/ruan/proprietary/vendor/etc/qc.xml:$(TARGET_COPY_OUT_VENDOR)/etc/qc.xml \
-    vendor/ruan/proprietary/vendor/etc/qc_CN_1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/qc_CN_1.xml \
-    vendor/ruan/proprietary/vendor/etc/qc_Global_1.2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/qc_Global_1.2.xml \
-    vendor/ruan/proprietary/vendor/etc/qc_Global_1.3.xml:$(TARGET_COPY_OUT_VENDOR)/etc/qc_Global_1.3.xml \
-    vendor/ruan/proprietary/vendor/etc/qc_India.xml:$(TARGET_COPY_OUT_VENDOR)/etc/qc_India.xml \
-    vendor/ruan/proprietary/vendor/etc/qguard.json:$(TARGET_COPY_OUT_VENDOR)/etc/qguard.json \
-    vendor/ruan/proprietary/vendor/etc/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/r_submix_audio_policy_configuration.xml \
-    vendor/ruan/proprietary/vendor/etc/rcv_pb.wav:$(TARGET_COPY_OUT_VENDOR)/etc/rcv_pb.wav \
-    vendor/ruan/proprietary/vendor/etc/recovery-resource.dat:$(TARGET_COPY_OUT_VENDOR)/etc/recovery-resource.dat \
-    vendor/ruan/proprietary/vendor/etc/sap.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sap.conf \
-    vendor/ruan/proprietary/vendor/etc/sar_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sar_config.xml \
-    vendor/ruan/proprietary/vendor/etc/sec_config:$(TARGET_COPY_OUT_VENDOR)/etc/sec_config \
-    vendor/ruan/proprietary/vendor/etc/sensor_diag.cfg:$(TARGET_COPY_OUT_VENDOR)/etc/sensor_diag.cfg \
-    vendor/ruan/proprietary/vendor/etc/setting.xml:$(TARGET_COPY_OUT_VENDOR)/etc/setting.xml \
-    vendor/ruan/proprietary/vendor/etc/smomo_setting.xml:$(TARGET_COPY_OUT_VENDOR)/etc/smomo_setting.xml \
-    vendor/ruan/proprietary/vendor/etc/snapdragon_color_libs_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/snapdragon_color_libs_config.xml \
-    vendor/ruan/proprietary/vendor/etc/spk_pb_bot.wav:$(TARGET_COPY_OUT_VENDOR)/etc/spk_pb_bot.wav \
-    vendor/ruan/proprietary/vendor/etc/spk_pb_top.wav:$(TARGET_COPY_OUT_VENDOR)/etc/spk_pb_top.wav \
-    vendor/ruan/proprietary/vendor/etc/telephony_packages.xml:$(TARGET_COPY_OUT_VENDOR)/etc/telephony_packages.xml \
-    vendor/ruan/proprietary/vendor/etc/thermal-camera.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-camera.conf \
-    vendor/ruan/proprietary/vendor/etc/thermal-chg-only.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-chg-only.conf \
-    vendor/ruan/proprietary/vendor/etc/thermal-class0.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-class0.conf \
-    vendor/ruan/proprietary/vendor/etc/thermal-engine.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine.conf \
-    vendor/ruan/proprietary/vendor/etc/thermal-hp-mgame.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-hp-mgame.conf \
-    vendor/ruan/proprietary/vendor/etc/thermal-hp-normal.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-hp-normal.conf \
-    vendor/ruan/proprietary/vendor/etc/thermal-huanji.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-huanji.conf \
-    vendor/ruan/proprietary/vendor/etc/thermal-map.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-map.conf \
-    vendor/ruan/proprietary/vendor/etc/thermal-mgame.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-mgame.conf \
-    vendor/ruan/proprietary/vendor/etc/thermal-navigation.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-navigation.conf \
-    vendor/ruan/proprietary/vendor/etc/thermal-nolimits.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-nolimits.conf \
-    vendor/ruan/proprietary/vendor/etc/thermal-normal.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-normal.conf \
-    vendor/ruan/proprietary/vendor/etc/thermal-phone.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-phone.conf \
-    vendor/ruan/proprietary/vendor/etc/thermal-tgame.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-tgame.conf \
-    vendor/ruan/proprietary/vendor/etc/thermal-video.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-video.conf \
-    vendor/ruan/proprietary/vendor/etc/thermal-videochat.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-videochat.conf \
-    vendor/ruan/proprietary/vendor/etc/thermald-devices.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermald-devices.conf \
-    vendor/ruan/proprietary/vendor/etc/tzlog.dict:$(TARGET_COPY_OUT_VENDOR)/etc/tzlog.dict \
-    vendor/ruan/proprietary/vendor/etc/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/ueventd.rc \
-    vendor/ruan/proprietary/vendor/etc/ultrasound.wav:$(TARGET_COPY_OUT_VENDOR)/etc/ultrasound.wav \
-    vendor/ruan/proprietary/vendor/etc/us_spk_pb_bot.wav:$(TARGET_COPY_OUT_VENDOR)/etc/us_spk_pb_bot.wav \
-    vendor/ruan/proprietary/vendor/etc/us_spk_pb_top.wav:$(TARGET_COPY_OUT_VENDOR)/etc/us_spk_pb_top.wav \
-    vendor/ruan/proprietary/vendor/etc/usb_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usb_audio_policy_configuration.xml \
-    vendor/ruan/proprietary/vendor/etc/usb_compositions.conf:$(TARGET_COPY_OUT_VENDOR)/etc/usb_compositions.conf \
-    vendor/ruan/proprietary/vendor/etc/usecaseKvManager.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usecaseKvManager.xml \
-    vendor/ruan/proprietary/vendor/etc/vmmgr.conf:$(TARGET_COPY_OUT_VENDOR)/etc/vmmgr.conf \
-    vendor/ruan/proprietary/vendor/etc/wfdconfig.xml:$(TARGET_COPY_OUT_VENDOR)/etc/wfdconfig.xml \
-    vendor/ruan/proprietary/vendor/etc/xtwifi.conf:$(TARGET_COPY_OUT_VENDOR)/etc/xtwifi.conf \
     vendor/ruan/proprietary/vendor/etc/acdbdata/IDP_UPD/IDP_UPD_acdb_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/IDP_UPD/IDP_UPD_acdb_cal.acdb \
     vendor/ruan/proprietary/vendor/etc/acdbdata/IDP_UPD/IDP_UPD_workspaceFileXml.qwsp:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/IDP_UPD/IDP_UPD_workspaceFileXml.qwsp \
     vendor/ruan/proprietary/vendor/etc/acdbdata/nn_ns_models/fai__2.0.0_0.1__3.0.0_0.0__eai_1.36_enpu2.pmd:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/nn_ns_models/fai__2.0.0_0.1__3.0.0_0.0__eai_1.36_enpu2.pmd \
@@ -777,6 +663,7 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/etc/acdbdata/ravelin_idp_wsahac/IDP_wsahac_ravelin_workspaceFileXml.qwsp:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/ravelin_idp_wsahac/IDP_wsahac_ravelin_workspaceFileXml.qwsp \
     vendor/ruan/proprietary/vendor/etc/acdbdata/ravelin_qrd/QRD_ravelin_acdb_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/ravelin_qrd/QRD_ravelin_acdb_cal.acdb \
     vendor/ruan/proprietary/vendor/etc/acdbdata/ravelin_qrd/QRD_ravelin_workspaceFileXml.qwsp:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/ravelin_qrd/QRD_ravelin_workspaceFileXml.qwsp \
+    vendor/ruan/proprietary/vendor/etc/apdr.conf:$(TARGET_COPY_OUT_VENDOR)/etc/apdr.conf \
     vendor/ruan/proprietary/vendor/etc/audio/sku_parrot/audio_effects.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_parrot/audio_effects.conf \
     vendor/ruan/proprietary/vendor/etc/audio/sku_parrot/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_parrot/audio_policy_configuration.xml \
     vendor/ruan/proprietary/vendor/etc/audio/sku_parrot/mixer_paths_parrot_idp.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_parrot/mixer_paths_parrot_idp.xml \
@@ -800,9 +687,24 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/etc/audio/sku_ravelin/resourcemanager_ravelin_qrd.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_ravelin/resourcemanager_ravelin_qrd.xml \
     vendor/ruan/proprietary/vendor/etc/audio/sku_ravelin/resourcemanager_upd.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_ravelin/resourcemanager_upd.xml \
     vendor/ruan/proprietary/vendor/etc/audio/sku_ravelin_qssi/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_ravelin_qssi/audio_policy_configuration.xml \
+    vendor/ruan/proprietary/vendor/etc/audio_cloud_control_white_list.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_cloud_control_white_list.xml \
+    vendor/ruan/proprietary/vendor/etc/audio_diag.cfg:$(TARGET_COPY_OUT_VENDOR)/etc/audio_diag.cfg \
+    vendor/ruan/proprietary/vendor/etc/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
+    vendor/ruan/proprietary/vendor/etc/audio_policy_engine_configuration_mi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_engine_configuration_mi.xml \
+    vendor/ruan/proprietary/vendor/etc/audio_policy_engine_default_stream_volumes.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_engine_default_stream_volumes.xml \
+    vendor/ruan/proprietary/vendor/etc/audio_policy_engine_product_strategies.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_engine_product_strategies.xml \
+    vendor/ruan/proprietary/vendor/etc/audio_policy_engine_stream_volumes.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_engine_stream_volumes.xml \
+    vendor/ruan/proprietary/vendor/etc/audio_policy_volumes.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_volumes.xml \
+    vendor/ruan/proprietary/vendor/etc/backend_conf.xml:$(TARGET_COPY_OUT_VENDOR)/etc/backend_conf.xml \
+    vendor/ruan/proprietary/vendor/etc/batching.conf:$(TARGET_COPY_OUT_VENDOR)/etc/batching.conf \
+    vendor/ruan/proprietary/vendor/etc/battery_info.xml:$(TARGET_COPY_OUT_VENDOR)/etc/battery_info.xml \
+    vendor/ruan/proprietary/vendor/etc/bluetooth_qti_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_qti_audio_policy_configuration.xml \
+    vendor/ruan/proprietary/vendor/etc/bluetooth_qti_hearing_aid_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_qti_hearing_aid_audio_policy_configuration.xml \
+    vendor/ruan/proprietary/vendor/etc/bt_diag.cfg:$(TARGET_COPY_OUT_VENDOR)/etc/bt_diag.cfg \
+    vendor/ruan/proprietary/vendor/etc/camera/GpuKernelRepo.pb:$(TARGET_COPY_OUT_VENDOR)/etc/camera/GpuKernelRepo.pb \
     vendor/ruan/proprietary/vendor/etc/camera/aivsModels2:$(TARGET_COPY_OUT_VENDOR)/etc/camera/aivsModels2 \
-    vendor/ruan/proprietary/vendor/etc/camera/aivsParams:$(TARGET_COPY_OUT_VENDOR)/etc/camera/aivsParams \
     vendor/ruan/proprietary/vendor/etc/camera/aivsParams2:$(TARGET_COPY_OUT_VENDOR)/etc/camera/aivsParams2 \
+    vendor/ruan/proprietary/vendor/etc/camera/aivsParams:$(TARGET_COPY_OUT_VENDOR)/etc/camera/aivsParams \
     vendor/ruan/proprietary/vendor/etc/camera/cache_AncSuperNightLite:$(TARGET_COPY_OUT_VENDOR)/etc/camera/cache_AncSuperNightLite \
     vendor/ruan/proprietary/vendor/etc/camera/camxoverridesettings.txt:$(TARGET_COPY_OUT_VENDOR)/etc/camera/camxoverridesettings.txt \
     vendor/ruan/proprietary/vendor/etc/camera/model_back.dlc:$(TARGET_COPY_OUT_VENDOR)/etc/camera/model_back.dlc \
@@ -823,18 +725,9 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/etc/camera/morpho_image_refiner_tuning_params_ofilm_ov13b10_main_global_llhdr.xml:$(TARGET_COPY_OUT_VENDOR)/etc/camera/morpho_image_refiner_tuning_params_ofilm_ov13b10_main_global_llhdr.xml \
     vendor/ruan/proprietary/vendor/etc/camera/morpho_ldc.bin:$(TARGET_COPY_OUT_VENDOR)/etc/camera/morpho_ldc.bin \
     vendor/ruan/proprietary/vendor/etc/camera/morpho_ldc_front_i_golden.bin:$(TARGET_COPY_OUT_VENDOR)/etc/camera/morpho_ldc_front_i_golden.bin \
-    vendor/ruan/proprietary/vendor/etc/camera/sceneDetection.xml:$(TARGET_COPY_OUT_VENDOR)/etc/camera/sceneDetection.xml \
-    vendor/ruan/proprietary/vendor/etc/camera/siq_ocl_cache_AncSuperNightLite:$(TARGET_COPY_OUT_VENDOR)/etc/camera/siq_ocl_cache_AncSuperNightLite \
-    vendor/ruan/proprietary/vendor/etc/camera/superiq_model_AncSuperNightLite:$(TARGET_COPY_OUT_VENDOR)/etc/camera/superiq_model_AncSuperNightLite \
-    vendor/ruan/proprietary/vendor/etc/camera/xiaomiSceneDetection.xml:$(TARGET_COPY_OUT_VENDOR)/etc/camera/xiaomiSceneDetection.xml \
     vendor/ruan/proprietary/vendor/etc/camera/resources/TStools_default_param.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/TStools_default_param.json \
     vendor/ruan/proprietary/vendor/etc/camera/resources/default_param.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/default_param.json \
-    vendor/ruan/proprietary/vendor/etc/camera/resources/truesight_config_front.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/truesight_config_front.json \
-    vendor/ruan/proprietary/vendor/etc/camera/resources/truesight_config_rear.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/truesight_config_rear.json \
-    vendor/ruan/proprietary/vendor/etc/camera/resources/truesight_param.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/truesight_param.json \
-    vendor/ruan/proprietary/vendor/etc/camera/resources/truesight_param_debug.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/truesight_param_debug.json \
     vendor/ruan/proprietary/vendor/etc/camera/resources/model/2722133617:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/model/2722133617 \
-    vendor/ruan/proprietary/vendor/etc/camera/resources/render/GlobalConfig.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/GlobalConfig.json \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/BuildIn/Material/1166466556_252005700:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/BuildIn/Material/1166466556_252005700 \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/BuildIn/Material/1166466556_2571257293:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/BuildIn/Material/1166466556_2571257293 \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/BuildIn/Material/1166466556_4025145477:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/BuildIn/Material/1166466556_4025145477 \
@@ -897,12 +790,6 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Config/config_mode_all.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Config/config_mode_all.json \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Config/config_mode_front.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Config/config_mode_front.json \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Config/config_mode_rear.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Config/config_mode_rear.json \
-    vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/effect_list.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/effect_list.json \
-    vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/effect_mode_clear.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/effect_mode_clear.json \
-    vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/effect_mode_front.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/effect_mode_front.json \
-    vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/effect_mode_rear.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/effect_mode_rear.json \
-    vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/20_FaceRetouch/mode_front.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/20_FaceRetouch/mode_front.json \
-    vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/20_FaceRetouch/mode_rear.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/20_FaceRetouch/mode_rear.json \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/20_FaceRetouch/Effects/0_Spotless/FaceMask.bin:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/20_FaceRetouch/Effects/0_Spotless/FaceMask.bin \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/20_FaceRetouch/Effects/0_Spotless/effect.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/20_FaceRetouch/Effects/0_Spotless/effect.json \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/20_FaceRetouch/Effects/1_SkinSmoothClassical/BeautyMap.bin:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/20_FaceRetouch/Effects/1_SkinSmoothClassical/BeautyMap.bin \
@@ -912,7 +799,8 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/20_FaceRetouch/Effects/2_SkinSmoothRear/FaceMask.bin:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/20_FaceRetouch/Effects/2_SkinSmoothRear/FaceMask.bin \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/20_FaceRetouch/Effects/2_SkinSmoothRear/effect_capture.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/20_FaceRetouch/Effects/2_SkinSmoothRear/effect_capture.json \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/20_FaceRetouch/Effects/2_SkinSmoothRear/effect_preview.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/20_FaceRetouch/Effects/2_SkinSmoothRear/effect_preview.json \
-    vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/30_BasicRetouch/mode_base.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/30_BasicRetouch/mode_base.json \
+    vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/20_FaceRetouch/mode_front.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/20_FaceRetouch/mode_front.json \
+    vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/20_FaceRetouch/mode_rear.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/20_FaceRetouch/mode_rear.json \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/30_BasicRetouch/Effects/0_BrightEye/LeftEye.bin:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/30_BasicRetouch/Effects/0_BrightEye/LeftEye.bin \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/30_BasicRetouch/Effects/0_BrightEye/RightEye.bin:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/30_BasicRetouch/Effects/0_BrightEye/RightEye.bin \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/30_BasicRetouch/Effects/0_BrightEye/effect.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/30_BasicRetouch/Effects/0_BrightEye/effect.json \
@@ -920,16 +808,16 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/30_BasicRetouch/Effects/0_BrightEyeV3/eye_pupil.bin:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/30_BasicRetouch/Effects/0_BrightEyeV3/eye_pupil.bin \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/30_BasicRetouch/Effects/0_BrightEyeV3/left_eye.bin:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/30_BasicRetouch/Effects/0_BrightEyeV3/left_eye.bin \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/30_BasicRetouch/Effects/0_BrightEyeV3/right_eye.bin:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/30_BasicRetouch/Effects/0_BrightEyeV3/right_eye.bin \
-    vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/40_FaceStereo/mode_front.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/40_FaceStereo/mode_front.json \
+    vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/30_BasicRetouch/mode_base.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/30_BasicRetouch/mode_base.json \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/40_FaceStereo/Effects/0_ModeFront/effect_capture.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/40_FaceStereo/Effects/0_ModeFront/effect_capture.json \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/40_FaceStereo/Effects/0_ModeFront/effect_preview.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/40_FaceStereo/Effects/0_ModeFront/effect_preview.json \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/40_FaceStereo/Effects/0_ModeFront/xr.bin:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/40_FaceStereo/Effects/0_ModeFront/xr.bin \
-    vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/50_SkinTone/mode_front.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/50_SkinTone/mode_front.json \
+    vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/40_FaceStereo/mode_front.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/40_FaceStereo/mode_front.json \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/50_SkinTone/Effects/0_ModeFront/effect.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/50_SkinTone/Effects/0_ModeFront/effect.json \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/50_SkinTone/Effects/0_ModeFront/filter.bin:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/50_SkinTone/Effects/0_ModeFront/filter.bin \
+    vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/50_SkinTone/mode_front.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/50_SkinTone/mode_front.json \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/5_DLRetouch/mode_front.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/5_DLRetouch/mode_front.json \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/5_DLRetouch/mode_rear.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/5_DLRetouch/mode_rear.json \
-    vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/60_Makeup/mode_front.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/60_Makeup/mode_front.json \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/60_Makeup/Effects/0_ModeFront/Eyebrow.bin:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/60_Makeup/Effects/0_ModeFront/Eyebrow.bin \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/60_Makeup/Effects/0_ModeFront/effect_capture.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/60_Makeup/Effects/0_ModeFront/effect_capture.json \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/60_Makeup/Effects/0_ModeFront/effect_preview.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/60_Makeup/Effects/0_ModeFront/effect_preview.json \
@@ -937,11 +825,25 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/60_Makeup/Effects/0_ModeFront/yyy.bin:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/60_Makeup/Effects/0_ModeFront/yyy.bin \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/60_Makeup/Effects/0_ModeFront/yyz.bin:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/60_Makeup/Effects/0_ModeFront/yyz.bin \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/60_Makeup/Effects/0_ModeFront/zc.bin:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/60_Makeup/Effects/0_ModeFront/zc.bin \
-    vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/70_FacialRefine/mode_front.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/70_FacialRefine/mode_front.json \
+    vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/60_Makeup/mode_front.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/60_Makeup/mode_front.json \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/70_FacialRefine/Effects/0_ModeFront/effect_capture.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/70_FacialRefine/Effects/0_ModeFront/effect_capture.json \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/70_FacialRefine/Effects/0_ModeFront/effect_preview.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/70_FacialRefine/Effects/0_ModeFront/effect_preview.json \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/70_FacialRefine/Effects/0_ModeFront/eye_refine.bin:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/70_FacialRefine/Effects/0_ModeFront/eye_refine.bin \
     vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/70_FacialRefine/Effects/0_ModeFront/facelift.bin:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/70_FacialRefine/Effects/0_ModeFront/facelift.bin \
+    vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/70_FacialRefine/mode_front.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/70_FacialRefine/mode_front.json \
+    vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/effect_list.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/effect_list.json \
+    vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/effect_mode_clear.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/effect_mode_clear.json \
+    vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/effect_mode_front.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/effect_mode_front.json \
+    vendor/ruan/proprietary/vendor/etc/camera/resources/render/Effect/effect_mode_rear.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/Effect/effect_mode_rear.json \
+    vendor/ruan/proprietary/vendor/etc/camera/resources/render/GlobalConfig.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/GlobalConfig.json \
+    vendor/ruan/proprietary/vendor/etc/camera/resources/render/glsl/binShaders64/shader_GLPROGRAM_MEDIAN_BLUR.bin:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/glsl/binShaders64/shader_GLPROGRAM_MEDIAN_BLUR.bin \
+    vendor/ruan/proprietary/vendor/etc/camera/resources/truesight_config_front.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/truesight_config_front.json \
+    vendor/ruan/proprietary/vendor/etc/camera/resources/truesight_config_rear.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/truesight_config_rear.json \
+    vendor/ruan/proprietary/vendor/etc/camera/resources/truesight_param.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/truesight_param.json \
+    vendor/ruan/proprietary/vendor/etc/camera/resources/truesight_param_debug.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/truesight_param_debug.json \
+    vendor/ruan/proprietary/vendor/etc/camera/sceneDetection.xml:$(TARGET_COPY_OUT_VENDOR)/etc/camera/sceneDetection.xml \
+    vendor/ruan/proprietary/vendor/etc/camera/siq_ocl_cache_AncSuperNightLite:$(TARGET_COPY_OUT_VENDOR)/etc/camera/siq_ocl_cache_AncSuperNightLite \
+    vendor/ruan/proprietary/vendor/etc/camera/superiq_model_AncSuperNightLite:$(TARGET_COPY_OUT_VENDOR)/etc/camera/superiq_model_AncSuperNightLite \
     vendor/ruan/proprietary/vendor/etc/camera/xiaomi/dualbokehsnapshot.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/xiaomi/dualbokehsnapshot.json \
     vendor/ruan/proprietary/vendor/etc/camera/xiaomi/frontbokehsnapshot.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/xiaomi/frontbokehsnapshot.json \
     vendor/ruan/proprietary/vendor/etc/camera/xiaomi/frontsinglesnapshot.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/xiaomi/frontsinglesnapshot.json \
@@ -954,6 +856,11 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/etc/camera/xiaomi/superlowlightsnapshot.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/xiaomi/superlowlightsnapshot.json \
     vendor/ruan/proprietary/vendor/etc/camera/xiaomi/thirdpartysnapshot.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/xiaomi/thirdpartysnapshot.json \
     vendor/ruan/proprietary/vendor/etc/camera/xiaomi/uwsuperlowlightshot.json:$(TARGET_COPY_OUT_VENDOR)/etc/camera/xiaomi/uwsuperlowlightshot.json \
+    vendor/ruan/proprietary/vendor/etc/camera/xiaomiSceneDetection.xml:$(TARGET_COPY_OUT_VENDOR)/etc/camera/xiaomiSceneDetection.xml \
+    vendor/ruan/proprietary/vendor/etc/card-defs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/card-defs.xml \
+    vendor/ruan/proprietary/vendor/etc/charger_diag.cfg:$(TARGET_COPY_OUT_VENDOR)/etc/charger_diag.cfg \
+    vendor/ruan/proprietary/vendor/etc/charger_fw_fstab.qti:$(TARGET_COPY_OUT_VENDOR)/etc/charger_fw_fstab.qti \
+    vendor/ruan/proprietary/vendor/etc/cit_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/cit_config.xml \
     vendor/ruan/proprietary/vendor/etc/cne/mwqem.conf:$(TARGET_COPY_OUT_VENDOR)/etc/cne/mwqem.conf \
     vendor/ruan/proprietary/vendor/etc/cne/profileMwqem.xml:$(TARGET_COPY_OUT_VENDOR)/etc/cne/profileMwqem.xml \
     vendor/ruan/proprietary/vendor/etc/cne/wqeclient/ATT/ATT_profile1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/cne/wqeclient/ATT/ATT_profile1.xml \
@@ -988,6 +895,9 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/etc/data/dsi_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/data/dsi_config.xml \
     vendor/ruan/proprietary/vendor/etc/data/netmgr_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/data/netmgr_config.xml \
     vendor/ruan/proprietary/vendor/etc/default-permissions/com.qualcomm.qti.cne.xml:$(TARGET_COPY_OUT_VENDOR)/etc/default-permissions/com.qualcomm.qti.cne.xml \
+    vendor/ruan/proprietary/vendor/etc/default.lm:$(TARGET_COPY_OUT_VENDOR)/etc/default.lm \
+    vendor/ruan/proprietary/vendor/etc/default_volume_tables.xml:$(TARGET_COPY_OUT_VENDOR)/etc/default_volume_tables.xml \
+    vendor/ruan/proprietary/vendor/etc/df_default.xml:$(TARGET_COPY_OUT_VENDOR)/etc/df_default.xml \
     vendor/ruan/proprietary/vendor/etc/display/DPU660.xml:$(TARGET_COPY_OUT_VENDOR)/etc/display/DPU660.xml \
     vendor/ruan/proprietary/vendor/etc/display/DPU670.xml:$(TARGET_COPY_OUT_VENDOR)/etc/display/DPU670.xml \
     vendor/ruan/proprietary/vendor/etc/display/DPU720.xml:$(TARGET_COPY_OUT_VENDOR)/etc/display/DPU720.xml \
@@ -1021,16 +931,31 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/etc/display/qdcm_calib_data_xiaomi_n83_42_02_0b_cphy_nt36532_csot.json:$(TARGET_COPY_OUT_VENDOR)/etc/display/qdcm_calib_data_xiaomi_n83_42_02_0b_cphy_nt36532_csot.json \
     vendor/ruan/proprietary/vendor/etc/display/thermallevel_to_fps.xml:$(TARGET_COPY_OUT_VENDOR)/etc/display/thermallevel_to_fps.xml \
     vendor/ruan/proprietary/vendor/etc/dolby/dax-default.xml:$(TARGET_COPY_OUT_VENDOR)/etc/dolby/dax-default.xml \
+    vendor/ruan/proprietary/vendor/etc/dolby_vision.cfg:$(TARGET_COPY_OUT_VENDOR)/etc/dolby_vision.cfg \
     vendor/ruan/proprietary/vendor/etc/dpm_vndr/vendor.dpm.conf:$(TARGET_COPY_OUT_VENDOR)/etc/dpm_vndr/vendor.dpm.conf \
+    vendor/ruan/proprietary/vendor/etc/fs_config_dirs:$(TARGET_COPY_OUT_VENDOR)/etc/fs_config_dirs \
+    vendor/ruan/proprietary/vendor/etc/fs_config_files:$(TARGET_COPY_OUT_VENDOR)/etc/fs_config_files \
+    vendor/ruan/proprietary/vendor/etc/fstab.default:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.default \
+    vendor/ruan/proprietary/vendor/etc/fstab.emmc:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.emmc \
+    vendor/ruan/proprietary/vendor/etc/ftm_test_config_parrot-idp-sku1-snd-card:$(TARGET_COPY_OUT_VENDOR)/etc/ftm_test_config_parrot-idp-sku1-snd-card \
+    vendor/ruan/proprietary/vendor/etc/ftm_test_config_parrot-idp-snd-card:$(TARGET_COPY_OUT_VENDOR)/etc/ftm_test_config_parrot-idp-snd-card \
+    vendor/ruan/proprietary/vendor/etc/ftm_test_config_parrot-qrd-sku1-snd-card:$(TARGET_COPY_OUT_VENDOR)/etc/ftm_test_config_parrot-qrd-sku1-snd-card \
+    vendor/ruan/proprietary/vendor/etc/ftm_test_config_parrot-qrd-snd-card:$(TARGET_COPY_OUT_VENDOR)/etc/ftm_test_config_parrot-qrd-snd-card \
+    vendor/ruan/proprietary/vendor/etc/ftm_test_config_ravelin-idp-snd-card:$(TARGET_COPY_OUT_VENDOR)/etc/ftm_test_config_ravelin-idp-snd-card \
+    vendor/ruan/proprietary/vendor/etc/ftm_test_config_ravelin-qrd-snd-card:$(TARGET_COPY_OUT_VENDOR)/etc/ftm_test_config_ravelin-qrd-snd-card \
+    vendor/ruan/proprietary/vendor/etc/gpfspath_oem_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/gpfspath_oem_config.xml \
+    vendor/ruan/proprietary/vendor/etc/gps.conf:$(TARGET_COPY_OUT_VENDOR)/etc/gps.conf \
+    vendor/ruan/proprietary/vendor/etc/gps_diag.cfg:$(TARGET_COPY_OUT_VENDOR)/etc/gps_diag.cfg \
+    vendor/ruan/proprietary/vendor/etc/group:$(TARGET_COPY_OUT_VENDOR)/etc/group \
     vendor/ruan/proprietary/vendor/etc/hostapd/hostapd.accept:$(TARGET_COPY_OUT_VENDOR)/etc/hostapd/hostapd.accept \
     vendor/ruan/proprietary/vendor/etc/hostapd/hostapd.deny:$(TARGET_COPY_OUT_VENDOR)/etc/hostapd/hostapd.deny \
     vendor/ruan/proprietary/vendor/etc/hostapd/hostapd_default.conf:$(TARGET_COPY_OUT_VENDOR)/etc/hostapd/hostapd_default.conf \
+    vendor/ruan/proprietary/vendor/etc/init.qti.fm.sh:$(TARGET_COPY_OUT_VENDOR)/etc/init.qti.fm.sh \
     vendor/ruan/proprietary/vendor/etc/init/android.hardware.atrace@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.atrace@1.0-service.rc \
     vendor/ruan/proprietary/vendor/etc/init/android.hardware.audio.service_64.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.audio.service_64.rc \
     vendor/ruan/proprietary/vendor/etc/init/android.hardware.biometrics.face@1.0-service.face.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.biometrics.face@1.0-service.face.rc \
     vendor/ruan/proprietary/vendor/etc/init/android.hardware.bluetooth@1.0-service-qti.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.bluetooth@1.0-service-qti.rc \
     vendor/ruan/proprietary/vendor/etc/init/android.hardware.boot@1.2-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.boot@1.2-service.rc \
-    vendor/ruan/proprietary/vendor/etc/init/android.hardware.cas@1.2-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.cas@1.2-service.rc \
     vendor/ruan/proprietary/vendor/etc/init/android.hardware.drm@1.1-service.wfdhdcp.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.drm@1.1-service.wfdhdcp.rc \
     vendor/ruan/proprietary/vendor/etc/init/android.hardware.drm@1.4-service.clearkey.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.drm@1.4-service.clearkey.rc \
     vendor/ruan/proprietary/vendor/etc/init/android.hardware.drm@1.4-service.widevine.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.drm@1.4-service.widevine.rc \
@@ -1039,7 +964,6 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/etc/init/android.hardware.gnss-aidl-service-qti.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.gnss-aidl-service-qti.rc \
     vendor/ruan/proprietary/vendor/etc/init/android.hardware.health@2.1-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.health@2.1-service.rc \
     vendor/ruan/proprietary/vendor/etc/init/android.hardware.keymaster@4.1-service-qti.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.keymaster@4.1-service-qti.rc \
-    vendor/ruan/proprietary/vendor/etc/init/android.hardware.media.omx@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.media.omx@1.0-service.rc \
     vendor/ruan/proprietary/vendor/etc/init/android.hardware.power-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.power-service.rc \
     vendor/ruan/proprietary/vendor/etc/init/android.hardware.security.keymint-service-qti.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.security.keymint-service-qti.rc \
     vendor/ruan/proprietary/vendor/etc/init/android.hardware.sensors@2.1-service-multihal.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.sensors@2.1-service-multihal.rc \
@@ -1054,11 +978,16 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/etc/init/com.qualcomm.qti.wifidisplayhal@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/com.qualcomm.qti.wifidisplayhal@1.0-service.rc \
     vendor/ruan/proprietary/vendor/etc/init/dataadpl.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/dataadpl.rc \
     vendor/ruan/proprietary/vendor/etc/init/dataqti.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/dataqti.rc \
-    vendor/ruan/proprietary/vendor/etc/init/dolbycodec2.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/dolbycodec2.rc \
     vendor/ruan/proprietary/vendor/etc/init/dpmQmiMgr.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/dpmQmiMgr.rc \
     vendor/ruan/proprietary/vendor/etc/init/ffu.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/ffu.rc \
     vendor/ruan/proprietary/vendor/etc/init/general_service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/general_service.rc \
     vendor/ruan/proprietary/vendor/etc/init/hostapd.android.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hostapd.android.rc \
+    vendor/ruan/proprietary/vendor/etc/init/hw/init.qcom.factory.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.qcom.factory.rc \
+    vendor/ruan/proprietary/vendor/etc/init/hw/init.qcom.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.qcom.rc \
+    vendor/ruan/proprietary/vendor/etc/init/hw/init.qcom.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.qcom.usb.rc \
+    vendor/ruan/proprietary/vendor/etc/init/hw/init.qti.kernel.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.qti.kernel.rc \
+    vendor/ruan/proprietary/vendor/etc/init/hw/init.qti.ufs.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.qti.ufs.rc \
+    vendor/ruan/proprietary/vendor/etc/init/hw/init.target.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.target.rc \
     vendor/ruan/proprietary/vendor/etc/init/ims_rtp_daemon.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/ims_rtp_daemon.rc \
     vendor/ruan/proprietary/vendor/etc/init/imsdaemon.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/imsdaemon.rc \
     vendor/ruan/proprietary/vendor/etc/init/init.batterysecret.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.batterysecret.rc \
@@ -1154,18 +1083,12 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/etc/init/vendor.xiaomi.hardware.mlipay@1.1-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.xiaomi.hardware.mlipay@1.1-service.rc \
     vendor/ruan/proprietary/vendor/etc/init/vendor.xiaomi.hardware.mtdservice@1.3-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.xiaomi.hardware.mtdservice@1.3-service.rc \
     vendor/ruan/proprietary/vendor/etc/init/vendor.xiaomi.hardware.tidaservice@1.2-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.xiaomi.hardware.tidaservice@1.2-service.rc \
-    vendor/ruan/proprietary/vendor/etc/init/vendor.xiaomi.hardware.vsimapp@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.xiaomi.hardware.vsimapp@1.0-service.rc \
     vendor/ruan/proprietary/vendor/etc/init/vendor.xiaomi.hw.touchfeature@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.xiaomi.hw.touchfeature@1.0-service.rc \
-    vendor/ruan/proprietary/vendor/etc/init/vendor_flash_recovery.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor_flash_recovery.rc \
     vendor/ruan/proprietary/vendor/etc/init/vmmgr.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vmmgr.rc \
     vendor/ruan/proprietary/vendor/etc/init/vndservicemanager.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vndservicemanager.rc \
     vendor/ruan/proprietary/vendor/etc/init/wfdvndservice.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/wfdvndservice.rc \
-    vendor/ruan/proprietary/vendor/etc/init/hw/init.qcom.factory.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.qcom.factory.rc \
-    vendor/ruan/proprietary/vendor/etc/init/hw/init.qcom.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.qcom.rc \
-    vendor/ruan/proprietary/vendor/etc/init/hw/init.qcom.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.qcom.usb.rc \
-    vendor/ruan/proprietary/vendor/etc/init/hw/init.qti.kernel.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.qti.kernel.rc \
-    vendor/ruan/proprietary/vendor/etc/init/hw/init.qti.ufs.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.qti.ufs.rc \
-    vendor/ruan/proprietary/vendor/etc/init/hw/init.target.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.target.rc \
+    vendor/ruan/proprietary/vendor/etc/izat.conf:$(TARGET_COPY_OUT_VENDOR)/etc/izat.conf \
+    vendor/ruan/proprietary/vendor/etc/kvh2xml.xml:$(TARGET_COPY_OUT_VENDOR)/etc/kvh2xml.xml \
     vendor/ruan/proprietary/vendor/etc/lm/AdaptLaunchFeature.xml:$(TARGET_COPY_OUT_VENDOR)/etc/lm/AdaptLaunchFeature.xml \
     vendor/ruan/proprietary/vendor/etc/lm/AppClassifierFeature.xml:$(TARGET_COPY_OUT_VENDOR)/etc/lm/AppClassifierFeature.xml \
     vendor/ruan/proprietary/vendor/etc/lm/LightningLaunchesFeature.xml:$(TARGET_COPY_OUT_VENDOR)/etc/lm/LightningLaunchesFeature.xml \
@@ -1178,13 +1101,45 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/etc/lm/prekill/prekill_2GB.data:$(TARGET_COPY_OUT_VENDOR)/etc/lm/prekill/prekill_2GB.data \
     vendor/ruan/proprietary/vendor/etc/lm/prekill/prekill_4GB.data:$(TARGET_COPY_OUT_VENDOR)/etc/lm/prekill/prekill_4GB.data \
     vendor/ruan/proprietary/vendor/etc/lm/prekill/prekill_6GB.data:$(TARGET_COPY_OUT_VENDOR)/etc/lm/prekill/prekill_6GB.data \
+    vendor/ruan/proprietary/vendor/etc/lowi.conf:$(TARGET_COPY_OUT_VENDOR)/etc/lowi.conf \
+    vendor/ruan/proprietary/vendor/etc/mdss_dsi_n83_35_02_0a_wqxga_video_cphy_mi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mdss_dsi_n83_35_02_0a_wqxga_video_cphy_mi.xml \
+    vendor/ruan/proprietary/vendor/etc/mdss_dsi_n83_42_02_0b_wqxga_video_cphy_mi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mdss_dsi_n83_42_02_0b_wqxga_video_cphy_mi.xml \
+    vendor/ruan/proprietary/vendor/etc/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
+    vendor/ruan/proprietary/vendor/etc/media_codecs_c2_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_c2_audio.xml \
+    vendor/ruan/proprietary/vendor/etc/media_codecs_dolby_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_dolby_audio.xml \
+    vendor/ruan/proprietary/vendor/etc/media_codecs_google_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_audio.xml \
+    vendor/ruan/proprietary/vendor/etc/media_codecs_google_c2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2.xml \
+    vendor/ruan/proprietary/vendor/etc/media_codecs_google_c2_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2_audio.xml \
+    vendor/ruan/proprietary/vendor/etc/media_codecs_google_c2_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2_video.xml \
+    vendor/ruan/proprietary/vendor/etc/media_codecs_google_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video.xml \
+    vendor/ruan/proprietary/vendor/etc/media_codecs_google_video_le.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video_le.xml \
+    vendor/ruan/proprietary/vendor/etc/media_codecs_parrot_v0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_parrot_v0.xml \
+    vendor/ruan/proprietary/vendor/etc/media_codecs_parrot_v1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_parrot_v1.xml \
+    vendor/ruan/proprietary/vendor/etc/media_codecs_parrot_v2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_parrot_v2.xml \
+    vendor/ruan/proprietary/vendor/etc/media_codecs_performance_parrot_v0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance_parrot_v0.xml \
+    vendor/ruan/proprietary/vendor/etc/media_codecs_performance_parrot_v1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance_parrot_v1.xml \
+    vendor/ruan/proprietary/vendor/etc/media_codecs_performance_parrot_v2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance_parrot_v2.xml \
+    vendor/ruan/proprietary/vendor/etc/media_codecs_performance_ravelin.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance_ravelin.xml \
+    vendor/ruan/proprietary/vendor/etc/media_codecs_ravelin.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_ravelin.xml \
+    vendor/ruan/proprietary/vendor/etc/media_codecs_vendor_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_vendor_audio.xml \
     vendor/ruan/proprietary/vendor/etc/media_parrot_v0/video_system_specs.json:$(TARGET_COPY_OUT_VENDOR)/etc/media_parrot_v0/video_system_specs.json \
     vendor/ruan/proprietary/vendor/etc/media_parrot_v1/video_system_specs.json:$(TARGET_COPY_OUT_VENDOR)/etc/media_parrot_v1/video_system_specs.json \
     vendor/ruan/proprietary/vendor/etc/media_parrot_v2/video_system_specs.json:$(TARGET_COPY_OUT_VENDOR)/etc/media_parrot_v2/video_system_specs.json \
+    vendor/ruan/proprietary/vendor/etc/media_profiles.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles.xml \
+    vendor/ruan/proprietary/vendor/etc/media_profiles_V1_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml \
+    vendor/ruan/proprietary/vendor/etc/media_profiles_parrot_v0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_parrot_v0.xml \
+    vendor/ruan/proprietary/vendor/etc/media_profiles_parrot_v1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_parrot_v1.xml \
+    vendor/ruan/proprietary/vendor/etc/media_profiles_parrot_v2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_parrot_v2.xml \
+    vendor/ruan/proprietary/vendor/etc/media_profiles_ravelin.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_ravelin.xml \
     vendor/ruan/proprietary/vendor/etc/media_ravelin/video_system_specs.json:$(TARGET_COPY_OUT_VENDOR)/etc/media_ravelin/video_system_specs.json \
+    vendor/ruan/proprietary/vendor/etc/merged_language_model.lat:$(TARGET_COPY_OUT_VENDOR)/etc/merged_language_model.lat \
+    vendor/ruan/proprietary/vendor/etc/microphone_characteristics.xml:$(TARGET_COPY_OUT_VENDOR)/etc/microphone_characteristics.xml \
+    vendor/ruan/proprietary/vendor/etc/mkshrc:$(TARGET_COPY_OUT_VENDOR)/etc/mkshrc \
     vendor/ruan/proprietary/vendor/etc/models/acd/event.eai:$(TARGET_COPY_OUT_VENDOR)/etc/models/acd/event.eai \
     vendor/ruan/proprietary/vendor/etc/models/acd/music.eai:$(TARGET_COPY_OUT_VENDOR)/etc/models/acd/music.eai \
     vendor/ruan/proprietary/vendor/etc/models/acd/speech.eai:$(TARGET_COPY_OUT_VENDOR)/etc/models/acd/speech.eai \
+    vendor/ruan/proprietary/vendor/etc/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf \
+    vendor/ruan/proprietary/vendor/etc/passwd:$(TARGET_COPY_OUT_VENDOR)/etc/passwd \
     vendor/ruan/proprietary/vendor/etc/perf/avcsysnodesconfigs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/avcsysnodesconfigs.xml \
     vendor/ruan/proprietary/vendor/etc/perf/commonresourceconfigs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/commonresourceconfigs.xml \
     vendor/ruan/proprietary/vendor/etc/perf/commonsysnodesconfigs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/commonsysnodesconfigs.xml \
@@ -1218,6 +1173,7 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/etc/permissions/android.hardware.vulkan.compute-0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.compute-0.xml \
     vendor/ruan/proprietary/vendor/etc/permissions/android.hardware.vulkan.level-1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.level-1.xml \
     vendor/ruan/proprietary/vendor/etc/permissions/android.hardware.vulkan.version-1_1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.version-1_1.xml \
+    vendor/ruan/proprietary/vendor/etc/permissions/android.hardware.vulkan.version-1_3.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.version-1_3.xml \
     vendor/ruan/proprietary/vendor/etc/permissions/android.hardware.wifi.direct.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.direct.xml \
     vendor/ruan/proprietary/vendor/etc/permissions/android.hardware.wifi.passpoint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.passpoint.xml \
     vendor/ruan/proprietary/vendor/etc/permissions/android.hardware.wifi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.xml \
@@ -1229,10 +1185,8 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/etc/permissions/android.software.vulkan.deqp.level.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.vulkan.deqp.level.xml \
     vendor/ruan/proprietary/vendor/etc/permissions/com.xiaomi.sensor.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.xiaomi.sensor.xml \
     vendor/ruan/proprietary/vendor/etc/permissions/handheld_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/handheld_core_hardware.xml \
-    vendor/ruan/proprietary/vendor/etc/permissions/qti_fingerprint_interface.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/qti_fingerprint_interface.xml \
-    vendor/ruan/proprietary/vendor/etc/permissions/vendor-qti-hardware-sensorscalibrate.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/vendor-qti-hardware-sensorscalibrate.xml \
-    vendor/ruan/proprietary/vendor/etc/permissions/vendor.qti.hardware.factory.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/vendor.qti.hardware.factory.xml \
     vendor/ruan/proprietary/vendor/etc/permissions/noRil/apq_excluded_telephony_features.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/noRil/apq_excluded_telephony_features.xml \
+    vendor/ruan/proprietary/vendor/etc/permissions/qti_fingerprint_interface.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/qti_fingerprint_interface.xml \
     vendor/ruan/proprietary/vendor/etc/permissions/sku_parrot/android.hardware.sensor.accelerometer.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_parrot/android.hardware.sensor.accelerometer.xml \
     vendor/ruan/proprietary/vendor/etc/permissions/sku_parrot/android.hardware.sensor.compass.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_parrot/android.hardware.sensor.compass.xml \
     vendor/ruan/proprietary/vendor/etc/permissions/sku_parrot/android.hardware.sensor.gyroscope.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_parrot/android.hardware.sensor.gyroscope.xml \
@@ -1245,12 +1199,21 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/etc/permissions/sku_ravelin/android.hardware.sensor.light.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_ravelin/android.hardware.sensor.light.xml \
     vendor/ruan/proprietary/vendor/etc/permissions/sku_ravelin/android.hardware.sensor.stepcounter.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_ravelin/android.hardware.sensor.stepcounter.xml \
     vendor/ruan/proprietary/vendor/etc/permissions/sku_ravelin/android.hardware.sensor.stepdetector.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_ravelin/android.hardware.sensor.stepdetector.xml \
+    vendor/ruan/proprietary/vendor/etc/permissions/vendor-qti-hardware-sensorscalibrate.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/vendor-qti-hardware-sensorscalibrate.xml \
+    vendor/ruan/proprietary/vendor/etc/permissions/vendor.qti.hardware.factory.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/vendor.qti.hardware.factory.xml \
+    vendor/ruan/proprietary/vendor/etc/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml \
+    vendor/ruan/proprietary/vendor/etc/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt \
     vendor/ruan/proprietary/vendor/etc/pwr/GamePowerOptFeature.xml:$(TARGET_COPY_OUT_VENDOR)/etc/pwr/GamePowerOptFeature.xml \
     vendor/ruan/proprietary/vendor/etc/pwr/PSMPowerOptFeature.xml:$(TARGET_COPY_OUT_VENDOR)/etc/pwr/PSMPowerOptFeature.xml \
     vendor/ruan/proprietary/vendor/etc/pwr/PowerFeatureConfig.xml:$(TARGET_COPY_OUT_VENDOR)/etc/pwr/PowerFeatureConfig.xml \
     vendor/ruan/proprietary/vendor/etc/pwr/StandbyFeature.xml:$(TARGET_COPY_OUT_VENDOR)/etc/pwr/StandbyFeature.xml \
     vendor/ruan/proprietary/vendor/etc/pwr/VendorScenarioPowerOptFeature.xml:$(TARGET_COPY_OUT_VENDOR)/etc/pwr/VendorScenarioPowerOptFeature.xml \
     vendor/ruan/proprietary/vendor/etc/pwr/VideoPowerOptFeature.xml:$(TARGET_COPY_OUT_VENDOR)/etc/pwr/VideoPowerOptFeature.xml \
+    vendor/ruan/proprietary/vendor/etc/qc.xml:$(TARGET_COPY_OUT_VENDOR)/etc/qc.xml \
+    vendor/ruan/proprietary/vendor/etc/qc_CN_1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/qc_CN_1.xml \
+    vendor/ruan/proprietary/vendor/etc/qc_Global_1.2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/qc_Global_1.2.xml \
+    vendor/ruan/proprietary/vendor/etc/qc_Global_1.3.xml:$(TARGET_COPY_OUT_VENDOR)/etc/qc_Global_1.3.xml \
+    vendor/ruan/proprietary/vendor/etc/qc_India.xml:$(TARGET_COPY_OUT_VENDOR)/etc/qc_India.xml \
     vendor/ruan/proprietary/vendor/etc/qcril_database/qcrilNr.db:$(TARGET_COPY_OUT_VENDOR)/etc/qcril_database/qcrilNr.db \
     vendor/ruan/proprietary/vendor/etc/qcril_database/upgrade/config/13.0_config.sql:$(TARGET_COPY_OUT_VENDOR)/etc/qcril_database/upgrade/config/13.0_config.sql \
     vendor/ruan/proprietary/vendor/etc/qcril_database/upgrade/config/14.0_config.sql:$(TARGET_COPY_OUT_VENDOR)/etc/qcril_database/upgrade/config/14.0_config.sql \
@@ -1272,6 +1235,13 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/etc/qcril_database/upgrade/other/7_version_update_ecc_table.sql:$(TARGET_COPY_OUT_VENDOR)/etc/qcril_database/upgrade/other/7_version_update_ecc_table.sql \
     vendor/ruan/proprietary/vendor/etc/qcril_database/upgrade/other/8_version_update_ecc_table.sql:$(TARGET_COPY_OUT_VENDOR)/etc/qcril_database/upgrade/other/8_version_update_ecc_table.sql \
     vendor/ruan/proprietary/vendor/etc/qcril_database/upgrade/other/9_version_update_ecc_table.sql:$(TARGET_COPY_OUT_VENDOR)/etc/qcril_database/upgrade/other/9_version_update_ecc_table.sql \
+    vendor/ruan/proprietary/vendor/etc/qguard.json:$(TARGET_COPY_OUT_VENDOR)/etc/qguard.json \
+    vendor/ruan/proprietary/vendor/etc/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/r_submix_audio_policy_configuration.xml \
+    vendor/ruan/proprietary/vendor/etc/rcv_pb.wav:$(TARGET_COPY_OUT_VENDOR)/etc/rcv_pb.wav \
+    vendor/ruan/proprietary/vendor/etc/recovery-resource.dat:$(TARGET_COPY_OUT_VENDOR)/etc/recovery-resource.dat \
+    vendor/ruan/proprietary/vendor/etc/sap.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sap.conf \
+    vendor/ruan/proprietary/vendor/etc/sar_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sar_config.xml \
+    vendor/ruan/proprietary/vendor/etc/sec_config:$(TARGET_COPY_OUT_VENDOR)/etc/sec_config \
     vendor/ruan/proprietary/vendor/etc/seccomp_policy/atfwd@2.0.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/atfwd@2.0.policy \
     vendor/ruan/proprietary/vendor/etc/seccomp_policy/c2audio.vendor.base-arm.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/c2audio.vendor.base-arm.policy \
     vendor/ruan/proprietary/vendor/etc/seccomp_policy/c2audio.vendor.base-arm64.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/c2audio.vendor.base-arm64.policy \
@@ -1305,8 +1275,7 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/etc/selinux/vendor_sepolicy.cil:$(TARGET_COPY_OUT_VENDOR)/etc/selinux/vendor_sepolicy.cil \
     vendor/ruan/proprietary/vendor/etc/selinux/vendor_service_contexts:$(TARGET_COPY_OUT_VENDOR)/etc/selinux/vendor_service_contexts \
     vendor/ruan/proprietary/vendor/etc/selinux/vndservice_contexts:$(TARGET_COPY_OUT_VENDOR)/etc/selinux/vndservice_contexts \
-    vendor/ruan/proprietary/vendor/etc/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf \
-    vendor/ruan/proprietary/vendor/etc/sensors/sns_reg_config:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/sns_reg_config \
+    vendor/ruan/proprietary/vendor/etc/sensor_diag.cfg:$(TARGET_COPY_OUT_VENDOR)/etc/sensor_diag.cfg \
     vendor/ruan/proprietary/vendor/etc/sensors/config/dizi_hx903x_2_0.json:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/config/dizi_hx903x_2_0.json \
     vendor/ruan/proprietary/vendor/etc/sensors/config/dizi_sar_algo.json:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/config/dizi_sar_algo.json \
     vendor/ruan/proprietary/vendor/etc/sensors/config/kailua_bmi3x0_1.json:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/config/kailua_bmi3x0_1.json \
@@ -1364,11 +1333,42 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/etc/sensors/config/sns_wrist_pedo.json:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/config/sns_wrist_pedo.json \
     vendor/ruan/proprietary/vendor/etc/sensors/config/stk3bcx_0.json:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/config/stk3bcx_0.json \
     vendor/ruan/proprietary/vendor/etc/sensors/config/waipio_icm4x6xx_0.json:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/config/waipio_icm4x6xx_0.json \
+    vendor/ruan/proprietary/vendor/etc/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf \
+    vendor/ruan/proprietary/vendor/etc/sensors/sns_reg_config:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/sns_reg_config \
+    vendor/ruan/proprietary/vendor/etc/setting.xml:$(TARGET_COPY_OUT_VENDOR)/etc/setting.xml \
+    vendor/ruan/proprietary/vendor/etc/smomo_setting.xml:$(TARGET_COPY_OUT_VENDOR)/etc/smomo_setting.xml \
+    vendor/ruan/proprietary/vendor/etc/snapdragon_color_libs_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/snapdragon_color_libs_config.xml \
+    vendor/ruan/proprietary/vendor/etc/spk_pb_bot.wav:$(TARGET_COPY_OUT_VENDOR)/etc/spk_pb_bot.wav \
+    vendor/ruan/proprietary/vendor/etc/spk_pb_top.wav:$(TARGET_COPY_OUT_VENDOR)/etc/spk_pb_top.wav \
     vendor/ruan/proprietary/vendor/etc/ssg/ta_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/ssg/ta_config.json \
     vendor/ruan/proprietary/vendor/etc/ssg/tz_whitelist.json:$(TARGET_COPY_OUT_VENDOR)/etc/ssg/tz_whitelist.json \
+    vendor/ruan/proprietary/vendor/etc/telephony_packages.xml:$(TARGET_COPY_OUT_VENDOR)/etc/telephony_packages.xml \
+    vendor/ruan/proprietary/vendor/etc/thermal-camera.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-camera.conf \
+    vendor/ruan/proprietary/vendor/etc/thermal-chg-only.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-chg-only.conf \
+    vendor/ruan/proprietary/vendor/etc/thermal-class0.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-class0.conf \
+    vendor/ruan/proprietary/vendor/etc/thermal-engine.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine.conf \
+    vendor/ruan/proprietary/vendor/etc/thermal-hp-mgame.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-hp-mgame.conf \
+    vendor/ruan/proprietary/vendor/etc/thermal-hp-normal.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-hp-normal.conf \
+    vendor/ruan/proprietary/vendor/etc/thermal-huanji.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-huanji.conf \
+    vendor/ruan/proprietary/vendor/etc/thermal-map.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-map.conf \
+    vendor/ruan/proprietary/vendor/etc/thermal-mgame.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-mgame.conf \
+    vendor/ruan/proprietary/vendor/etc/thermal-navigation.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-navigation.conf \
+    vendor/ruan/proprietary/vendor/etc/thermal-nolimits.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-nolimits.conf \
+    vendor/ruan/proprietary/vendor/etc/thermal-normal.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-normal.conf \
+    vendor/ruan/proprietary/vendor/etc/thermal-phone.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-phone.conf \
+    vendor/ruan/proprietary/vendor/etc/thermal-tgame.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-tgame.conf \
+    vendor/ruan/proprietary/vendor/etc/thermal-video.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-video.conf \
+    vendor/ruan/proprietary/vendor/etc/thermal-videochat.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-videochat.conf \
+    vendor/ruan/proprietary/vendor/etc/thermald-devices.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermald-devices.conf \
+    vendor/ruan/proprietary/vendor/etc/tzlog.dict:$(TARGET_COPY_OUT_VENDOR)/etc/tzlog.dict \
+    vendor/ruan/proprietary/vendor/etc/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/ueventd.rc \
+    vendor/ruan/proprietary/vendor/etc/ultrasound.wav:$(TARGET_COPY_OUT_VENDOR)/etc/ultrasound.wav \
+    vendor/ruan/proprietary/vendor/etc/us_spk_pb_bot.wav:$(TARGET_COPY_OUT_VENDOR)/etc/us_spk_pb_bot.wav \
+    vendor/ruan/proprietary/vendor/etc/us_spk_pb_top.wav:$(TARGET_COPY_OUT_VENDOR)/etc/us_spk_pb_top.wav \
+    vendor/ruan/proprietary/vendor/etc/usb_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usb_audio_policy_configuration.xml \
+    vendor/ruan/proprietary/vendor/etc/usb_compositions.conf:$(TARGET_COPY_OUT_VENDOR)/etc/usb_compositions.conf \
+    vendor/ruan/proprietary/vendor/etc/usecaseKvManager.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usecaseKvManager.xml \
     vendor/ruan/proprietary/vendor/etc/vintf/compatibility_matrix.xml:$(TARGET_COPY_OUT_VENDOR)/etc/vintf/compatibility_matrix.xml \
-    vendor/ruan/proprietary/vendor/etc/vintf/manifest_parrot.xml:$(TARGET_COPY_OUT_VENDOR)/etc/vintf/manifest_parrot.xml \
-    vendor/ruan/proprietary/vendor/etc/vintf/manifest_ravelin.xml:$(TARGET_COPY_OUT_VENDOR)/etc/vintf/manifest_ravelin.xml \
     vendor/ruan/proprietary/vendor/etc/vintf/manifest/android.hardware.atrace@1.0-service.xml:$(TARGET_COPY_OUT_VENDOR)/etc/vintf/manifest/android.hardware.atrace@1.0-service.xml \
     vendor/ruan/proprietary/vendor/etc/vintf/manifest/android.hardware.boot@1.2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/vintf/manifest/android.hardware.boot@1.2.xml \
     vendor/ruan/proprietary/vendor/etc/vintf/manifest/android.hardware.cas@1.2-service.xml:$(TARGET_COPY_OUT_VENDOR)/etc/vintf/manifest/android.hardware.cas@1.2-service.xml \
@@ -1386,6 +1386,7 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/etc/vintf/manifest/android.hardware.wifi.supplicant.xml:$(TARGET_COPY_OUT_VENDOR)/etc/vintf/manifest/android.hardware.wifi.supplicant.xml \
     vendor/ruan/proprietary/vendor/etc/vintf/manifest/android.hardware.wifi@1.0-service.xml:$(TARGET_COPY_OUT_VENDOR)/etc/vintf/manifest/android.hardware.wifi@1.0-service.xml \
     vendor/ruan/proprietary/vendor/etc/vintf/manifest/blackbox.xml:$(TARGET_COPY_OUT_VENDOR)/etc/vintf/manifest/blackbox.xml \
+    vendor/ruan/proprietary/vendor/etc/vintf/manifest/c2_manifest_vendor.xml:$(TARGET_COPY_OUT_VENDOR)/etc/vintf/manifest/c2_manifest_vendor.xml \
     vendor/ruan/proprietary/vendor/etc/vintf/manifest/c2_manifest_vendor_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/vintf/manifest/c2_manifest_vendor_audio.xml \
     vendor/ruan/proprietary/vendor/etc/vintf/manifest/c2_manifest_vendor_parrot.xml:$(TARGET_COPY_OUT_VENDOR)/etc/vintf/manifest/c2_manifest_vendor_parrot.xml \
     vendor/ruan/proprietary/vendor/etc/vintf/manifest/dataconnection-saidl.xml:$(TARGET_COPY_OUT_VENDOR)/etc/vintf/manifest/dataconnection-saidl.xml \
@@ -1425,11 +1426,12 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/etc/vintf/manifest/vendor.xiaomi.hardware.misys@2.0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/vintf/manifest/vendor.xiaomi.hardware.misys@2.0.xml \
     vendor/ruan/proprietary/vendor/etc/vintf/manifest/vendor.xiaomi.hardware.misys@3.0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/vintf/manifest/vendor.xiaomi.hardware.misys@3.0.xml \
     vendor/ruan/proprietary/vendor/etc/vintf/manifest/vendor.xiaomi.hardware.misys@4.0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/vintf/manifest/vendor.xiaomi.hardware.misys@4.0.xml \
+    vendor/ruan/proprietary/vendor/etc/vintf/manifest_parrot.xml:$(TARGET_COPY_OUT_VENDOR)/etc/vintf/manifest_parrot.xml \
+    vendor/ruan/proprietary/vendor/etc/vintf/manifest_ravelin.xml:$(TARGET_COPY_OUT_VENDOR)/etc/vintf/manifest_ravelin.xml \
+    vendor/ruan/proprietary/vendor/etc/vmmgr.conf:$(TARGET_COPY_OUT_VENDOR)/etc/vmmgr.conf \
+    vendor/ruan/proprietary/vendor/etc/wfdconfig.xml:$(TARGET_COPY_OUT_VENDOR)/etc/wfdconfig.xml \
     vendor/ruan/proprietary/vendor/etc/wifi/icm.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/icm.conf \
     vendor/ruan/proprietary/vendor/etc/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
-    vendor/ruan/proprietary/vendor/etc/wifi/vendor_cmd.xml:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/vendor_cmd.xml \
-    vendor/ruan/proprietary/vendor/etc/wifi/wpa_supplicant.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant.conf \
-    vendor/ruan/proprietary/vendor/etc/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf \
     vendor/ruan/proprietary/vendor/etc/wifi/qca6750/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/qca6750/WCNSS_qcom_cfg.ini \
     vendor/ruan/proprietary/vendor/etc/wifi/qca6750/n83_ce_sar.xml:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/qca6750/n83_ce_sar.xml \
     vendor/ruan/proprietary/vendor/etc/wifi/qca6750/n83_default_sar.xml:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/qca6750/n83_default_sar.xml \
@@ -1437,6 +1439,10 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/etc/wifi/qca6750/n83u_ce_sar.xml:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/qca6750/n83u_ce_sar.xml \
     vendor/ruan/proprietary/vendor/etc/wifi/qca6750/n83u_default_sar.xml:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/qca6750/n83u_default_sar.xml \
     vendor/ruan/proprietary/vendor/etc/wifi/qca6750/n83u_fcc_sar.xml:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/qca6750/n83u_fcc_sar.xml \
+    vendor/ruan/proprietary/vendor/etc/wifi/vendor_cmd.xml:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/vendor_cmd.xml \
+    vendor/ruan/proprietary/vendor/etc/wifi/wpa_supplicant.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant.conf \
+    vendor/ruan/proprietary/vendor/etc/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf \
+    vendor/ruan/proprietary/vendor/etc/xtwifi.conf:$(TARGET_COPY_OUT_VENDOR)/etc/xtwifi.conf \
     vendor/ruan/proprietary/vendor/firmware/CAMERA_ICP.b00:$(TARGET_COPY_OUT_VENDOR)/firmware/CAMERA_ICP.b00 \
     vendor/ruan/proprietary/vendor/firmware/CAMERA_ICP.b01:$(TARGET_COPY_OUT_VENDOR)/firmware/CAMERA_ICP.b01 \
     vendor/ruan/proprietary/vendor/firmware/CAMERA_ICP.b02:$(TARGET_COPY_OUT_VENDOR)/firmware/CAMERA_ICP.b02 \
@@ -1582,13 +1588,8 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/firmware/vpu20_1v_unsigned.mbn:$(TARGET_COPY_OUT_VENDOR)/firmware/vpu20_1v_unsigned.mbn \
     vendor/ruan/proprietary/vendor/firmware/vpu20_4v.mbn:$(TARGET_COPY_OUT_VENDOR)/firmware/vpu20_4v.mbn \
     vendor/ruan/proprietary/vendor/firmware/vpu20_4v_unsigned.mbn:$(TARGET_COPY_OUT_VENDOR)/firmware/vpu20_4v_unsigned.mbn \
-    vendor/ruan/proprietary/vendor/firmware/wlanmdsp.otaupdate:$(TARGET_COPY_OUT_VENDOR)/firmware/wlanmdsp.otaupdate \
-    vendor/ruan/proprietary/vendor/firmware/wlan/qca_cld/adrastea/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/qca_cld/adrastea/WCNSS_qcom_cfg.ini \
-    vendor/ruan/proprietary/vendor/firmware/wlan/qca_cld/adrastea/wlan_mac.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/qca_cld/adrastea/wlan_mac.bin \
     vendor/ruan/proprietary/vendor/firmware/wlan/qca_cld/qca6490/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/qca_cld/qca6490/WCNSS_qcom_cfg.ini \
-    vendor/ruan/proprietary/vendor/firmware/wlan/qca_cld/qca6490/wlan_mac.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/qca_cld/qca6490/wlan_mac.bin \
     vendor/ruan/proprietary/vendor/firmware/wlan/qca_cld/qca6750/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/qca_cld/qca6750/WCNSS_qcom_cfg.ini \
-    vendor/ruan/proprietary/vendor/firmware/wlan/qca_cld/qca6750/wlan_mac.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/qca_cld/qca6750/wlan_mac.bin \
     vendor/ruan/proprietary/vendor/gpu/kbc/sequence_manifest.bin:$(TARGET_COPY_OUT_VENDOR)/gpu/kbc/sequence_manifest.bin \
     vendor/ruan/proprietary/vendor/gpu/kbc/unified_kbcs_64.bin:$(TARGET_COPY_OUT_VENDOR)/gpu/kbc/unified_kbcs_64.bin \
     vendor/ruan/proprietary/vendor/gpu/kbc/unified_ksqs.bin:$(TARGET_COPY_OUT_VENDOR)/gpu/kbc/unified_ksqs.bin \
@@ -1757,6 +1758,97 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/lib64/c2.dolby.hevc.sec.dec.so:$(TARGET_COPY_OUT_VENDOR)/lib64/c2.dolby.hevc.sec.dec.so \
     vendor/ruan/proprietary/vendor/lib64/c2.dolby.store.so:$(TARGET_COPY_OUT_VENDOR)/lib64/c2.dolby.store.so \
     vendor/ruan/proprietary/vendor/lib64/camera.device@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera.device@1.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/com.qti.sensor.n83_aac_gc08a3_main_i.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/com.qti.sensor.n83_aac_gc08a3_main_i.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/com.qti.sensor.n83_aac_ov08d10_front_i.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/com.qti.sensor.n83_aac_ov08d10_front_i.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/com.qti.sensor.n83_oflim_ov13b10_main_i.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/com.qti.sensor.n83_oflim_ov13b10_main_i.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/com.qti.sensormodule.n83_aac_gc08a3_main_i.bin:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/com.qti.sensormodule.n83_aac_gc08a3_main_i.bin \
+    vendor/ruan/proprietary/vendor/lib64/camera/com.qti.sensormodule.n83_aac_ov08d10_front_i.bin:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/com.qti.sensormodule.n83_aac_ov08d10_front_i.bin \
+    vendor/ruan/proprietary/vendor/lib64/camera/com.qti.sensormodule.n83_oflim_ov13b10_main_i.bin:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/com.qti.sensormodule.n83_oflim_ov13b10_main_i.bin \
+    vendor/ruan/proprietary/vendor/lib64/camera/com.qti.tuned.default.bin:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/com.qti.tuned.default.bin \
+    vendor/ruan/proprietary/vendor/lib64/camera/com.qti.tuned.n83_aac_gc08a3_main_i.bin:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/com.qti.tuned.n83_aac_gc08a3_main_i.bin \
+    vendor/ruan/proprietary/vendor/lib64/camera/com.qti.tuned.n83_aac_gc08a3_main_i_cn.bin:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/com.qti.tuned.n83_aac_gc08a3_main_i_cn.bin \
+    vendor/ruan/proprietary/vendor/lib64/camera/com.qti.tuned.n83_aac_ov08d10_front_i.bin:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/com.qti.tuned.n83_aac_ov08d10_front_i.bin \
+    vendor/ruan/proprietary/vendor/lib64/camera/com.qti.tuned.n83_aac_ov08d10_front_i_cn.bin:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/com.qti.tuned.n83_aac_ov08d10_front_i_cn.bin \
+    vendor/ruan/proprietary/vendor/lib64/camera/com.qti.tuned.n83_oflim_ov13b10_main_i.bin:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/com.qti.tuned.n83_oflim_ov13b10_main_i.bin \
+    vendor/ruan/proprietary/vendor/lib64/camera/com.qti.tuned.n83_oflim_ov13b10_main_i_cn.bin:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/com.qti.tuned.n83_oflim_ov13b10_main_i_cn.bin \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.bots.node.vendortagwrite.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.bots.node.vendortagwrite.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.jigan.node.rawsupernight.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.jigan.node.rawsupernight.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.mi.node.facecenter.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.mi.node.facecenter.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.mi.node.tsskinbeautifier.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.mi.node.tsskinbeautifier.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.camx.chiiqutils.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.camx.chiiqutils.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.eisv2.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.eisv2.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.eisv3.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.eisv3.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.hvx.addconstant.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.hvx.addconstant.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.hvx.binning.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.hvx.binning.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.afbfusion.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.afbfusion.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.customhwnode.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.customhwnode.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.depth.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.depth.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.dewarp.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.dewarp.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.dummydepth.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.dummydepth.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.dummyrtb.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.dummyrtb.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.dummysat.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.dummysat.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.eisv2.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.eisv2.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.eisv3.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.eisv3.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.fcv.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.fcv.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.formatconversion.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.formatconversion.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.gme.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.gme.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.gpu.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.gpu.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.gyrornn.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.gyrornn.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.hdr10pgen.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.hdr10pgen.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.hdr10phist.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.hdr10phist.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.memcpy.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.memcpy.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.mialgocontrol.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.mialgocontrol.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.mimovie.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.mimovie.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.ml.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.ml.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.mlinference.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.mlinference.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.muxer.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.muxer.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.remosaic.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.remosaic.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.stich.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.stich.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.sw2dlut.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.sw2dlut.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.swaidenoiser.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.swaidenoiser.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.swbestats.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.swbestats.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.swcac.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.swcac.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.swec.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.swec.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.swfusion.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.swfusion.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.swhme.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.swhme.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.swlsc.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.swlsc.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.swmctf.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.swmctf.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.swmfnr.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.swmfnr.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.swpdpc.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.swpdpc.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.swpreprocess.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.swpreprocess.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.swregistration.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.swregistration.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.swvrt.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.swvrt.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.aec.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.aec.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.aecwrapper.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.aecwrapper.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.aecxcore.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.aecxcore.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.af.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.af.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.afd.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.afd.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.afwrapper.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.afwrapper.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.asd.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.asd.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.awb.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.awb.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.awbwrapper.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.awbwrapper.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.cnndriver.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.cnndriver.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.haf.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.haf.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.hafoverride.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.hafoverride.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.localhistogram.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.localhistogram.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.pdlib.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.pdlib.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.pdlibsony.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.pdlibsony.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.pdlibwrapper.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.pdlibwrapper.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.statsgenerator.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.statsgenerator.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.tracker.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.tracker.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qtistatic.stats.aec.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qtistatic.stats.aec.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qtistatic.stats.af.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qtistatic.stats.af.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qtistatic.stats.awb.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qtistatic.stats.awb.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qtistatic.stats.pdlib.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qtistatic.stats.pdlib.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.xiaomi.node.MIS.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.xiaomi.node.MIS.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.xiaomi.node.gpu3rd.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.xiaomi.node.gpu3rd.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/com.xiaomi.node.mimovie3rd.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.xiaomi.node.mimovie3rd.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/components/libdepthmapwrapper_secure.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/libdepthmapwrapper_secure.so \
+    vendor/ruan/proprietary/vendor/lib64/camera/fdconfigpreview.bin:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/fdconfigpreview.bin \
+    vendor/ruan/proprietary/vendor/lib64/camera/fdconfigpreviewlite.bin:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/fdconfigpreviewlite.bin \
+    vendor/ruan/proprietary/vendor/lib64/camera/fdconfigvideo.bin:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/fdconfigvideo.bin \
+    vendor/ruan/proprietary/vendor/lib64/camera/fdconfigvideolite.bin:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/fdconfigvideolite.bin \
+    vendor/ruan/proprietary/vendor/lib64/camera/plugins/com.xiaomi.plugin.gpu.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/plugins/com.xiaomi.plugin.gpu.so \
     vendor/ruan/proprietary/vendor/lib64/camx.device@3.2-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camx.device@3.2-impl.so \
     vendor/ruan/proprietary/vendor/lib64/camx.device@3.3-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camx.device@3.3-impl.so \
     vendor/ruan/proprietary/vendor/lib64/camx.device@3.4-ext-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camx.device@3.4-ext-impl.so \
@@ -1826,7 +1918,74 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/lib64/com.xiaomi.plugin.skinbeautifier.so:$(TARGET_COPY_OUT_VENDOR)/lib64/com.xiaomi.plugin.skinbeautifier.so \
     vendor/ruan/proprietary/vendor/lib64/com.xiaomi.plugin.swflip.so:$(TARGET_COPY_OUT_VENDOR)/lib64/com.xiaomi.plugin.swflip.so \
     vendor/ruan/proprietary/vendor/lib64/deviceInfoServiceModuleNr.so:$(TARGET_COPY_OUT_VENDOR)/lib64/deviceInfoServiceModuleNr.so \
+    vendor/ruan/proprietary/vendor/lib64/egl/eglSubDriverAndroid.so:$(TARGET_COPY_OUT_VENDOR)/lib64/egl/eglSubDriverAndroid.so \
+    vendor/ruan/proprietary/vendor/lib64/egl/libEGL_adreno.so:$(TARGET_COPY_OUT_VENDOR)/lib64/egl/libEGL_adreno.so \
+    vendor/ruan/proprietary/vendor/lib64/egl/libGLESv1_CM_adreno.so:$(TARGET_COPY_OUT_VENDOR)/lib64/egl/libGLESv1_CM_adreno.so \
+    vendor/ruan/proprietary/vendor/lib64/egl/libGLESv2_adreno.so:$(TARGET_COPY_OUT_VENDOR)/lib64/egl/libGLESv2_adreno.so \
+    vendor/ruan/proprietary/vendor/lib64/egl/libVkLayer_ADRENO_qprofiler.so:$(TARGET_COPY_OUT_VENDOR)/lib64/egl/libVkLayer_ADRENO_qprofiler.so \
+    vendor/ruan/proprietary/vendor/lib64/egl/libq3dtools_adreno.so:$(TARGET_COPY_OUT_VENDOR)/lib64/egl/libq3dtools_adreno.so \
+    vendor/ruan/proprietary/vendor/lib64/egl/libq3dtools_esx.so:$(TARGET_COPY_OUT_VENDOR)/lib64/egl/libq3dtools_esx.so \
     vendor/ruan/proprietary/vendor/lib64/ftm_fm_lib.so:$(TARGET_COPY_OUT_VENDOR)/lib64/ftm_fm_lib.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.audio.effect@2.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.audio.effect@2.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.audio.effect@4.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.audio.effect@4.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.audio.effect@5.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.audio.effect@5.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.audio.effect@6.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.audio.effect@6.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.audio.effect@7.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.audio.effect@7.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.audio@2.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.audio@2.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.audio@4.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.audio@4.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.audio@5.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.audio@5.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.audio@6.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.audio@6.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.audio@7.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.audio@7.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.bluetooth.audio@2.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.bluetooth.audio@2.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.bluetooth@1.0-impl-qti.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.bluetooth@1.0-impl-qti.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.boot@1.0-impl-1.2-qti.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.boot@1.0-impl-1.2-qti.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.gatekeeper@1.0-impl-qti.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.gatekeeper@1.0-impl-qti.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.gnss-aidl-impl-qti.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.gnss-aidl-impl-qti.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.gnss@2.1-impl-qti.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.gnss@2.1-impl-qti.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.graphics.mapper@4.0-impl-qti-display.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.graphics.mapper@4.0-impl-qti-display.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.health@2.0-impl-2.1-qti.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.health@2.0-impl-2.1-qti.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.renderscript@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.renderscript@1.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.soundtrigger@2.2-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.soundtrigger@2.2-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.soundtrigger@2.3-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.soundtrigger@2.3-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/audio.bluetooth.default.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/audio.bluetooth.default.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/audio.bluetooth_qti.default.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/audio.bluetooth_qti.default.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/audio.primary.default.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/audio.primary.default.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/audio.primary.parrot.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/audio.primary.parrot.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/audio.r_submix.default.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/audio.r_submix.default.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/audio.usb.default.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/audio.usb.default.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/camera.qcom.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/camera.qcom.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/com.qti.chi.override.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/com.qti.chi.override.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/displayfeature.default.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/displayfeature.default.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/gralloc.default.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/gralloc.default.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/local_time.default.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/local_time.default.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/power.default.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/power.default.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/sound_trigger.primary.parrot.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/sound_trigger.primary.parrot.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.hardware.alarm@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.hardware.alarm@1.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.hardware.bluetooth_audio@2.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.hardware.bluetooth_audio@2.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.hardware.bluetooth_audio@2.1-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.hardware.bluetooth_audio@2.1-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.hardware.bluetooth_sar@1.1-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.hardware.bluetooth_sar@1.1-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.hardware.btconfigstore@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.hardware.btconfigstore@1.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.hardware.btconfigstore@2.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.hardware.btconfigstore@2.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.hardware.capabilityconfigstore@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.hardware.capabilityconfigstore@1.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.hardware.fm@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.hardware.fm@1.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.hardware.qccvndhal@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.hardware.qccvndhal@1.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.hardware.qseecom@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.hardware.qseecom@1.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.hardware.qteeconnector@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.hardware.qteeconnector@1.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.hardware.sensorscalibrate@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.hardware.sensorscalibrate@1.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.hardware.servicetracker@1.2-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.hardware.servicetracker@1.2-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.hardware.soter@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.hardware.soter@1.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.hardware.wifidisplaysession@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.hardware.wifidisplaysession@1.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.memory.pasrmanager@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.memory.pasrmanager@1.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/vendor.xiaomi.hardware.cld@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.xiaomi.hardware.cld@1.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/vendor.xiaomi.hardware.displayfeature@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.xiaomi.hardware.displayfeature@1.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/vendor.xiaomi.hardware.micharge@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.xiaomi.hardware.micharge@1.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/vendor.xiaomi.hardware.misys@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.xiaomi.hardware.misys@1.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/vendor.xiaomi.hardware.misys@2.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.xiaomi.hardware.misys@2.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/vendor.xiaomi.hardware.misys@3.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.xiaomi.hardware.misys@3.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/vendor.xiaomi.hardware.misys@4.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.xiaomi.hardware.misys@4.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/vendor.xiaomi.hw.touchfeature@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.xiaomi.hw.touchfeature@1.0-impl.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/vibrator.default.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vibrator.default.so \
+    vendor/ruan/proprietary/vendor/lib64/hw/vulkan.adreno.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vulkan.adreno.so \
     vendor/ruan/proprietary/vendor/lib64/lib-imscommon.so:$(TARGET_COPY_OUT_VENDOR)/lib64/lib-imscommon.so \
     vendor/ruan/proprietary/vendor/lib64/lib-imsdpl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/lib-imsdpl.so \
     vendor/ruan/proprietary/vendor/lib64/lib-imsqimf.so:$(TARGET_COPY_OUT_VENDOR)/lib64/lib-imsqimf.so \
@@ -1858,9 +2017,37 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/lib64/libQTEEConnector_listener.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQTEEConnector_listener.so \
     vendor/ruan/proprietary/vendor/lib64/libQTEEConnector_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQTEEConnector_vendor.so \
     vendor/ruan/proprietary/vendor/lib64/libQcelp13SwCodec.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQcelp13SwCodec.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnChrometraceProfilingReader.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnChrometraceProfilingReader.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnCpu.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnCpu.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnDsp.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnDsp.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnDspNetRunExtensions.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnDspNetRunExtensions.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnDspV65CalculatorStub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnDspV65CalculatorStub.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnDspV65Stub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnDspV65Stub.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnDspV65StubInternal.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnDspV65StubInternal.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnDspV66CalculatorStub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnDspV66CalculatorStub.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnDspV66Stub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnDspV66Stub.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnDspV66StubInternal.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnDspV66StubInternal.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnGpu.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnGpu.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnGpuNetRunExtensions.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnGpuNetRunExtensions.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnGpuProfilingReader.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnGpuProfilingReader.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnHta.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHta.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnHtaNetRunExtensions.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtaNetRunExtensions.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnHtp.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtp.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnHtpNetRunExtensions.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtpNetRunExtensions.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnHtpPrepare.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtpPrepare.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnHtpProfilingReader.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtpProfilingReader.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnHtpV68CalculatorStub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtpV68CalculatorStub.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnHtpV68Stub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtpV68Stub.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnHtpV69CalculatorStub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtpV69CalculatorStub.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnHtpV69Stub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtpV69Stub.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnHtpV73CalculatorStub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtpV73CalculatorStub.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnHtpV73Stub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtpV73Stub.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnSaver.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnSaver.so \
+    vendor/ruan/proprietary/vendor/lib64/libQnnSystem.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnSystem.so \
     vendor/ruan/proprietary/vendor/lib64/libQtiRilLoadable.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQtiRilLoadable.so \
     vendor/ruan/proprietary/vendor/lib64/libSEESalt.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libSEESalt.so \
     vendor/ruan/proprietary/vendor/lib64/libSNPE.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libSNPE.so \
+    vendor/ruan/proprietary/vendor/lib64/libSnpeDspV65Stub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libSnpeDspV65Stub.so \
     vendor/ruan/proprietary/vendor/lib64/libSnpeDspV66Stub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libSnpeDspV66Stub.so \
     vendor/ruan/proprietary/vendor/lib64/libSnpeHta.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libSnpeHta.so \
     vendor/ruan/proprietary/vendor/lib64/libSnpeHtpPrepare.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libSnpeHtpPrepare.so \
@@ -1880,6 +2067,7 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/lib64/lib_bt_aptx.so:$(TARGET_COPY_OUT_VENDOR)/lib64/lib_bt_aptx.so \
     vendor/ruan/proprietary/vendor/lib64/lib_bt_ble.so:$(TARGET_COPY_OUT_VENDOR)/lib64/lib_bt_ble.so \
     vendor/ruan/proprietary/vendor/lib64/lib_bt_bundle.so:$(TARGET_COPY_OUT_VENDOR)/lib64/lib_bt_bundle.so \
+    vendor/ruan/proprietary/vendor/lib64/lib_misound_asc.so:$(TARGET_COPY_OUT_VENDOR)/lib64/lib_misound_asc.so \
     vendor/ruan/proprietary/vendor/lib64/libadaptlaunch.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libadaptlaunch.so \
     vendor/ruan/proprietary/vendor/lib64/libadm.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libadm.so \
     vendor/ruan/proprietary/vendor/lib64/libadreno_app_profiles.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libadreno_app_profiles.so \
@@ -1906,7 +2094,9 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/lib64/libarcsoft_hdr_detection.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libarcsoft_hdr_detection.so \
     vendor/ruan/proprietary/vendor/lib64/libats.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libats.so \
     vendor/ruan/proprietary/vendor/lib64/libaudio_log_utils.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libaudio_log_utils.so \
+    vendor/ruan/proprietary/vendor/lib64/libaudiocloudctrl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libaudiocloudctrl.so \
     vendor/ruan/proprietary/vendor/lib64/libaudiofactorytest.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libaudiofactorytest.so \
+    vendor/ruan/proprietary/vendor/lib64/libaudioroute_ext.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libaudioroute_ext.so \
     vendor/ruan/proprietary/vendor/lib64/libavservices_minijail.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libavservices_minijail.so \
     vendor/ruan/proprietary/vendor/lib64/libavservices_minijail_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libavservices_minijail_vendor.so \
     vendor/ruan/proprietary/vendor/lib64/libaxmlparsefirst.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libaxmlparsefirst.so \
@@ -1973,6 +2163,7 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/lib64/libcolor-default.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libcolor-default.so \
     vendor/ruan/proprietary/vendor/lib64/libcolortempmode.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libcolortempmode.so \
     vendor/ruan/proprietary/vendor/lib64/libcom.qti.chinodeutils.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libcom.qti.chinodeutils.so \
+    vendor/ruan/proprietary/vendor/lib64/libcom.xiaomi.grallocutils.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libcom.xiaomi.grallocutils.so \
     vendor/ruan/proprietary/vendor/lib64/libcom.xiaomi.metadatautils.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libcom.xiaomi.metadatautils.so \
     vendor/ruan/proprietary/vendor/lib64/libcom.xiaomi.pluginutils.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libcom.xiaomi.pluginutils.so \
     vendor/ruan/proprietary/vendor/lib64/libconfigdb.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libconfigdb.so \
@@ -2051,6 +2242,7 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/lib64/libhistogram.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libhistogram.so \
     vendor/ruan/proprietary/vendor/lib64/libhistprocess.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libhistprocess.so \
     vendor/ruan/proprietary/vendor/lib64/libhme.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libhme.so \
+    vendor/ruan/proprietary/vendor/lib64/libhta_hexagon_runtime_qnn.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libhta_hexagon_runtime_qnn.so \
     vendor/ruan/proprietary/vendor/lib64/libhta_hexagon_runtime_snpe.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libhta_hexagon_runtime_snpe.so \
     vendor/ruan/proprietary/vendor/lib64/libhwbinder.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libhwbinder.so \
     vendor/ruan/proprietary/vendor/lib64/libidl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libidl.so \
@@ -2423,6 +2615,9 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/lib64/libxml.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libxml.so \
     vendor/ruan/proprietary/vendor/lib64/libxtadapter.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libxtadapter.so \
     vendor/ruan/proprietary/vendor/lib64/libz_stable.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libz_stable.so \
+    vendor/ruan/proprietary/vendor/lib64/mediacas/libclearkeycasplugin.so:$(TARGET_COPY_OUT_VENDOR)/lib64/mediacas/libclearkeycasplugin.so \
+    vendor/ruan/proprietary/vendor/lib64/mediadrm/libdrmclearkeyplugin.so:$(TARGET_COPY_OUT_VENDOR)/lib64/mediadrm/libdrmclearkeyplugin.so \
+    vendor/ruan/proprietary/vendor/lib64/mediadrm/libwvdrmengine.so:$(TARGET_COPY_OUT_VENDOR)/lib64/mediadrm/libwvdrmengine.so \
     vendor/ruan/proprietary/vendor/lib64/qcrilInterfaces.so:$(TARGET_COPY_OUT_VENDOR)/lib64/qcrilInterfaces.so \
     vendor/ruan/proprietary/vendor/lib64/qcrilMarshal.so:$(TARGET_COPY_OUT_VENDOR)/lib64/qcrilMarshal.so \
     vendor/ruan/proprietary/vendor/lib64/qcrilNrQmiModule.so:$(TARGET_COPY_OUT_VENDOR)/lib64/qcrilNrQmiModule.so \
@@ -2436,6 +2631,27 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/lib64/qtiwakelock.so:$(TARGET_COPY_OUT_VENDOR)/lib64/qtiwakelock.so \
     vendor/ruan/proprietary/vendor/lib64/sensors.ssc.so:$(TARGET_COPY_OUT_VENDOR)/lib64/sensors.ssc.so \
     vendor/ruan/proprietary/vendor/lib64/sns_client_example.so:$(TARGET_COPY_OUT_VENDOR)/lib64/sns_client_example.so \
+    vendor/ruan/proprietary/vendor/lib64/soundfx/libasphere.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libasphere.so \
+    vendor/ruan/proprietary/vendor/lib64/soundfx/libaudiopreprocessing.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libaudiopreprocessing.so \
+    vendor/ruan/proprietary/vendor/lib64/soundfx/libbundlewrapper.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libbundlewrapper.so \
+    vendor/ruan/proprietary/vendor/lib64/soundfx/libdlbvol.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libdlbvol.so \
+    vendor/ruan/proprietary/vendor/lib64/soundfx/libdownmix.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libdownmix.so \
+    vendor/ruan/proprietary/vendor/lib64/soundfx/libdynproc.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libdynproc.so \
+    vendor/ruan/proprietary/vendor/lib64/soundfx/libeffectproxy.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libeffectproxy.so \
+    vendor/ruan/proprietary/vendor/lib64/soundfx/libhapticgenerator.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libhapticgenerator.so \
+    vendor/ruan/proprietary/vendor/lib64/soundfx/libhwdap.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libhwdap.so \
+    vendor/ruan/proprietary/vendor/lib64/soundfx/libldnhncr.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libldnhncr.so \
+    vendor/ruan/proprietary/vendor/lib64/soundfx/libmisoundfx.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libmisoundfx.so \
+    vendor/ruan/proprietary/vendor/lib64/soundfx/libqcompostprocbundle.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libqcompostprocbundle.so \
+    vendor/ruan/proprietary/vendor/lib64/soundfx/libqcomvisualizer.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libqcomvisualizer.so \
+    vendor/ruan/proprietary/vendor/lib64/soundfx/libqcomvoiceprocessing.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libqcomvoiceprocessing.so \
+    vendor/ruan/proprietary/vendor/lib64/soundfx/libreverbwrapper.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libreverbwrapper.so \
+    vendor/ruan/proprietary/vendor/lib64/soundfx/libshoebox.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libshoebox.so \
+    vendor/ruan/proprietary/vendor/lib64/soundfx/libswdap.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libswdap.so \
+    vendor/ruan/proprietary/vendor/lib64/soundfx/libswgamedap.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libswgamedap.so \
+    vendor/ruan/proprietary/vendor/lib64/soundfx/libswvqe.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libswvqe.so \
+    vendor/ruan/proprietary/vendor/lib64/soundfx/libvisualizer.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libvisualizer.so \
+    vendor/ruan/proprietary/vendor/lib64/soundfx/libvolumelistener.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libvolumelistener.so \
     vendor/ruan/proprietary/vendor/lib64/vendor.display.color@1.0.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.display.color@1.0.so \
     vendor/ruan/proprietary/vendor/lib64/vendor.display.color@1.1.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.display.color@1.1.so \
     vendor/ruan/proprietary/vendor/lib64/vendor.display.color@1.2.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.display.color@1.2.so \
@@ -2687,252 +2903,11 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor/lib64/vendor.xiaomi.hardware.tidaservice@1.2.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.xiaomi.hardware.tidaservice@1.2.so \
     vendor/ruan/proprietary/vendor/lib64/vendor.xiaomi.hw.touchfeature@1.0.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.xiaomi.hw.touchfeature@1.0.so \
     vendor/ruan/proprietary/vendor/lib64/vendor.xiaomi.sensor.citsensorservice-V1-ndk_platform.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.xiaomi.sensor.citsensorservice-V1-ndk_platform.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/com.qti.sensor.n83_aac_gc08a3_main_i.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/com.qti.sensor.n83_aac_gc08a3_main_i.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/com.qti.sensor.n83_aac_ov08d10_front_i.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/com.qti.sensor.n83_aac_ov08d10_front_i.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/com.qti.sensor.n83_oflim_ov13b10_main_i.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/com.qti.sensor.n83_oflim_ov13b10_main_i.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/com.qti.sensormodule.n83_aac_gc08a3_main_i.bin:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/com.qti.sensormodule.n83_aac_gc08a3_main_i.bin \
-    vendor/ruan/proprietary/vendor/lib64/camera/com.qti.sensormodule.n83_aac_ov08d10_front_i.bin:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/com.qti.sensormodule.n83_aac_ov08d10_front_i.bin \
-    vendor/ruan/proprietary/vendor/lib64/camera/com.qti.sensormodule.n83_oflim_ov13b10_main_i.bin:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/com.qti.sensormodule.n83_oflim_ov13b10_main_i.bin \
-    vendor/ruan/proprietary/vendor/lib64/camera/com.qti.tuned.default.bin:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/com.qti.tuned.default.bin \
-    vendor/ruan/proprietary/vendor/lib64/camera/com.qti.tuned.n83_aac_gc08a3_main_i.bin:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/com.qti.tuned.n83_aac_gc08a3_main_i.bin \
-    vendor/ruan/proprietary/vendor/lib64/camera/com.qti.tuned.n83_aac_gc08a3_main_i_cn.bin:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/com.qti.tuned.n83_aac_gc08a3_main_i_cn.bin \
-    vendor/ruan/proprietary/vendor/lib64/camera/com.qti.tuned.n83_aac_ov08d10_front_i.bin:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/com.qti.tuned.n83_aac_ov08d10_front_i.bin \
-    vendor/ruan/proprietary/vendor/lib64/camera/com.qti.tuned.n83_aac_ov08d10_front_i_cn.bin:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/com.qti.tuned.n83_aac_ov08d10_front_i_cn.bin \
-    vendor/ruan/proprietary/vendor/lib64/camera/com.qti.tuned.n83_oflim_ov13b10_main_i.bin:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/com.qti.tuned.n83_oflim_ov13b10_main_i.bin \
-    vendor/ruan/proprietary/vendor/lib64/camera/com.qti.tuned.n83_oflim_ov13b10_main_i_cn.bin:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/com.qti.tuned.n83_oflim_ov13b10_main_i_cn.bin \
-    vendor/ruan/proprietary/vendor/lib64/camera/fdconfigpreview.bin:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/fdconfigpreview.bin \
-    vendor/ruan/proprietary/vendor/lib64/camera/fdconfigpreviewlite.bin:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/fdconfigpreviewlite.bin \
-    vendor/ruan/proprietary/vendor/lib64/camera/fdconfigvideo.bin:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/fdconfigvideo.bin \
-    vendor/ruan/proprietary/vendor/lib64/camera/fdconfigvideolite.bin:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/fdconfigvideolite.bin \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.bots.node.vendortagwrite.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.bots.node.vendortagwrite.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.jigan.node.rawsupernight.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.jigan.node.rawsupernight.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.mi.node.facecenter.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.mi.node.facecenter.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.mi.node.tsskinbeautifier.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.mi.node.tsskinbeautifier.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.camx.chiiqutils.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.camx.chiiqutils.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.eisv2.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.eisv2.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.eisv3.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.eisv3.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.hvx.addconstant.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.hvx.addconstant.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.hvx.binning.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.hvx.binning.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.afbfusion.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.afbfusion.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.customhwnode.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.customhwnode.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.depth.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.depth.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.dewarp.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.dewarp.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.dummydepth.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.dummydepth.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.dummyrtb.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.dummyrtb.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.dummysat.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.dummysat.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.eisv2.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.eisv2.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.eisv3.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.eisv3.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.fcv.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.fcv.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.formatconversion.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.formatconversion.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.gme.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.gme.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.gpu.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.gpu.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.gyrornn.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.gyrornn.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.hdr10pgen.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.hdr10pgen.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.hdr10phist.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.hdr10phist.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.memcpy.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.memcpy.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.mialgocontrol.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.mialgocontrol.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.mimovie.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.mimovie.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.ml.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.ml.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.mlinference.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.mlinference.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.muxer.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.muxer.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.remosaic.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.remosaic.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.stich.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.stich.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.sw2dlut.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.sw2dlut.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.swaidenoiser.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.swaidenoiser.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.swbestats.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.swbestats.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.swcac.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.swcac.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.swec.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.swec.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.swfusion.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.swfusion.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.swhme.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.swhme.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.swlsc.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.swlsc.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.swmctf.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.swmctf.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.swmfnr.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.swmfnr.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.swpdpc.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.swpdpc.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.swpreprocess.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.swpreprocess.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.swregistration.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.swregistration.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.node.swvrt.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.node.swvrt.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.aec.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.aec.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.aecwrapper.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.aecwrapper.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.aecxcore.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.aecxcore.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.af.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.af.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.afd.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.afd.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.afwrapper.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.afwrapper.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.asd.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.asd.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.awb.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.awb.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.awbwrapper.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.awbwrapper.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.cnndriver.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.cnndriver.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.haf.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.haf.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.hafoverride.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.hafoverride.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.localhistogram.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.localhistogram.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.pdlib.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.pdlib.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.pdlibsony.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.pdlibsony.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.pdlibwrapper.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.pdlibwrapper.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.statsgenerator.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.statsgenerator.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qti.stats.tracker.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qti.stats.tracker.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qtistatic.stats.aec.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qtistatic.stats.aec.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qtistatic.stats.af.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qtistatic.stats.af.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qtistatic.stats.awb.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qtistatic.stats.awb.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.qtistatic.stats.pdlib.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.qtistatic.stats.pdlib.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.xiaomi.node.MIS.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.xiaomi.node.MIS.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.xiaomi.node.gpu3rd.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.xiaomi.node.gpu3rd.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/com.xiaomi.node.mimovie3rd.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/com.xiaomi.node.mimovie3rd.so \
-    vendor/ruan/proprietary/vendor/lib64/camera/components/libdepthmapwrapper_secure.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/components/libdepthmapwrapper_secure.so \
-    vendor/ruan/proprietary/vendor/lib64/egl/eglSubDriverAndroid.so:$(TARGET_COPY_OUT_VENDOR)/lib64/egl/eglSubDriverAndroid.so \
-    vendor/ruan/proprietary/vendor/lib64/egl/libEGL_adreno.so:$(TARGET_COPY_OUT_VENDOR)/lib64/egl/libEGL_adreno.so \
-    vendor/ruan/proprietary/vendor/lib64/egl/libGLESv1_CM_adreno.so:$(TARGET_COPY_OUT_VENDOR)/lib64/egl/libGLESv1_CM_adreno.so \
-    vendor/ruan/proprietary/vendor/lib64/egl/libGLESv2_adreno.so:$(TARGET_COPY_OUT_VENDOR)/lib64/egl/libGLESv2_adreno.so \
-    vendor/ruan/proprietary/vendor/lib64/egl/libVkLayer_ADRENO_qprofiler.so:$(TARGET_COPY_OUT_VENDOR)/lib64/egl/libVkLayer_ADRENO_qprofiler.so \
-    vendor/ruan/proprietary/vendor/lib64/egl/libq3dtools_adreno.so:$(TARGET_COPY_OUT_VENDOR)/lib64/egl/libq3dtools_adreno.so \
-    vendor/ruan/proprietary/vendor/lib64/egl/libq3dtools_esx.so:$(TARGET_COPY_OUT_VENDOR)/lib64/egl/libq3dtools_esx.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.audio.effect@2.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.audio.effect@2.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.audio.effect@4.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.audio.effect@4.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.audio.effect@5.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.audio.effect@5.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.audio.effect@6.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.audio.effect@6.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.audio.effect@7.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.audio.effect@7.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.audio@2.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.audio@2.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.audio@4.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.audio@4.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.audio@5.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.audio@5.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.audio@6.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.audio@6.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.audio@7.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.audio@7.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.bluetooth.audio@2.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.bluetooth.audio@2.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.bluetooth@1.0-impl-qti.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.bluetooth@1.0-impl-qti.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.boot@1.0-impl-1.2-qti.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.boot@1.0-impl-1.2-qti.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.gatekeeper@1.0-impl-qti.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.gatekeeper@1.0-impl-qti.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.gnss-aidl-impl-qti.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.gnss-aidl-impl-qti.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.gnss@2.1-impl-qti.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.gnss@2.1-impl-qti.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.graphics.mapper@4.0-impl-qti-display.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.graphics.mapper@4.0-impl-qti-display.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.health@2.0-impl-2.1-qti.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.health@2.0-impl-2.1-qti.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.renderscript@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.renderscript@1.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.soundtrigger@2.2-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.soundtrigger@2.2-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/android.hardware.soundtrigger@2.3-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.soundtrigger@2.3-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/audio.bluetooth.default.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/audio.bluetooth.default.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/audio.bluetooth_qti.default.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/audio.bluetooth_qti.default.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/audio.primary.default.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/audio.primary.default.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/audio.primary.parrot.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/audio.primary.parrot.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/audio.r_submix.default.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/audio.r_submix.default.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/audio.usb.default.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/audio.usb.default.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/camera.qcom.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/camera.qcom.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/com.qti.chi.override.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/com.qti.chi.override.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/displayfeature.default.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/displayfeature.default.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/gralloc.default.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/gralloc.default.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/local_time.default.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/local_time.default.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/power.default.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/power.default.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/sound_trigger.primary.parrot.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/sound_trigger.primary.parrot.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.hardware.alarm@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.hardware.alarm@1.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.hardware.bluetooth_audio@2.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.hardware.bluetooth_audio@2.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.hardware.bluetooth_audio@2.1-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.hardware.bluetooth_audio@2.1-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.hardware.bluetooth_sar@1.1-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.hardware.bluetooth_sar@1.1-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.hardware.btconfigstore@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.hardware.btconfigstore@1.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.hardware.btconfigstore@2.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.hardware.btconfigstore@2.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.hardware.capabilityconfigstore@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.hardware.capabilityconfigstore@1.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.hardware.fm@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.hardware.fm@1.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.hardware.qccvndhal@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.hardware.qccvndhal@1.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.hardware.qseecom@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.hardware.qseecom@1.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.hardware.qteeconnector@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.hardware.qteeconnector@1.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.hardware.sensorscalibrate@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.hardware.sensorscalibrate@1.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.hardware.servicetracker@1.2-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.hardware.servicetracker@1.2-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.hardware.soter@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.hardware.soter@1.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.hardware.wifidisplaysession@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.hardware.wifidisplaysession@1.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/vendor.qti.memory.pasrmanager@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.memory.pasrmanager@1.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/vendor.xiaomi.hardware.cld@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.xiaomi.hardware.cld@1.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/vendor.xiaomi.hardware.displayfeature@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.xiaomi.hardware.displayfeature@1.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/vendor.xiaomi.hardware.micharge@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.xiaomi.hardware.micharge@1.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/vendor.xiaomi.hardware.misys@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.xiaomi.hardware.misys@1.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/vendor.xiaomi.hardware.misys@2.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.xiaomi.hardware.misys@2.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/vendor.xiaomi.hardware.misys@3.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.xiaomi.hardware.misys@3.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/vendor.xiaomi.hardware.misys@4.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.xiaomi.hardware.misys@4.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/vendor.xiaomi.hw.touchfeature@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.xiaomi.hw.touchfeature@1.0-impl.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/vibrator.default.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vibrator.default.so \
-    vendor/ruan/proprietary/vendor/lib64/hw/vulkan.adreno.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vulkan.adreno.so \
-    vendor/ruan/proprietary/vendor/lib64/mediacas/libclearkeycasplugin.so:$(TARGET_COPY_OUT_VENDOR)/lib64/mediacas/libclearkeycasplugin.so \
-    vendor/ruan/proprietary/vendor/lib64/mediadrm/libdrmclearkeyplugin.so:$(TARGET_COPY_OUT_VENDOR)/lib64/mediadrm/libdrmclearkeyplugin.so \
-    vendor/ruan/proprietary/vendor/lib64/mediadrm/libwvdrmengine.so:$(TARGET_COPY_OUT_VENDOR)/lib64/mediadrm/libwvdrmengine.so \
-    vendor/ruan/proprietary/vendor/lib64/soundfx/libasphere.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libasphere.so \
-    vendor/ruan/proprietary/vendor/lib64/soundfx/libaudiopreprocessing.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libaudiopreprocessing.so \
-    vendor/ruan/proprietary/vendor/lib64/soundfx/libbundlewrapper.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libbundlewrapper.so \
-    vendor/ruan/proprietary/vendor/lib64/soundfx/libdlbvol.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libdlbvol.so \
-    vendor/ruan/proprietary/vendor/lib64/soundfx/libdownmix.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libdownmix.so \
-    vendor/ruan/proprietary/vendor/lib64/soundfx/libdynproc.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libdynproc.so \
-    vendor/ruan/proprietary/vendor/lib64/soundfx/libeffectproxy.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libeffectproxy.so \
-    vendor/ruan/proprietary/vendor/lib64/soundfx/libhapticgenerator.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libhapticgenerator.so \
-    vendor/ruan/proprietary/vendor/lib64/soundfx/libhwdap.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libhwdap.so \
-    vendor/ruan/proprietary/vendor/lib64/soundfx/libldnhncr.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libldnhncr.so \
-    vendor/ruan/proprietary/vendor/lib64/soundfx/libmisoundfx.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libmisoundfx.so \
-    vendor/ruan/proprietary/vendor/lib64/soundfx/libqcompostprocbundle.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libqcompostprocbundle.so \
-    vendor/ruan/proprietary/vendor/lib64/soundfx/libqcomvisualizer.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libqcomvisualizer.so \
-    vendor/ruan/proprietary/vendor/lib64/soundfx/libqcomvoiceprocessing.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libqcomvoiceprocessing.so \
-    vendor/ruan/proprietary/vendor/lib64/soundfx/libreverbwrapper.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libreverbwrapper.so \
-    vendor/ruan/proprietary/vendor/lib64/soundfx/libshoebox.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libshoebox.so \
-    vendor/ruan/proprietary/vendor/lib64/soundfx/libswdap.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libswdap.so \
-    vendor/ruan/proprietary/vendor/lib64/soundfx/libswgamedap.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libswgamedap.so \
-    vendor/ruan/proprietary/vendor/lib64/soundfx/libswvqe.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libswvqe.so \
-    vendor/ruan/proprietary/vendor/lib64/soundfx/libvisualizer.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libvisualizer.so \
-    vendor/ruan/proprietary/vendor/lib64/soundfx/libvolumelistener.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libvolumelistener.so \
     vendor/ruan/proprietary/vendor/odm_dlkm/etc/NOTICE.xml.gz:$(TARGET_COPY_OUT_VENDOR)/odm_dlkm/etc/NOTICE.xml.gz \
     vendor/ruan/proprietary/vendor/odm_dlkm/etc/build.prop:$(TARGET_COPY_OUT_VENDOR)/odm_dlkm/etc/build.prop \
     vendor/ruan/proprietary/vendor/overlay/FrameworksResTarget_Vendor.apk:$(TARGET_COPY_OUT_VENDOR)/overlay/FrameworksResTarget_Vendor.apk \
     vendor/ruan/proprietary/vendor/overlay/WifiResTarget_Vendor.apk:$(TARGET_COPY_OUT_VENDOR)/overlay/WifiResTarget_Vendor.apk \
     vendor/ruan/proprietary/vendor/rfs/rfs_symlinks:$(TARGET_COPY_OUT_VENDOR)/rfs/rfs_symlinks \
-    vendor/ruan/proprietary/vendor/rfs/apq/gnss/hlos:$(TARGET_COPY_OUT_VENDOR)/rfs/apq/gnss/hlos \
-    vendor/ruan/proprietary/vendor/rfs/apq/gnss/ramdumps:$(TARGET_COPY_OUT_VENDOR)/rfs/apq/gnss/ramdumps \
-    vendor/ruan/proprietary/vendor/rfs/apq/gnss/readwrite:$(TARGET_COPY_OUT_VENDOR)/rfs/apq/gnss/readwrite \
-    vendor/ruan/proprietary/vendor/rfs/apq/gnss/shared:$(TARGET_COPY_OUT_VENDOR)/rfs/apq/gnss/shared \
-    vendor/ruan/proprietary/vendor/rfs/apq/gnss/readonly/vendor/firmware:$(TARGET_COPY_OUT_VENDOR)/rfs/apq/gnss/readonly/vendor/firmware \
-    vendor/ruan/proprietary/vendor/rfs/mdm/adsp/hlos:$(TARGET_COPY_OUT_VENDOR)/rfs/mdm/adsp/hlos \
-    vendor/ruan/proprietary/vendor/rfs/mdm/adsp/ramdumps:$(TARGET_COPY_OUT_VENDOR)/rfs/mdm/adsp/ramdumps \
-    vendor/ruan/proprietary/vendor/rfs/mdm/adsp/readwrite:$(TARGET_COPY_OUT_VENDOR)/rfs/mdm/adsp/readwrite \
-    vendor/ruan/proprietary/vendor/rfs/mdm/adsp/shared:$(TARGET_COPY_OUT_VENDOR)/rfs/mdm/adsp/shared \
-    vendor/ruan/proprietary/vendor/rfs/mdm/adsp/readonly/vendor/firmware:$(TARGET_COPY_OUT_VENDOR)/rfs/mdm/adsp/readonly/vendor/firmware \
-    vendor/ruan/proprietary/vendor/rfs/mdm/cdsp/hlos:$(TARGET_COPY_OUT_VENDOR)/rfs/mdm/cdsp/hlos \
-    vendor/ruan/proprietary/vendor/rfs/mdm/cdsp/ramdumps:$(TARGET_COPY_OUT_VENDOR)/rfs/mdm/cdsp/ramdumps \
-    vendor/ruan/proprietary/vendor/rfs/mdm/cdsp/readwrite:$(TARGET_COPY_OUT_VENDOR)/rfs/mdm/cdsp/readwrite \
-    vendor/ruan/proprietary/vendor/rfs/mdm/cdsp/shared:$(TARGET_COPY_OUT_VENDOR)/rfs/mdm/cdsp/shared \
-    vendor/ruan/proprietary/vendor/rfs/mdm/cdsp/readonly/vendor/firmware:$(TARGET_COPY_OUT_VENDOR)/rfs/mdm/cdsp/readonly/vendor/firmware \
-    vendor/ruan/proprietary/vendor/rfs/mdm/mpss/hlos:$(TARGET_COPY_OUT_VENDOR)/rfs/mdm/mpss/hlos \
-    vendor/ruan/proprietary/vendor/rfs/mdm/mpss/ramdumps:$(TARGET_COPY_OUT_VENDOR)/rfs/mdm/mpss/ramdumps \
-    vendor/ruan/proprietary/vendor/rfs/mdm/mpss/readwrite:$(TARGET_COPY_OUT_VENDOR)/rfs/mdm/mpss/readwrite \
-    vendor/ruan/proprietary/vendor/rfs/mdm/mpss/shared:$(TARGET_COPY_OUT_VENDOR)/rfs/mdm/mpss/shared \
-    vendor/ruan/proprietary/vendor/rfs/mdm/mpss/readonly/vendor/firmware:$(TARGET_COPY_OUT_VENDOR)/rfs/mdm/mpss/readonly/vendor/firmware \
-    vendor/ruan/proprietary/vendor/rfs/mdm/slpi/hlos:$(TARGET_COPY_OUT_VENDOR)/rfs/mdm/slpi/hlos \
-    vendor/ruan/proprietary/vendor/rfs/mdm/slpi/ramdumps:$(TARGET_COPY_OUT_VENDOR)/rfs/mdm/slpi/ramdumps \
-    vendor/ruan/proprietary/vendor/rfs/mdm/slpi/readwrite:$(TARGET_COPY_OUT_VENDOR)/rfs/mdm/slpi/readwrite \
-    vendor/ruan/proprietary/vendor/rfs/mdm/slpi/shared:$(TARGET_COPY_OUT_VENDOR)/rfs/mdm/slpi/shared \
-    vendor/ruan/proprietary/vendor/rfs/mdm/slpi/readonly/vendor/firmware:$(TARGET_COPY_OUT_VENDOR)/rfs/mdm/slpi/readonly/vendor/firmware \
-    vendor/ruan/proprietary/vendor/rfs/mdm/tn/hlos:$(TARGET_COPY_OUT_VENDOR)/rfs/mdm/tn/hlos \
-    vendor/ruan/proprietary/vendor/rfs/mdm/tn/ramdumps:$(TARGET_COPY_OUT_VENDOR)/rfs/mdm/tn/ramdumps \
-    vendor/ruan/proprietary/vendor/rfs/mdm/tn/readwrite:$(TARGET_COPY_OUT_VENDOR)/rfs/mdm/tn/readwrite \
-    vendor/ruan/proprietary/vendor/rfs/mdm/tn/shared:$(TARGET_COPY_OUT_VENDOR)/rfs/mdm/tn/shared \
-    vendor/ruan/proprietary/vendor/rfs/mdm/tn/readonly/vendor/firmware:$(TARGET_COPY_OUT_VENDOR)/rfs/mdm/tn/readonly/vendor/firmware \
-    vendor/ruan/proprietary/vendor/rfs/mdm/wpss/hlos:$(TARGET_COPY_OUT_VENDOR)/rfs/mdm/wpss/hlos \
-    vendor/ruan/proprietary/vendor/rfs/mdm/wpss/ramdumps:$(TARGET_COPY_OUT_VENDOR)/rfs/mdm/wpss/ramdumps \
-    vendor/ruan/proprietary/vendor/rfs/mdm/wpss/readwrite:$(TARGET_COPY_OUT_VENDOR)/rfs/mdm/wpss/readwrite \
-    vendor/ruan/proprietary/vendor/rfs/mdm/wpss/shared:$(TARGET_COPY_OUT_VENDOR)/rfs/mdm/wpss/shared \
-    vendor/ruan/proprietary/vendor/rfs/mdm/wpss/readonly/vendor/firmware:$(TARGET_COPY_OUT_VENDOR)/rfs/mdm/wpss/readonly/vendor/firmware \
-    vendor/ruan/proprietary/vendor/rfs/msm/adsp/hlos:$(TARGET_COPY_OUT_VENDOR)/rfs/msm/adsp/hlos \
-    vendor/ruan/proprietary/vendor/rfs/msm/adsp/ramdumps:$(TARGET_COPY_OUT_VENDOR)/rfs/msm/adsp/ramdumps \
-    vendor/ruan/proprietary/vendor/rfs/msm/adsp/readwrite:$(TARGET_COPY_OUT_VENDOR)/rfs/msm/adsp/readwrite \
-    vendor/ruan/proprietary/vendor/rfs/msm/adsp/shared:$(TARGET_COPY_OUT_VENDOR)/rfs/msm/adsp/shared \
-    vendor/ruan/proprietary/vendor/rfs/msm/adsp/readonly/vendor/firmware:$(TARGET_COPY_OUT_VENDOR)/rfs/msm/adsp/readonly/vendor/firmware \
-    vendor/ruan/proprietary/vendor/rfs/msm/cdsp/hlos:$(TARGET_COPY_OUT_VENDOR)/rfs/msm/cdsp/hlos \
-    vendor/ruan/proprietary/vendor/rfs/msm/cdsp/ramdumps:$(TARGET_COPY_OUT_VENDOR)/rfs/msm/cdsp/ramdumps \
-    vendor/ruan/proprietary/vendor/rfs/msm/cdsp/readwrite:$(TARGET_COPY_OUT_VENDOR)/rfs/msm/cdsp/readwrite \
-    vendor/ruan/proprietary/vendor/rfs/msm/cdsp/shared:$(TARGET_COPY_OUT_VENDOR)/rfs/msm/cdsp/shared \
-    vendor/ruan/proprietary/vendor/rfs/msm/cdsp/readonly/vendor/firmware:$(TARGET_COPY_OUT_VENDOR)/rfs/msm/cdsp/readonly/vendor/firmware \
-    vendor/ruan/proprietary/vendor/rfs/msm/mpss/hlos:$(TARGET_COPY_OUT_VENDOR)/rfs/msm/mpss/hlos \
-    vendor/ruan/proprietary/vendor/rfs/msm/mpss/ramdumps:$(TARGET_COPY_OUT_VENDOR)/rfs/msm/mpss/ramdumps \
-    vendor/ruan/proprietary/vendor/rfs/msm/mpss/readwrite:$(TARGET_COPY_OUT_VENDOR)/rfs/msm/mpss/readwrite \
-    vendor/ruan/proprietary/vendor/rfs/msm/mpss/shared:$(TARGET_COPY_OUT_VENDOR)/rfs/msm/mpss/shared \
-    vendor/ruan/proprietary/vendor/rfs/msm/mpss/readonly/vendor/firmware:$(TARGET_COPY_OUT_VENDOR)/rfs/msm/mpss/readonly/vendor/firmware \
-    vendor/ruan/proprietary/vendor/rfs/msm/slpi/hlos:$(TARGET_COPY_OUT_VENDOR)/rfs/msm/slpi/hlos \
-    vendor/ruan/proprietary/vendor/rfs/msm/slpi/ramdumps:$(TARGET_COPY_OUT_VENDOR)/rfs/msm/slpi/ramdumps \
-    vendor/ruan/proprietary/vendor/rfs/msm/slpi/readwrite:$(TARGET_COPY_OUT_VENDOR)/rfs/msm/slpi/readwrite \
-    vendor/ruan/proprietary/vendor/rfs/msm/slpi/shared:$(TARGET_COPY_OUT_VENDOR)/rfs/msm/slpi/shared \
-    vendor/ruan/proprietary/vendor/rfs/msm/slpi/readonly/vendor/firmware:$(TARGET_COPY_OUT_VENDOR)/rfs/msm/slpi/readonly/vendor/firmware \
-    vendor/ruan/proprietary/vendor/rfs/msm/wpss/hlos:$(TARGET_COPY_OUT_VENDOR)/rfs/msm/wpss/hlos \
-    vendor/ruan/proprietary/vendor/rfs/msm/wpss/ramdumps:$(TARGET_COPY_OUT_VENDOR)/rfs/msm/wpss/ramdumps \
-    vendor/ruan/proprietary/vendor/rfs/msm/wpss/readwrite:$(TARGET_COPY_OUT_VENDOR)/rfs/msm/wpss/readwrite \
-    vendor/ruan/proprietary/vendor/rfs/msm/wpss/shared:$(TARGET_COPY_OUT_VENDOR)/rfs/msm/wpss/shared \
-    vendor/ruan/proprietary/vendor/rfs/msm/wpss/readonly/vendor/firmware:$(TARGET_COPY_OUT_VENDOR)/rfs/msm/wpss/readonly/vendor/firmware \
     vendor/ruan/proprietary/vendor_dlkm/etc/NOTICE.xml.gz:$(TARGET_COPY_OUT_VENDOR_DLKM)/etc/NOTICE.xml.gz \
     vendor/ruan/proprietary/vendor_dlkm/etc/build.prop:$(TARGET_COPY_OUT_VENDOR_DLKM)/etc/build.prop \
     vendor/ruan/proprietary/vendor_dlkm/etc/fs_config_dirs:$(TARGET_COPY_OUT_VENDOR_DLKM)/etc/fs_config_dirs \
@@ -3219,43 +3194,4 @@ PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/vendor_dlkm/lib/modules/xiaomi_touch.ko:$(TARGET_COPY_OUT_VENDOR_DLKM)/lib/modules/xiaomi_touch.ko \
     vendor/ruan/proprietary/vendor_dlkm/lib/modules/xlogchar.ko:$(TARGET_COPY_OUT_VENDOR_DLKM)/lib/modules/xlogchar.ko \
     vendor/ruan/proprietary/vendor_dlkm/lib/modules/zram.ko:$(TARGET_COPY_OUT_VENDOR_DLKM)/lib/modules/zram.ko \
-    vendor/ruan/proprietary/vendor_dlkm/lib/modules/zsmalloc.ko:$(TARGET_COPY_OUT_VENDOR_DLKM)/lib/modules/zsmalloc.ko \
-    vendor/ruan/proprietary/vendor/etc/permissions/android.hardware.vulkan.version-1_3.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.version-1_3.xml \
-    vendor/ruan/proprietary/vendor/lib64/libQnnGpu.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnGpu.so \
-    vendor/ruan/proprietary/vendor/lib64/libQnnGpuNetRunExtensions.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnGpuNetRunExtensions.so \
-    vendor/ruan/proprietary/vendor/lib64/libQnnGpuProfilingReader.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnGpuProfilingReader.so \
-    vendor/ruan/proprietary/vendor/lib64/libcom.xiaomi.grallocutils.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libcom.xiaomi.grallocutils.so \
-    vendor/ruan/proprietary/vendor/lib64/lib_misound_asc.so:$(TARGET_COPY_OUT_VENDOR)/lib64/lib_misound_asc.so \
-    vendor/ruan/proprietary/vendor/lib64/libaudiocloudctrl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libaudiocloudctrl.so \
-    vendor/ruan/proprietary/vendor/lib64/libaudioroute_ext.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libaudioroute_ext.so \
-    vendor/ruan/proprietary/vendor/etc/audio_cloud_control_white_list.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_cloud_control_white_list.xml \
-    vendor/ruan/proprietary/vendor/etc/vintf/manifest/c2_manifest_vendor.xml:$(TARGET_COPY_OUT_VENDOR)/etc/vintf/manifest/c2_manifest_vendor.xml \
-    vendor/ruan/proprietary/vendor/lib64/camera/plugins/com.xiaomi.plugin.gpu.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera/plugins/com.xiaomi.plugin.gpu.so \
-    vendor/ruan/proprietary/vendor/etc/camera/GpuKernelRepo.pb:$(TARGET_COPY_OUT_VENDOR)/etc/camera/GpuKernelRepo.pb \
-    vendor/ruan/proprietary/vendor/etc/camera/resources/render/glsl/binShaders64/shader_GLPROGRAM_MEDIAN_BLUR.bin:$(TARGET_COPY_OUT_VENDOR)/etc/camera/resources/render/glsl/binShaders64/shader_GLPROGRAM_MEDIAN_BLUR.bin \
-    vendor/ruan/proprietary/vendor/lib64/libQnnCpu.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnCpu.so \
-    vendor/ruan/proprietary/vendor/lib64/libQnnDsp.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnDsp.so \
-    vendor/ruan/proprietary/vendor/lib64/libQnnDspNetRunExtensions.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnDspNetRunExtensions.so \
-    vendor/ruan/proprietary/vendor/lib64/libQnnDspV65CalculatorStub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnDspV65CalculatorStub.so \
-    vendor/ruan/proprietary/vendor/lib64/libQnnDspV65Stub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnDspV65Stub.so \
-    vendor/ruan/proprietary/vendor/lib64/libQnnDspV65StubInternal.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnDspV65StubInternal.so \
-    vendor/ruan/proprietary/vendor/lib64/libQnnDspV66CalculatorStub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnDspV66CalculatorStub.so \
-    vendor/ruan/proprietary/vendor/lib64/libQnnDspV66Stub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnDspV66Stub.so \
-    vendor/ruan/proprietary/vendor/lib64/libQnnDspV66StubInternal.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnDspV66StubInternal.so \
-    vendor/ruan/proprietary/vendor/lib64/libQnnHta.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHta.so \
-    vendor/ruan/proprietary/vendor/lib64/libQnnHtaNetRunExtensions.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtaNetRunExtensions.so \
-    vendor/ruan/proprietary/vendor/lib64/libQnnHtp.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtp.so \
-    vendor/ruan/proprietary/vendor/lib64/libQnnHtpNetRunExtensions.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtpNetRunExtensions.so \
-    vendor/ruan/proprietary/vendor/lib64/libQnnHtpPrepare.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtpPrepare.so \
-    vendor/ruan/proprietary/vendor/lib64/libQnnHtpProfilingReader.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtpProfilingReader.so \
-    vendor/ruan/proprietary/vendor/lib64/libQnnHtpV68CalculatorStub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtpV68CalculatorStub.so \
-    vendor/ruan/proprietary/vendor/lib64/libQnnHtpV68Stub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtpV68Stub.so \
-    vendor/ruan/proprietary/vendor/lib64/libQnnHtpV69CalculatorStub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtpV69CalculatorStub.so \
-    vendor/ruan/proprietary/vendor/lib64/libQnnHtpV69Stub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtpV69Stub.so \
-    vendor/ruan/proprietary/vendor/lib64/libQnnHtpV73CalculatorStub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtpV73CalculatorStub.so \
-    vendor/ruan/proprietary/vendor/lib64/libQnnHtpV73Stub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnHtpV73Stub.so \
-    vendor/ruan/proprietary/vendor/lib64/libQnnSaver.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnSaver.so \
-    vendor/ruan/proprietary/vendor/lib64/libQnnSystem.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnSystem.so \
-    vendor/ruan/proprietary/vendor/lib64/libQnnChrometraceProfilingReader.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libQnnChrometraceProfilingReader.so \
-    vendor/ruan/proprietary/vendor/lib64/libSnpeDspV65Stub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libSnpeDspV65Stub.so \
-    vendor/ruan/proprietary/vendor/lib64/libhta_hexagon_runtime_qnn.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libhta_hexagon_runtime_qnn.so
+    vendor/ruan/proprietary/vendor_dlkm/lib/modules/zsmalloc.ko:$(TARGET_COPY_OUT_VENDOR_DLKM)/lib/modules/zsmalloc.ko

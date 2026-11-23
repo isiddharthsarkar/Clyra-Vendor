@@ -168,5 +168,92 @@ assert len(d["rom_url_mirrors"]) >= 2
 PY
 
 # --------------------------------------------------------------------------
+head_ "12. tree integrity & 64-bit architecture verification"
+# --------------------------------------------------------------------------
+python3 - "$ROOT" <<'PY' && ok "vendor.mk 100% files resolve on disk" || bad "vendor.mk missing files"
+import os, sys
+root = sys.argv[1]
+with open(os.path.join(root, "vendor.mk")) as f:
+    for line in f:
+        line = line.strip().rstrip(" \\")
+        if line.startswith("vendor/ruan/proprietary/") and ":" in line:
+            src, _ = line.split(":", 1)
+            rel = os.path.join(root, src.replace("vendor/ruan/", ""))
+            assert os.path.exists(rel), f"Missing: {rel}"
+PY
+
+python3 - "$ROOT" <<'PY' && ok "zero broken symlinks across repository" || bad "broken symlinks found"
+import os, sys
+root = sys.argv[1]
+broken = []
+for r, dirs, files in os.walk(root):
+    if ".git" in r:
+        continue
+    for name in dirs + files:
+        p = os.path.join(r, name)
+        if os.path.islink(p) and not os.path.exists(p):
+            broken.append(p)
+assert len(broken) == 0, f"Broken: {broken}"
+PY
+
+python3 - "$ROOT" <<'PY' && ok "pure 64-bit architecture (zero 32-bit CPU binaries/libraries)" || bad "32-bit CPU binary/library found"
+import os, sys, struct
+root = sys.argv[1]
+elf32 = []
+# Ensure no 32-bit lib directory exists
+assert not os.path.exists(os.path.join(root, "proprietary/vendor/lib")), "proprietary/vendor/lib exists"
+assert not os.path.exists(os.path.join(root, "proprietary/odm/lib")), "proprietary/odm/lib exists"
+
+for sub in ["bin", "app", "lib64"]:
+    for r, dirs, files in os.walk(os.path.join(root, "proprietary/vendor", sub)):
+        for f in files:
+            p = os.path.join(r, f)
+            if not os.path.islink(p) and os.path.isfile(p):
+                try:
+                    with open(p, "rb") as fh:
+                        head = fh.read(20)
+                        if head.startswith(b"\x7fELF") and head[4] == 1:
+                            e_machine = struct.unpack("<H", head[18:20])[0] if len(head) >= 20 else 0
+                            if e_machine == 40:
+                                elf32.append(p)
+                except Exception:
+                    pass
+assert len(elf32) == 0, f"32-bit CPU ELF files: {elf32}"
+PY
+
+python3 - "$ROOT" <<'PY' && ok "all active init services reference existing binaries" || bad "missing init binary"
+import os, sys, glob
+root = sys.argv[1]
+for rc in glob.glob(os.path.join(root, "proprietary/**/*.rc"), recursive=True):
+    with open(rc, "r", errors="ignore") as fh:
+        lines = fh.readlines()
+        for idx, line in enumerate(lines):
+            l = line.strip()
+            if l.startswith("service ") and not l.startswith("#"):
+                parts = l.split()
+                if len(parts) >= 3:
+                    sname, sbin = parts[1], parts[2]
+                    disabled = False
+                    j = idx + 1
+                    while j < len(lines) and (lines[j].startswith(" ") or lines[j].startswith("\t") or lines[j].strip() == ""):
+                        if lines[j].strip() == "disabled":
+                            disabled = True
+                        j += 1
+                    if not disabled and sbin.startswith(("/vendor/", "/odm/")):
+                        rel = os.path.join(root, "proprietary" + sbin)
+                        assert os.path.lexists(rel), f"{rc}: {sname} -> {sbin} missing"
+PY
+
+python3 - "$ROOT" <<'PY' && ok "fstab locks removed (no AVB dm-verity or wrappedkey)" || bad "fstab locks present"
+import os, sys
+root = sys.argv[1]
+for fstab in ["proprietary/vendor/etc/fstab.default", "proprietary/vendor/etc/fstab.emmc"]:
+    with open(os.path.join(root, fstab)) as fh:
+        content = fh.read()
+        assert "avb=" not in content, f"AVB found in {fstab}"
+        assert "wrappedkey" not in content, f"wrappedkey found in {fstab}"
+PY
+
+# --------------------------------------------------------------------------
 printf '\n\033[1m%d passed, %d failed\033[0m\n' "$PASS" "$FAIL"
 (( FAIL == 0 )) || exit 1

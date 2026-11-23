@@ -164,6 +164,11 @@ def generate_makefile(root: Path, staging: Path, device: dict) -> str:
         dirnames[:] = sorted(d for d in dirnames if d not in SKIP_DIRS)
         for name in sorted(filenames):
             src = Path(dirpath) / name
+            if src.is_symlink():
+                if not src.resolve().exists():
+                    continue
+            elif not src.exists():
+                continue
             rel = src.relative_to(staging)
             top = rel.parts[0]
             if top not in PARTITION_TARGETS:
