@@ -6,13 +6,20 @@
 BOARD_VENDOR_IMAGE_SOURCE := "ruan_in_global_images_OS3.0.306.0.WFSINXM_20261021.0000.00_16.0_in_e97cbecd4c"
 BOARD_VENDOR_BLOB_REGION := "in"
 
-# Hardware / Architecture
+# Hardware & Pure 64-Bit Architecture (Android 16 / SM7435 / Redmi Pad 2 Pro Target)
 TARGET_BOARD_PLATFORM := parrot
 TARGET_BOOTLOADER_BOARD_NAME := ruan
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_VARIANT := generic
+TARGET_2ND_ARCH :=
+TARGET_2ND_ARCH_VARIANT :=
+TARGET_2ND_CPU_ABI :=
+TARGET_2ND_CPU_VARIANT :=
+
+# Tablet Form-Factor & Interconnect (Redmi Pad Pro / Redmi Pad 2 Pro Target)
+TARGET_BOARD_TYPE := tablet
 
 # Kernel & GKI (Clyra-Flip: https://github.com/isiddharthsarkar/Clyra-Flip)
 # Linux 6.6.162 / Android 16 (API 36) / GKI 3.1 / CONFIG_ARCH_QCOM_CAF=y

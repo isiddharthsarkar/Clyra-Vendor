@@ -2,10 +2,12 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Android-16%20(API%2036)-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Android 16" />
+  <img src="https://img.shields.io/badge/Architecture-Pure%2064--Bit%20(arm64)-8A2BE2?style=for-the-badge&logo=arm&logoColor=white" alt="Pure 64-Bit" />
   <img src="https://img.shields.io/badge/Kernel-6.6.162--Clyra--Flip-blue?style=for-the-badge&logo=linux&logoColor=white" alt="Kernel 6.6.162" />
   <img src="https://img.shields.io/badge/Platform-Qualcomm%20SM7435-D32F2F?style=for-the-badge&logo=qualcomm&logoColor=white" alt="Qualcomm SM7435" />
   <img src="https://img.shields.io/badge/GPU-Adreno%20710%20%7C%20Vulkan%201.3-E91E63?style=for-the-badge&logo=vulkan&logoColor=white" alt="Vulkan 1.3" />
   <img src="https://img.shields.io/badge/CAF-Code%20Aurora%20Forum-orange?style=for-the-badge" alt="CAF Supported" />
+  <img src="https://img.shields.io/badge/Target-Redmi%20Pad%202%20Pro%20Ready-00ACC1?style=for-the-badge" alt="Pad 2 Pro Ready" />
 </p>
 
 ---
@@ -14,7 +16,7 @@
 
 **Clyra-Vendor** provides proprietary vendor binaries, firmware configs, and open-source HAL definitions for the **Redmi Pad Pro 5G (`ruan`)**, built on the **Qualcomm SM7435 (Snapdragon 7s Gen 2 / `parrot`)** mobile platform. 
 
-This tree upgrades the stock vendor baseline to **Android 16 (API Level 36)**, unlocks **Vulkan 1.3** and **Qualcomm Neural Network (QNN) GPU acceleration**, conforms to **Code Aurora Forum (CAF)** standards, and provides seamless first-class compatibility with the [**Clyra-Flip Linux 6.6.162 Kernel**](https://github.com/isiddharthsarkar/Clyra-Flip).
+This tree is rebuilt to a **Pure 64-Bit (`arm64-v8a`) architecture**, upgrades the vendor baseline to **Android 16 (API Level 36)**, unlocks **Vulkan 1.3** and **Qualcomm Neural Network (QNN) GPU acceleration**, conforms to **Code Aurora Forum (CAF)** standards, and enables seamless forward compatibility for running **Redmi Pad 2 Pro (`organ` / `flute`)** stock HyperOS system ports alongside the [**Clyra-Flip Linux 6.6.162 Kernel**](https://github.com/isiddharthsarkar/Clyra-Flip).
 
 ---
 
@@ -22,17 +24,19 @@ This tree upgrades the stock vendor baseline to **Android 16 (API Level 36)**, u
 
 | Specification | Details |
 |---|---|
-| **Device Model** | Redmi Pad Pro 5G (`24074RPD2G`) |
-| **Codename** | `ruan` |
+| **Device Model** | Redmi Pad Pro 5G (`24074RPD2G` / `24074RPD2I`) |
+| **Codename** | `ruan` (5G) / Compatible with `dizi` (Wi-Fi) |
 | **SoC / Chipset** | Qualcomm SM7435 (Snapdragon 7s Gen 2 / `parrot`) |
-| **CPU Architecture** | `arm64-v8a` (`armv8-a` generic) |
+| **CPU Architecture** | **`arm64-v8a` (Pure 64-bit only / No 32-bit overhead)** |
+| **Form Factor** | `tablet` (`ro.build.characteristics=tablet`) |
 | **GPU Architecture** | Adreno 710 |
 | **Vulkan API** | Vulkan 1.3 (`android.hardware.vulkan.version-1_3.xml`) |
-| **AI / GPU Engine** | Qualcomm QNN GPU acceleration runtime (`libQnnGpu*.so`) |
+| **AI / Compute Engine** | Qualcomm QNN acceleration suite (CPU, DSP, HTA, HTP) |
 | **Target Android Release** | **Android 16** (API Level 36) |
 | **Build Fingerprint** | `Redmi/ruan/ruan:16/BP2A.250305.002/OS3.0.306.0.WFSINXM:user/release-keys` |
 | **Stock Firmware Source** | `ruan_in_global_images_OS3.0.306.0.WFSINXM_20261021.0000.00_16.0_in_e97cbecd4c.tgz` |
 | **Primary Kernel** | [Clyra-Flip](https://github.com/isiddharthsarkar/Clyra-Flip) (Linux 6.6.162 / GKI 3.1) |
+| **System Port Target** | Redmi Pad 2 Pro (`organ` / `flute` / SM7635 HyperOS) |
 
 ---
 
@@ -69,6 +73,12 @@ This tree upgrades the stock vendor baseline to **Android 16 (API Level 36)**, u
   - `vendor/qcom/opensource/commonsys-intf/display`, `commonsys/display`, `display`
   - `vendor/qcom/opensource/audio-hal/primary-hal`, `pal`, `agm`
   - `vendor/qcom/opensource/data-ipa-cfg-mgr`, `dataservices`
+  - `vendor/qcom/opensource/vibrator`, `thermal-engine`, `power`, `location`, `usb`
+
+### 5. Pure 64-Bit Architecture & Redmi Pad 2 Pro Port Target
+- **Elimination of 32-Bit Overhead**: Removed over 1,200 redundant 32-bit legacy blobs, trimming repository bloat and eliminating 32-bit zygote RAM overhead.
+- **`TARGET_ARCH := arm64`**: Configured `BoardConfigVendor.mk` with pure 64-bit architecture (`TARGET_2ND_ARCH :=` unset) and tablet properties (`ro.build.characteristics=tablet`).
+- **Redmi Pad 2 Pro (`organ` / `flute`) Compatibility**: Redmi Pad 2 Pro (Cortex-A720) is a hardware 64-bit-only platform. Rebuilding `Clyra-Vendor` to pure 64-bit enables seamless binder and FCM communication when porting Redmi Pad 2 Pro stock HyperOS system images to Redmi Pad Pro (`ruan`).
   - `vendor/qcom/opensource/vibrator`, `thermal-engine`, `power`, `location`, `usb`
 
 ---
