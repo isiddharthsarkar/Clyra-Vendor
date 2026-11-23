@@ -4,7 +4,15 @@
 # Source : https://bkt-sgp-miui-ota-update-alisgp.oss-ap-southeast-1.aliyuncs.com/OS3.0.306.0.WFSINXM/ruan_in_global_images_OS3.0.306.0.WFSINXM_20261021.0000.00_16.0_in_e97cbecd4c.tgz
 
 PRODUCT_SOONG_NAMESPACES += \
-    vendor/ruan/proprietary
+    vendor/ruan/proprietary \
+    hardware/xiaomi \
+    hardware/qcom-caf/sm8450 \
+    hardware/qcom-caf/common \
+    vendor/qcom/opensource/commonsys-intf/display \
+    vendor/qcom/opensource/audio-hal/primary-hal \
+    vendor/qcom/opensource/data-ipa-cfg-mgr
+
+PRODUCT_SHIPPING_API_LEVEL := 32
 
 PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/odm/bin/mrmd:$(TARGET_COPY_OUT_ODM)/bin/mrmd \
