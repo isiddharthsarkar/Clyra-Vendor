@@ -8,11 +8,29 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/xiaomi \
     hardware/qcom-caf/sm8450 \
     hardware/qcom-caf/common \
+    hardware/qcom-caf/wlan \
+    hardware/qcom-caf/bt \
     vendor/qcom/opensource/commonsys-intf/display \
+    vendor/qcom/opensource/commonsys/display \
+    vendor/qcom/opensource/display \
     vendor/qcom/opensource/audio-hal/primary-hal \
-    vendor/qcom/opensource/data-ipa-cfg-mgr
+    vendor/qcom/opensource/audio-hal/pal \
+    vendor/qcom/opensource/audio-hal/agm \
+    vendor/qcom/opensource/data-ipa-cfg-mgr \
+    vendor/qcom/opensource/dataservices \
+    vendor/qcom/opensource/vibrator \
+    vendor/qcom/opensource/thermal-engine \
+    vendor/qcom/opensource/power \
+    vendor/qcom/opensource/location \
+    vendor/qcom/opensource/usb
 
 PRODUCT_SHIPPING_API_LEVEL := 32
+
+# Code Aurora Forum (CAF) Properties
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.soc.manufacturer=QTI \
+    ro.soc.model=SM7435 \
+    ro.vendor.qspm.enable=true
 
 PRODUCT_COPY_FILES += \
     vendor/ruan/proprietary/odm/bin/mrmd:$(TARGET_COPY_OUT_ODM)/bin/mrmd \

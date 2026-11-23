@@ -27,14 +27,21 @@ This vendor tree is configured to directly support the [Clyra-Flip Kernel](https
 
 ---
 
-## Open Source Software (OSS) HAL Support
+## Code Aurora Forum (CAF) & Open Source Software (OSS)
 
-Configured for AOSP / LineageOS / Custom ROM builds with Soong namespaces:
-- `hardware/xiaomi`
-- `hardware/qcom-caf/sm8450`
-- `vendor/qcom/opensource/commonsys-intf/display`
-- `vendor/qcom/opensource/audio-hal/primary-hal`
-- `vendor/qcom/opensource/data-ipa-cfg-mgr`
+Configured for full Qualcomm CAF (`CONFIG_ARCH_QCOM_CAF=y` in Clyra-Flip kernel) and AOSP / LineageOS custom ROM trees:
+- **Platform**: `SM7435` (`parrot` / Code Aurora Forum BSP)
+- **Modular Architecture**: QMAA overrides for Audio, Display, Media, Data, Biometrics, and CVP
+- **Audio HAL**: CAF ALSA, PAL HIDL, AGM HIDL, dynamic ECNS, and GKI/DLKM audio features
+- **Display HAL**: Gralloc 4, HWC2, DRM PP, Color Metadata, Vulkan, and Adreno optimizations
+- **Connectivity**: CAF Bluetooth (`QCOM_BT_USE_SIBS`), Dual-interface Wi-Fi, and Loc API 4.0
+- **Soong Namespaces**:
+  - `hardware/xiaomi`
+  - `hardware/qcom-caf/sm8450`, `common`, `wlan`, `bt`
+  - `vendor/qcom/opensource/commonsys-intf/display`, `commonsys/display`, `display`
+  - `vendor/qcom/opensource/audio-hal/primary-hal`, `pal`, `agm`
+  - `vendor/qcom/opensource/data-ipa-cfg-mgr`, `dataservices`
+  - `vendor/qcom/opensource/vibrator`, `thermal-engine`, `power`, `location`, `usb`
 
 ---
 
