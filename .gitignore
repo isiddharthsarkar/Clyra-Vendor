@@ -1,0 +1,4 @@
+build/
+.scratch/
+tools/bin/
+*.img
