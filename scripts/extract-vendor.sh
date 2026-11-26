@@ -170,6 +170,28 @@ if [[ -f "${CLYRA_SCRIPT_DIR}/make_vendor_tree.py" ]]; then
         || clyra_warn "make_vendor_tree.py reported an issue"
 fi
 
+# Regenerate the build integration from data, then verify it.
+if [[ -f "${CLYRA_SCRIPT_DIR}/generate_build_files.py" ]]; then
+    python3 "${CLYRA_SCRIPT_DIR}/generate_build_files.py" --root "$CLYRA_ROOT" \
+        || clyra_warn "generate_build_files.py reported an issue"
+fi
+
+# Post-flight audits. These never abort the run -- the artefacts are already
+# on disk -- but they print anything that would break a build or a device.
+if [[ -f "${CLYRA_SCRIPT_DIR}/tests/check_rules_resolve.py" && -f "$OUT_DIR/vendor.mk" ]]; then
+    python3 "${CLYRA_SCRIPT_DIR}/tests/check_rules_resolve.py" \
+        "$OUT_DIR/vendor.mk" "$CLYRA_ROOT" \
+        || clyra_warn "some PRODUCT_COPY_FILES rules do not resolve"
+fi
+if [[ -f "${CLYRA_SCRIPT_DIR}/tests/check_arch.py" ]]; then
+    python3 "${CLYRA_SCRIPT_DIR}/tests/check_arch.py" "$CLYRA_ROOT" \
+        || clyra_warn "architecture audit failed"
+fi
+if [[ -f "${CLYRA_SCRIPT_DIR}/tests/check_blobs.py" ]]; then
+    python3 "${CLYRA_SCRIPT_DIR}/tests/check_blobs.py" "$CLYRA_ROOT" \
+        || clyra_warn "blob audit failed"
+fi
+
 # Record which images exist so the repo .gitignore stays accurate.
 GENERATED_IGNORE="${CLYRA_ROOT}/vendor/.gitignore"
 : > "$GENERATED_IGNORE"
