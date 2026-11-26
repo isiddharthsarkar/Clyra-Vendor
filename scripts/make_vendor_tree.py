@@ -23,7 +23,6 @@ import argparse
 import json
 import os
 import shutil
-import struct
 import subprocess
 import sys
 import tempfile
@@ -196,7 +195,7 @@ def generate_makefile(root: Path, staging: Path, device: dict) -> str:
         f"# Device : {device['device_name']} ({device['codename']})",
         f"# Firmware: {device['hyperos_version']} / Android {device['android_version']}",
         f"# Source : {device['rom_url']}",
-        f"# Layout : blobs are committed at <repo-root>/proprietary/",
+        "# Layout : blobs are committed at <repo-root>/proprietary/",
         "",
         "PRODUCT_SOONG_NAMESPACES += \\",
         "    proprietary",
@@ -288,7 +287,10 @@ def main() -> int:
     args = ap.parse_args()
 
     device = json.loads(args.device.read_text(encoding="utf-8"))
-    manifest = json.loads(args.manifest.read_text(encoding="utf-8")) if args.manifest.exists() else {}
+    # Validate the manifest so a malformed one fails loudly; the rules
+    # themselves come from the files on disk.
+    if args.manifest.exists():
+        json.loads(args.manifest.read_text(encoding="utf-8"))
 
     staging = args.root / "proprietary"
     staging.mkdir(parents=True, exist_ok=True)

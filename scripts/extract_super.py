@@ -432,9 +432,9 @@ def extract_filesystem(img: Path, dst: Path, label: str) -> None:
             _copy_tree(mnt, dst)
         finally:
             subprocess.run(["fusermount", "-u", str(mnt)], stdout=subprocess.DEVNULL,
-                           stderr=subprocess.DEVNULL)
+                           stderr=subprocess.DEVNULL, check=False)
             subprocess.run(["umount", str(mnt)], stdout=subprocess.DEVNULL,
-                           stderr=subprocess.DEVNULL)
+                           stderr=subprocess.DEVNULL, check=False)
 
 
 # --------------------------------------------------------------------------- #

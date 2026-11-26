@@ -31,6 +31,7 @@ PRODUCT_PACKAGES += \
 
 # 64-bit only.
 TARGET_SUPPORTS_32_BIT_APPS := false
+PRODUCT_SHIPPING_API_LEVEL := 36
 TARGET_SUPPORTS_64_BIT_APPS := true
 
 # Everything below is what differs between SM7435 devices. A port can

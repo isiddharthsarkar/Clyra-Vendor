@@ -220,8 +220,8 @@ def main() -> int:
     args = ap.parse_args()
 
     parts = {}
-    for name in args.names.split(","):
-        name = name.strip()
+    for raw_name in args.names.split(","):
+        name = raw_name.strip()
         if not name:
             continue
         # distinctive payload so we can prove the right bytes land in the right file
