@@ -192,8 +192,8 @@ def gen_android_mk(root: Path, targets: dict) -> str:
     codes = " ".join(t["codename"] for t in targets["targets"])
     lines = _header(targets, "#")
     lines += [
-        f"# Only build this package for the supported SM7435 devices. The list",
-        f"# lives in firmware/targets.json; add a codename there, not here.",
+        "# Only build this package for the supported SM7435 devices. The list",
+        "# lives in firmware/targets.json; add a codename there, not here.",
         "",
         "LOCAL_PATH := $(call my-dir)",
         "",
@@ -235,8 +235,16 @@ def gen_android_mk(root: Path, targets: dict) -> str:
         "\t$(hide) ln -sf /data/vendor/firmware/wlanmdsp.mbn \\",
         "\t\t$(TARGET_OUT_VENDOR)/firmware/wlanmdsp.otaupdate",
         "",
+        "# BUILD_PHONY_PACKAGE is a legacy/CAF macro that base AOSP does not",
+        "# define, so a plain AOSP tree failed with an empty include. Guard it and",
+        "# fall back to a plain phony target that runs the same post-install step.",
+        "ifeq ($(BUILD_PHONY_PACKAGE),)",
+        ".PHONY: rfs_symlinks",
+        "rfs_symlinks: $(RFS_TARGET)",
+        "else",
         "LOCAL_POST_INSTALL_CMD := $(RFS_TARGET)",
         "include $(BUILD_PHONY_PACKAGE)",
+        "endif",
         "",
         "endif",
         "",
@@ -382,7 +390,9 @@ def gen_boardconfig(root: Path, targets: dict) -> str:
         "BOARD_VNDK_VERSION := current",
         "BOARD_API_LEVEL := 36",
         "BOARD_SHIPPING_API_LEVEL := 36",
-        "PRODUCT_SHIPPING_API_LEVEL := 36",
+        "# PRODUCT_SHIPPING_API_LEVEL deliberately NOT set here: it is a product"
+        "# variable, and BoardConfig.mk is parsed by the board config only. It is"
+        "# set in vendor-port.mk, which is the product-side entry point.",
         "",
         "# Display & graphics (Adreno 710 / Vulkan 1.3)",
         "BOARD_USES_ADRENO := true",
@@ -443,6 +453,7 @@ def gen_vendor_port_mk(root: Path, targets: dict) -> str:
         "",
         "# 64-bit only.",
         "TARGET_SUPPORTS_32_BIT_APPS := false",
+        "PRODUCT_SHIPPING_API_LEVEL := 36",
         "TARGET_SUPPORTS_64_BIT_APPS := true",
         "",
         "# Everything below is what differs between SM7435 devices. A port can",

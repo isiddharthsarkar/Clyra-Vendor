@@ -128,7 +128,15 @@ $(RFS_TARGET):
 	$(hide) ln -sf /data/vendor/firmware/wlanmdsp.mbn \
 		$(TARGET_OUT_VENDOR)/firmware/wlanmdsp.otaupdate
 
+# BUILD_PHONY_PACKAGE is a legacy/CAF macro that base AOSP does not
+# define, so a plain AOSP tree failed with an empty include. Guard it and
+# fall back to a plain phony target that runs the same post-install step.
+ifeq ($(BUILD_PHONY_PACKAGE),)
+.PHONY: rfs_symlinks
+rfs_symlinks: $(RFS_TARGET)
+else
 LOCAL_POST_INSTALL_CMD := $(RFS_TARGET)
 include $(BUILD_PHONY_PACKAGE)
+endif
 
 endif

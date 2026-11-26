@@ -89,7 +89,7 @@ TARGET_USES_QCOM_BSP := true
 BOARD_VNDK_VERSION := current
 BOARD_API_LEVEL := 36
 BOARD_SHIPPING_API_LEVEL := 36
-PRODUCT_SHIPPING_API_LEVEL := 36
+# PRODUCT_SHIPPING_API_LEVEL deliberately NOT set here: it is a product# variable, and BoardConfig.mk is parsed by the board config only. It is# set in vendor-port.mk, which is the product-side entry point.
 
 # Display & graphics (Adreno 710 / Vulkan 1.3)
 BOARD_USES_ADRENO := true

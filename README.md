@@ -8,15 +8,33 @@
   <img src="https://img.shields.io/badge/GPU-Adreno%20710%20%7C%20Vulkan%201.3-E91E63?style=for-the-badge&logo=vulkan&logoColor=white" alt="Vulkan 1.3" />
   <img src="https://img.shields.io/badge/ROMs-HyperOS%203%20%7C%20OneUI%208%20%7C%20ColorOS%20%7C%20AOSP%2016-green?style=for-the-badge" alt="Multi-ROM" />
   <img src="https://img.shields.io/badge/Cross--Port-Garnet%20%26%20Pad%202%20Pro-00ACC1?style=for-the-badge" alt="Cross-Port Ready" />
+  <img src="https://img.shields.io/badge/CI-Disabled%20(manual%20verification)-9E9E9E?style=for-the-badge" alt="CI Disabled" />
 </p>
+
+> **CI is disabled on this repository.** GitHub Actions is turned off at the
+> repository level — see [Continuous Integration](#continuous-integration).
+> All verification runs locally and offline via `./scripts/tests/run-tests.sh`.
 
 ---
 
 ## Overview
 
-**Clyra-Vendor** provides proprietary vendor binaries, firmware configs, and open-source HAL definitions for the **Redmi Pad Pro 5G (`ruan`)**, built on the **Qualcomm SM7435 (Snapdragon 7s Gen 2 / `parrot`)** mobile platform. 
+**Clyra-Vendor** provides proprietary vendor binaries, firmware configs, and
+open-source HAL definitions for the **Redmi Pad Pro 5G (`ruan`)**, built on the
+**Qualcomm SM7435 (Snapdragon 7s Gen 2 / `parrot`)** mobile platform. The blobs
+are extracted from the official fastboot ROM and are **`arm64` only** — there is
+no 32-bit userspace anywhere in the tree.
 
-This tree is rebuilt to a **Pure 64-Bit (`arm64-v8a`) architecture**, upgrades the vendor baseline to **Android 16 (API Level 36)**, unlocks **Vulkan 1.3** and **Qualcomm Neural Network (QNN) GPU acceleration**, conforms to **Code Aurora Forum (CAF)** standards, and enables seamless compatibility for running **HyperOS 3+**, **OneUI 8+**, **ColorOS 15/16+**, **AOSP 16+**, **Redmi Pad 2 Pro (`organ` / `flute`)**, and **Redmi Note 13 Pro 5G (`garnet`)** cross-ports alongside the [**Clyra-Flip Linux 6.6.162 Kernel**](https://github.com/isiddharthsarkar/Clyra-Flip).
+One vendor tree serves four devices. Because `ruan`, **`garnet`** (Redmi Note 13
+Pro 5G) and **`organ` / `flute`** (Redmi Pad 2 Pro) all share SM7435 and the
+64-bit-only rule, porting a ROM between them requires **no edits here** — see
+[Cross-port support](#cross-port-support-garnet--organ--flute).
+
+The tree targets **Android 16 (API Level 36)**, ships **Vulkan 1.3** and the
+**Qualcomm Neural Network (QNN)** stack, conforms to **Code Aurora Forum (CAF)**
+standards, and is intended to run alongside the
+[**Clyra-Flip Linux 6.6.162 Kernel**](https://github.com/isiddharthsarkar/Clyra-Flip)
+across **HyperOS 3+**, **OneUI 8+**, **ColorOS 15/16+** and **AOSP 16+**.
 
 ---
 
@@ -225,6 +243,53 @@ port can set before inheriting:
 
 ---
 
+## Continuous Integration
+
+**No CI runs on this repository, by design.**
+
+| | |
+|---|---|
+| Workflows | `probe.yml`, `test.yml` — both `disabled_manually` |
+| Active workflows | 0 |
+| Committed workflow files | none (`.github/workflows/README.md` only) |
+
+### Why it was stopped
+
+Every run failed at dispatch with no steps executed:
+
+> The job was not started because recent account payments have failed or your
+> spending limit needs to be increased.
+
+`runner_id: 0` on each attempt — the runner was never allocated. A red check in
+that state reports nothing about the code, only about billing, so it was noise
+that invited false confidence.
+
+### What verifies the code instead
+
+The suite is offline, needs no device, no network and no root, and finishes in
+about a second:
+
+```bash
+./scripts/tests/run-tests.sh          # 46 assertions
+```
+
+Plus four standalone auditors, each usable on its own:
+
+```bash
+python3 scripts/tests/check_arch.py .              # 64-bit only, keeps DSP/GPU firmware
+python3 scripts/tests/check_blobs.py . --strict    # 0-byte / broken-symlink blobs
+python3 scripts/tests/check_rules_resolve.py vendor.mk .   # every rule has a source
+python3 scripts/generate_build_files.py --check    # generated files != stale
+```
+
+### Re-enabling
+
+Resolve the billing block in **Settings → Billing & plans**, then restore
+`test.yml` from history (`git log --all -- .github/workflows/test.yml`).
+Re-adding it while billing is blocked only recreates a permanently red check.
+
+---
+
 ## Audit Findings
 
 An audit pass (ruff, shellcheck, adversarial fixtures, and a full parse of the
@@ -261,6 +326,58 @@ count used floor+1 instead of ceiling.
 python3 scripts/tests/check_rules_resolve.py vendor.mk .  # every rule resolves
 python3 scripts/tests/check_blobs.py . --strict           # empty / broken blobs
 ```
+
+### Twenty-track audit (round 3)
+
+Twenty independent audit tracks were run against the tree. Tracks 1-10 were
+static analysis and structural checks; 11-20 were semantic checks against the
+real blobs. Results:
+
+| # | Track | Result |
+|---|---|---|
+| 1 | Ruff (bug-class rules) | clean after fixes |
+| 2 | ShellCheck | clean after fixes |
+| 3 | Python compile / logic | clean |
+| 4 | Makefile parse | all 4 files parse |
+| 5 | JSON / YAML validity | clean |
+| 6 | AArch64 enforcement | 1816 AArch64, 0 userspace-32 |
+| 7 | 0-byte blob scan | **32 found** (pre-existing, needs re-extraction) |
+| 8 | PRODUCT_COPY_FILES resolution | 3153/3153 resolve |
+| 9 | Generated-file drift | in sync |
+| 10 | Exec bits | 4 scripts were missing `+x` — fixed |
+| 11 | Doc links | 0 broken |
+| 12 | Scripts referenced in docs | all exist |
+| 13 | Test-count claim vs reality | matches (46) |
+| 14 | Symlink targets | 0 broken relative links |
+| 15 | Blob coverage | 3153 on disk, 3153 referenced, 0 orphans |
+| 16 | Board vs Product variable placement | **1 bug** (see below) |
+| 17 | Android.bp namespace list | 18 imports, all CAF paths |
+| 18 | Duplicate copy destinations | 0 (no silent overwrites) |
+| 19 | modules.load vs `.ko` on disk | 278/281, duplicates only |
+| 20 | README claims vs real files | Vulkan 1.3, 27 QNN libs, Adreno stack all verified |
+
+#### Fixed in this round
+
+| Severity | Bug | Fix |
+|---|---|---|
+| Medium | `PRODUCT_SHIPPING_API_LEVEL := 36` was set in `BoardConfigVendor.mk`. It is a **product** variable; board config is parsed by the board reader, so the assignment was inert. | Moved to `vendor-port.mk` (the product-side entry point). |
+| Medium | `Android.mk` used `include $(BUILD_PHONY_PACKAGE)`. That is a legacy/CAF macro base AOSP does not define — on a plain AOSP tree the include expanded to nothing. | Guarded with `ifeq`; falls back to a real `.PHONY` target when undefined. |
+| Low | `check_arch.py` never checked for x86/x86-64, despite "no x86 stuff" being an explicit goal. | Added `FOREIGN_MACHINES` detection, with a synthetic x86-64 fixture proving it fires. |
+| Low | 4 scripts shipped without the executable bit. | `chmod +x`. |
+| Low | 16 `A && B || C` patterns in the test suite: the "fail" branch can run after a *success* if the success handler exits non-zero, masking a real failure. | Rewritten as `if … then … else … fi`. |
+| Low | Ruff: unused import, unused local, 3 placeholder-free f-strings, 2 unchecked `subprocess.run`. | Fixed. |
+
+#### Verified, not assumed
+
+Claims in this README were checked against the actual blobs rather than
+trusted:
+
+- Vulkan 1.3 — `android.hardware.vulkan.version-1_3.xml` present
+- QNN — **27** `libQnn*.so` libraries present, incl. `libSnpeDspV65Stub.so`
+- Adreno stack — all 5 named libraries present (`vulkan.adreno.so`, …)
+- Test count — 46, matching the claim in this file
+
+---
 
 ## Verification & Self-Test Suite
 

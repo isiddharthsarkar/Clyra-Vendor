@@ -29,6 +29,12 @@ EM_ARM = 40
 EM_AARCH64 = 183
 EM_HEXAGON = 164  # Qualcomm: DSP / camera ICP
 EM_QCOM_CUSTOM = 94  # Qualcomm: Adreno ZAP
+EM_X86 = 3
+EM_X86_64 = 62
+
+# Anything that means "this could run on a desktop / emulator" rather than on
+# the device. Presence of these in a vendor tree is always a mistake.
+FOREIGN_MACHINES = {EM_X86: "x86 (32-bit)", EM_X86_64: "x86-64"}
 
 MACHINE_NAMES = {
     EM_ARM: "ARM32 (coprocessor firmware)",
@@ -85,6 +91,13 @@ def main() -> int:
                 continue
             elf_class, machine, _etype = info
             rel = str(p.relative_to(root))
+
+            if machine in FOREIGN_MACHINES:
+                # Never valid in a device vendor tree, firmware or not.
+                offenders.append(
+                    f"{FOREIGN_MACHINES[machine]} ELF: {rel}"
+                )
+                continue
 
             if elf_class == 2:  # 64-bit
                 userspace64 += 1

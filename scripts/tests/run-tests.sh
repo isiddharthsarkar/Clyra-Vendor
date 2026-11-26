@@ -24,10 +24,9 @@ maxtx() { python3 "$ROOT/scripts/tests/make_fixture.py" "$@"; }
 # --------------------------------------------------------------------------
 head_ "1. fixture generation"
 # --------------------------------------------------------------------------
-maxtx --out "$TMP/raw/super.img" >/dev/null && ok "raw super.img" || bad "raw super.img"
-maxtx --out "$TMP/sparse/super.img" --sparse >/dev/null && ok "sparse super.img" || bad "sparse"
-maxtx --out "$TMP/slot/super.img" --slot-suffix >/dev/null && ok "slot-suffixed" || bad "slot"
-
+if maxtx --out "$TMP/raw/super.img" >/dev/null >/dev/null 2>&1; then ok "raw super.img"; else bad "raw super.img"; fi
+if maxtx --out "$TMP/sparse/super.img" --sparse >/dev/null >/dev/null 2>&1; then ok "sparse super.img"; else bad "sparse"; fi
+if maxtx --out "$TMP/slot/super.img" --slot-suffix >/dev/null >/dev/null 2>&1; then ok "slot-suffixed"; else bad "slot"; fi
 # --------------------------------------------------------------------------
 head_ "2. independent oracle (upstream lpunpack)"
 # --------------------------------------------------------------------------
@@ -91,9 +90,8 @@ python3 "$ROOT/scripts/extract_super.py" \
     --super "$TMP/slot/super.img" --out-dir "$TMP/slot_out" \
     --partitions vendor,odm --slots a >/dev/null 2>&1 || bad "slot extractor run"
 
-[[ -f "$TMP/slot_out/vendor_a.img" ]] && ok "vendor_a.img produced" || bad "vendor_a.img missing"
-[[ -f "$TMP/slot_out/vendor_b.img" ]] && bad "slot b extracted despite --slots a" \
-    || ok "only requested slot extracted"
+if [[ -f "$TMP/slot_out/vendor_a.img" ]]; then ok "vendor_a.img produced"; else bad "vendor_a.img missing"; fi
+if [[ -f "$TMP/slot_out/vendor_b.img" ]]; then bad "slot b extracted despite --slots a"; else ok "only requested slot extracted"; fi
 
 # --------------------------------------------------------------------------
 head_ "7. missing partitions reported, not fatal"
@@ -114,7 +112,7 @@ python3 "$ROOT/scripts/extract_super.py" \
     --super "$TMP/raw/super.img" --out-dir "$TMP/man" \
     --partitions vendor --manifest "$TMP/man/manifest.json" >/dev/null 2>&1
 
-python3 - "$TMP/man/manifest.json" <<'PY' && ok "manifest structure valid" || bad "manifest invalid"
+if python3 - "$TMP/man/manifest.json" <<'PY' >/dev/null 2>&1; then ok "manifest structure valid"; else bad "manifest invalid"; fi
 import json, sys
 d = json.load(open(sys.argv[1]))
 assert d["layout"] == "logical"
@@ -128,15 +126,18 @@ PY
 # --------------------------------------------------------------------------
 head_ "9. consumer: tree builder writes makefiles"
 # --------------------------------------------------------------------------
-python3 "$ROOT/scripts/make_vendor_tree.py" \
+if python3 "$ROOT/scripts/make_vendor_tree.py" \
     --manifest "$TMP/man/manifest.json" --root "$TMP/man" \
-    --device "$ROOT/firmware/device.json" --mode images >/dev/null 2>&1 \
-    && ok "make_vendor_tree ran" || bad "make_vendor_tree failed"
+    --device "$ROOT/firmware/device.json" --mode images >/dev/null 2>&1; then
+    ok "make_vendor_tree ran"
+else
+    bad "make_vendor_tree failed"
+fi
 
 for f in vendor.mk BoardConfigVendor.mk Android.bp README.md; do
-    [[ -s "$TMP/man/$f" ]] && ok "$f generated" || bad "$f missing"
+    if [[ -s "$TMP/man/$f" ]]; then ok "$f generated"; else bad "$f missing"; fi
 done
-grep -q "ruan" "$TMP/man/vendor.mk" && ok "vendor.mk names the codename" || bad "vendor.mk content"
+if grep -q "ruan" "$TMP/man/vendor.mk"; then ok "vendor.mk names the codename"; else bad "vendor.mk content"; fi
 
 # --------------------------------------------------------------------------
 head_ "10. integrity helper rejects a bad checksum"
@@ -157,7 +158,7 @@ fi
 # --------------------------------------------------------------------------
 head_ "11. device.json is coherent"
 # --------------------------------------------------------------------------
-python3 - "$ROOT/firmware/device.json" <<'PY' && ok "device.json valid" || bad "device.json invalid"
+if python3 - "$ROOT/firmware/device.json" <<'PY' >/dev/null 2>&1; then ok "device.json valid"; else bad "device.json invalid"; fi
 import json, sys
 d = json.load(open(sys.argv[1]))
 assert d["codename"] == "ruan"
@@ -181,7 +182,7 @@ fi
 # Vendor trees legitimately contain symlinks whose targets are absolute
 # *device* paths (/vendor/etc/...). Those cannot resolve on a build host and
 # are correct; only a broken *relative* link means a blob went missing.
-python3 - "$ROOT" <<'PY' && ok "no broken relative symlinks" || bad "broken symlinks found"
+if python3 - "$ROOT" <<'PY' >/dev/null 2>&1; then ok "no broken relative symlinks"; else bad "broken symlinks found"; fi
 import os, sys
 root = sys.argv[1]
 broken = []
@@ -199,7 +200,7 @@ for r, dirs, files in os.walk(root):
 assert not broken, f"Broken relative symlinks: {broken}"
 PY
 
-python3 - "$ROOT" <<'PY' && ok "pure 64-bit architecture (zero 32-bit CPU binaries/libraries)" || bad "32-bit CPU binary/library found"
+if python3 - "$ROOT" <<'PY' >/dev/null 2>&1; then ok "pure 64-bit architecture (zero 32-bit CPU binaries/libraries)"; else bad "32-bit CPU binary/library found"; fi
 import os, sys, struct
 root = sys.argv[1]
 elf32 = []
@@ -224,7 +225,7 @@ for sub in ["bin", "app", "lib64"]:
 assert len(elf32) == 0, f"32-bit CPU ELF files: {elf32}"
 PY
 
-python3 - "$ROOT" <<'PY' && ok "all active init services reference existing binaries" || bad "missing init binary"
+if python3 - "$ROOT" <<'PY' >/dev/null 2>&1; then ok "all active init services reference existing binaries"; else bad "missing init binary"; fi
 import os, sys, glob
 root = sys.argv[1]
 for rc in glob.glob(os.path.join(root, "proprietary/**/*.rc"), recursive=True):
@@ -247,7 +248,7 @@ for rc in glob.glob(os.path.join(root, "proprietary/**/*.rc"), recursive=True):
                         assert os.path.lexists(rel), f"{rc}: {sname} -> {sbin} missing"
 PY
 
-python3 - "$ROOT" <<'PY' && ok "fstab locks removed (no AVB dm-verity or wrappedkey)" || bad "fstab locks present"
+if python3 - "$ROOT" <<'PY' >/dev/null 2>&1; then ok "fstab locks removed (no AVB dm-verity or wrappedkey)"; else bad "fstab locks present"; fi
 import os, sys
 root = sys.argv[1]
 for fstab in ["proprietary/vendor/etc/fstab.default", "proprietary/vendor/etc/fstab.emmc"]:
@@ -331,7 +332,7 @@ fi
 
 # Coprocessor firmware must be PRESENT and untouched. Deleting these because
 # they report a 32-bit ELF header breaks the camera and GPU.
-python3 - "$ROOT" <<'PY' && ok "coprocessor firmware preserved (not stripped)" || bad "coprocessor firmware missing"
+if python3 - "$ROOT" <<'PY' >/dev/null 2>&1; then ok "coprocessor firmware preserved (not stripped)"; else bad "coprocessor firmware missing"; fi
 import os, sys
 root = sys.argv[1]
 fw = os.path.join(root, "proprietary/vendor/firmware")
@@ -341,7 +342,7 @@ assert not missing, f"missing firmware: {missing}"
 PY
 
 # No 32-bit ABI may be advertised anywhere.
-python3 - "$ROOT" <<'PY' && ok "no 32-bit ABI advertised" || bad "32-bit ABI advertised"
+if python3 - "$ROOT" <<'PY' >/dev/null 2>&1; then ok "no 32-bit ABI advertised"; else bad "32-bit ABI advertised"; fi
 import os, re, sys
 root = sys.argv[1]
 bad = []
