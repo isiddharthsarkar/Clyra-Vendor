@@ -318,6 +318,109 @@ else
     ok "check_blobs --strict rejects a 0-byte firmware blob"
 fi
 
+
+# --------------------------------------------------------------------------
+head_ "19. architecture is 64-bit only (regression)"
+# --------------------------------------------------------------------------
+if python3 "$ROOT/scripts/tests/check_arch.py" "$ROOT" >"$TMP/arch.txt" 2>&1; then
+    ok "userspace is 100% AArch64"
+else
+    bad "32-bit userspace ELF found"
+    sed 's/^/      /' "$TMP/arch.txt" >&2
+fi
+
+# Coprocessor firmware must be PRESENT and untouched. Deleting these because
+# they report a 32-bit ELF header breaks the camera and GPU.
+python3 - "$ROOT" <<'PY' && ok "coprocessor firmware preserved (not stripped)" || bad "coprocessor firmware missing"
+import os, sys
+root = sys.argv[1]
+fw = os.path.join(root, "proprietary/vendor/firmware")
+need = ["CAMERA_ICP.b00", "a610_zap.b00"]
+missing = [n for n in need if not os.path.exists(os.path.join(fw, n))]
+assert not missing, f"missing firmware: {missing}"
+PY
+
+# No 32-bit ABI may be advertised anywhere.
+python3 - "$ROOT" <<'PY' && ok "no 32-bit ABI advertised" || bad "32-bit ABI advertised"
+import os, re, sys
+root = sys.argv[1]
+bad = []
+for dp, _, fs in os.walk(os.path.join(root, "proprietary")):
+    for f in fs:
+        if not f.endswith(".prop"):
+            continue
+        p = os.path.join(dp, f)
+        if os.path.islink(p):
+            continue
+        for line in open(p, encoding="utf-8", errors="replace"):
+            m = re.match(r"\s*([\w.]+abilist32)\s*=\s*(\S+)", line)
+            if m and m.group(2):
+                bad.append(f"{p}: {line.strip()}")
+assert not bad, bad
+PY
+
+# --------------------------------------------------------------------------
+head_ "20. build files are in sync with targets.json"
+# --------------------------------------------------------------------------
+if python3 "$ROOT/scripts/generate_build_files.py" --root "$ROOT" --check \
+        >"$TMP/gen.txt" 2>&1; then
+    ok "generated build files up to date"
+else
+    bad "generated build files are stale"
+    sed 's/^/      /' "$TMP/gen.txt" >&2
+fi
+
+# --------------------------------------------------------------------------
+head_ "21. cross-port: every SM7435 target builds the same vendor"
+# --------------------------------------------------------------------------
+for dev in ruan garnet organ flute; do
+    n=$(make -s -f - probe 2>/dev/null <<EOF
+TARGET_DEVICE := $dev
+CLYRA_VENDOR_PATH := .
+include vendor-port.mk
+probe:
+	@echo \$(words \$(PRODUCT_COPY_FILES))
+EOF
+)
+    if [[ "${n:-0}" -gt 0 ]]; then
+        ok "$dev resolves $n vendor rules"
+    else
+        bad "$dev resolved 0 vendor rules"
+    fi
+done
+
+# A device outside the supported set must be skipped, not broken.
+n=$(make -s -f - probe 2>/dev/null <<'EOF'
+TARGET_DEVICE := raphael
+CLYRA_VENDOR_PATH := .
+include vendor-port.mk
+probe:
+	@echo $(words $(PRODUCT_COPY_FILES))
+EOF
+)
+if [[ "${n:-x}" == "0" ]]; then
+    ok "unsupported device skipped cleanly"
+else
+    bad "unsupported device produced '${n:-error}'"
+fi
+
+# --------------------------------------------------------------------------
+head_ "22. kernel modules resolve and match modules.load"
+# --------------------------------------------------------------------------
+if make -s -f - probe 2>&1 <<'EOF' >"$TMP/ko.txt" 2>&1
+include BoardConfigVendor.mk
+probe:
+	@printf "ko=%s\nload=%s\n" "$(words $(BOARD_VENDOR_KERNEL_MODULES))" "$(words $(BOARD_VENDOR_KERNEL_MODULES_LOAD))"
+EOF
+then ok "BoardConfigVendor.mk evaluates"; else bad "BoardConfigVendor.mk failed to evaluate"; fi
+
+ko=$(grep -oP 'ko=\K[0-9]+' "$TMP/ko.txt" | head -1)
+if [[ "${ko:-0}" -gt 0 ]]; then
+    ok "kernel modules resolve ($ko found)"
+else
+    bad "kernel module wildcard expanded to nothing"
+fi
+
 # --------------------------------------------------------------------------
 printf '\n\033[1m%d passed, %d failed\033[0m\n' "$PASS" "$FAIL"
 (( FAIL == 0 )) || exit 1

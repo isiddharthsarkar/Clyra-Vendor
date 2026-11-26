@@ -97,17 +97,25 @@ Clyra-Vendor/
 ├── Android.bp                  # Soong namespace imports & prebuilt definitions
 ├── Android.mk                  # Target symlink generation (Qualcomm RFS & WLAN)
 ├── BoardConfigVendor.mk        # Platform, architecture, kernel & CAF variables
-├── vendor.mk                   # Complete PRODUCT_COPY_FILES & property mappings
+├── vendor.mk                   # PRODUCT_COPY_FILES (generated)
+├── vendor-port.mk              # Drop-in entry point for any SM7435 port
 ├── proprietary/                # Extracted and upgraded proprietary blobs
 │   ├── odm/                    # Board configs, sensor configs, panel LUT tables
 │   ├── vendor/                 # Core HALs, binaries, Adreno/Vulkan libraries, QNN
 │   └── vendor_dlkm/            # Loadable kernel modules (.ko) for Clyra-Flip
-├── firmware/                   # Firmware profile and partition metadata
-└── scripts/                    # Maintenance tools and automated test suites
+├── firmware/
+│   ├── device.json             # Blob-source device + ROM metadata
+│   ├── targets.json            # Cross-port targets (ruan/garnet/organ/flute)
+│   └── vendor_list_ruan.txt    # Partitions to extract
+└── scripts/
     ├── extract_super.py        # Python sparse/raw super.img unpacker
     ├── make_vendor_tree.py     # EROFS filesystem tree builder
+    ├── generate_build_files.py # Regenerates every *.mk/*.bp from targets.json
     ├── extract-vendor.sh       # Pipeline orchestration script
-    └── tests/                  # Self-contained test suite (31 passing tests)
+    └── tests/                  # Self-contained suite (46 passing tests)
+        ├── check_arch.py        # 64-bit-only enforcement, keeps DSP/GPU firmware
+        ├── check_blobs.py       # 0-byte and broken-symlink detection
+        └── check_rules_resolve.py # Every PRODUCT_COPY_FILES source exists
 ```
 
 ---
@@ -130,6 +138,90 @@ To integrate this vendor tree into an AOSP, LineageOS, or custom ROM build:
    ```make
    $(call inherit-product, vendor/xiaomi/ruan/vendor.mk)
    ```
+
+---
+
+## Architecture: 64-bit only
+
+This tree is **`arm64-v8a` only**. There is no 32-bit path anywhere: no
+`lib/`, no 32-bit zygote, no `abilist32` entries, no `TARGET_2ND_ARCH`.
+
+Verified by `scripts/tests/check_arch.py`:
+
+```
+64-bit ELFs            : 1816   (all AArch64)
+32-bit userspace ELFs  : 0
+```
+
+`BoardConfigVendor.mk` pins this explicitly, including empty
+`TARGET_2ND_ARCH`/`TARGET_CPU_ABILIST32` so the build system can never place a
+32-bit library into the vendor image.
+
+### About the 54 "32-bit" files in `vendor/firmware/`
+
+They are **not ARM code and must not be removed.** Their ELF headers report:
+
+| Count | `e_machine` | What it actually is |
+|---|---|---|
+| 34 | 94 | Qualcomm **Hexagon DSP** — camera (`CAMERA_ICP`) |
+| 19 | 164 | Qualcomm **custom** — Adreno **ZAP** GPU shaders |
+| 1 | 40 | ARM32 coprocessor firmware (legacy camera) |
+
+These run on the GPU/DSP, never on the CPU. Deleting them because they look
+"32-bit" bricks the camera and GPU. `check_arch.py` keeps them and only
+enforces AArch64 for code that the application CPU executes.
+
+---
+
+## Cross-port support (garnet / organ / flute)
+
+The blobs come from `ruan` (Redmi Pad Pro 5G), but every target below shares
+the **SM7435 / `parrot`** platform and the 64-bit-only requirement, so one
+vendor tree serves all of them.
+
+| Codename | Device | Form factor | Role |
+|---|---|---|---|
+| `ruan` | Redmi Pad Pro 5G | tablet | blob source |
+| `garnet` | Redmi Note 13 Pro 5G | phone | cross-port |
+| `organ` | Redmi Pad 2 Pro | tablet | cross-port |
+| `flute` | Redmi Pad 2 Pro 5G | tablet | cross-port |
+
+The list lives in [`firmware/targets.json`](firmware/targets.json). Adding a
+device is a single entry there — then regenerate:
+
+```bash
+./scripts/generate_build_files.py
+```
+
+That rewrites `vendor.mk`, `Android.mk`, `Android.bp`, `BoardConfigVendor.mk`
+and `vendor-port.mk` from the data, so the codename filters can never drift
+out of sync again. `--check` fails if the files on disk are stale (used in CI
+and in the self-test).
+
+### Porting a ROM to one of these devices
+
+Nothing in this repository needs editing. In the device tree:
+
+```make
+# device/<vendor>/<codename>/device.mk
+CLYRA_VENDOR_PATH := vendor/clyra/ruan-in-16.0
+$(call inherit-product, $(CLYRA_VENDOR_PATH)/vendor-port.mk)
+```
+
+`vendor-port.mk` resolves `TARGET_DEVICE` against the supported set, so the
+same tree builds for `ruan`, `garnet`, `organ` and `flute`. A device outside
+that set is skipped cleanly rather than failing the build.
+
+### What a port may still need to override
+
+These genuinely differ between SM7435 devices and are exposed as variables a
+port can set before inheriting:
+
+| Variable | Why it differs |
+|---|---|
+| `CLYRA_WLAN_FW_DIR` | WLAN firmware subdir (`qca6750`, `qca6490`, …) |
+| `TARGET_KERNEL_CONFIG` | per-device GKI fragments |
+| Display panel config | `nt36532` on ruan/garnet; check organ/flute |
 
 ---
 
@@ -179,17 +271,30 @@ This repository includes a test suite verifying super image unpacking, EROFS par
 ```
 
 ```text
-1. fixture generation: PASS
-2. independent oracle (upstream lpunpack): PASS
-3. extractor matches oracle byte-for-byte: PASS
-4. payload lands in correct partitions: PASS
-5. sparse image decompression: PASS
-6. slot-suffixed metadata: PASS
-7. tree builder & makefile generation: PASS
-8. integrity checks & device.json coherence: PASS
-9. tree integrity & 64-bit architecture verification: PASS (5/5)
+fixture generation ........................... PASS
+independent oracle (upstream lpunpack) ....... PASS
+extractor matches oracle byte-for-byte ....... PASS
+sparse image decompression ................... PASS
+slot-suffixed metadata ....................... PASS
+missing partitions warned, not fatal ......... PASS
+manifest structure ........................... PASS
+integrity checks & checksum handling ......... PASS
+generated vendor.mk is valid GNU make ........ PASS
+no dangling continuation ..................... PASS
+short write leaves no truncated image ........ PASS
+bad output paths give clean errors ........... PASS
+every PRODUCT_COPY_FILES source resolves ..... PASS
+device-absolute symlinks kept ................ PASS
+empty critical blobs reported ................ PASS
+userspace is 100% AArch64 .................... PASS
+coprocessor firmware preserved ............... PASS
+no 32-bit ABI advertised ..................... PASS
+build files in sync with targets.json ........ PASS
+ruan / garnet / organ / flute resolve ........ PASS
+unsupported device skipped cleanly ........... PASS
+kernel modules resolve & match modules.load .. PASS
 -----------------------------------------------
-Result: 31 passed, 0 failed
+Result: 46 passed, 0 failed
 ```
 
 ---

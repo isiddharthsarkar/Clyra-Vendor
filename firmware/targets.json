@@ -1,0 +1,74 @@
+{
+  "_comment": [
+    "Cross-port targets for this vendor tree.",
+    "",
+    "The blobs in this repository are extracted from 'ruan' (Redmi Pad Pro 5G).",
+    "These entries describe the devices that can consume this tree when a ROM",
+    "is ported from one of them. Every target below shares the Qualcomm",
+    "SM7435 / 'parrot' platform family and is 64-bit only, which is why a",
+    "single vendor tree can serve all of them.",
+    "",
+    "Adding a device here is all that is required to make the generated",
+    "Android.mk / vendor.mk guard accept it as a build target."
+  ],
+  "soc": "SM7435",
+  "platform": "parrot",
+  "arch": "arm64",
+  "android_abi": "arm64-v8a",
+  "abi_list": ["arm64-v8a"],
+  "abi_list32": [],
+  "primary": {
+    "codename": "ruan",
+    "device_name": "Redmi Pad Pro 5G",
+    "device_model": "24074RPD2G",
+    "form_factor": "tablet",
+    "display_panel": "nt36532",
+    "role": "blob source"
+  },
+  "targets": [
+    {
+      "codename": "ruan",
+      "device_name": "Redmi Pad Pro 5G",
+      "device_model": "24074RPD2G",
+      "form_factor": "tablet",
+      "display_panel": "nt36532",
+      "role": "blob source",
+      "notes": "Primary device; blobs in this tree were extracted from its firmware."
+    },
+    {
+      "codename": "garnet",
+      "device_name": "Redmi Note 13 Pro 5G",
+      "device_model": "2312DRA50G",
+      "form_factor": "phone",
+      "display_panel": "nt36532",
+      "role": "cross-port",
+      "notes": "Same SM7435 / Adreno 710. Shares the display panel controller."
+    },
+    {
+      "codename": "organ",
+      "device_name": "Redmi Pad 2 Pro",
+      "device_model": "25053RP5CG",
+      "form_factor": "tablet",
+      "role": "cross-port",
+      "notes": "SM7435 sibling. Wi-Fi variant."
+    },
+    {
+      "codename": "flute",
+      "device_name": "Redmi Pad 2 Pro 5G",
+      "device_model": "25057RP5CG",
+      "form_factor": "tablet",
+      "role": "cross-port",
+      "notes": "SM7435 sibling with cellular modem."
+    }
+  ],
+  "kernel": {
+    "version": "6.6",
+    "gki": "android16-6.6",
+    "arch": "arm64",
+    "config_fragments": [
+      "vendor/parrot_GKI.config",
+      "vendor/ruan_GKI.config",
+      "vendor/ruan_android16.config"
+    ]
+  }
+}
