@@ -133,6 +133,43 @@ To integrate this vendor tree into an AOSP, LineageOS, or custom ROM build:
 
 ---
 
+## Audit Findings
+
+An audit pass (ruff, shellcheck, adversarial fixtures, and a full parse of the
+committed tree) found the following. All are fixed and covered by regression
+tests.
+
+### High severity
+
+| Bug | Impact |
+|---|---|
+| **`vendor.mk` paths did not exist.** All 3153 rules pointed at `vendor/ruan/proprietary/...` while blobs are committed at `proprietary/...`. | make parsed the file happily; the build would fail, or ship a vendor image containing no blobs. |
+| **A comment inside a `+= \` continuation** ends the logical line, so GNU make silently discards the entire `PRODUCT_COPY_FILES` list. | Makefile looks valid, copies nothing. |
+| **Truncated image on ENOSPC.** A failed write left a partial `vendor.img` that later steps would publish as complete. | Corrupt vendor partition that only fails at flash time. |
+
+### Medium
+
+| Bug | Impact |
+|---|---|
+| **32 blobs are 0 bytes** — `CAMERA_ICP.b1*`, `evass*.b1*`, `fs_config_dirs/files`, `passwd`, `group`. | Camera/DSP firmware and SELinux file contexts missing on device. Needs re-extraction; now detected by `scripts/tests/check_blobs.py`. |
+| The broken-symlink test flagged **device-absolute** links (`/vendor/etc/...`) as errors. | A correct vendor tree failed its own suite. |
+| Bad `--out-dir` (a file, read-only mount) raised a Python traceback. | Unhelpful, and left debris behind. |
+| No free-space check before a multi-hour extraction. | Failure hours in, after most of the work. |
+| Boot-image detection decompressed the 5 GiB archive **twice**. | Minutes of wasted I/O. |
+
+### Low
+
+Missing git identity failed mid-publish, after copying gigabytes. Planned-commit
+count used floor+1 instead of ceiling.
+
+### Verification tools
+
+```bash
+./scripts/tests/run-tests.sh                              # full suite
+python3 scripts/tests/check_rules_resolve.py vendor.mk .  # every rule resolves
+python3 scripts/tests/check_blobs.py . --strict           # empty / broken blobs
+```
+
 ## Verification & Self-Test Suite
 
 This repository includes a test suite verifying super image unpacking, EROFS parsing, fixture validation, makefile generation, 64-bit integrity, and service sanity:

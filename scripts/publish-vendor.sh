@@ -123,8 +123,17 @@ else
     find "$WORKTREE" -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
 fi
 
-git -C "$WORKTREE" config user.name  "$(git -C "$CLYRA_ROOT" config user.name)"
-git -C "$WORKTREE" config user.email "$(git -C "$CLYRA_ROOT" config user.email)"
+GIT_NAME="$(git -C "$CLYRA_ROOT" config user.name || true)"
+GIT_EMAIL="$(git -C "$CLYRA_ROOT" config user.email || true)"
+if [[ -z "$GIT_NAME" || -z "$GIT_EMAIL" ]]; then
+    # Fail before copying gigabytes, not after.
+    clyra_die "git identity is not configured, so commits would fail.
+Set it once:
+  git config --global user.name  \"Your Name\"
+  git config --global user.email \"you@example.com\""
+fi
+git -C "$WORKTREE" config user.name  "$GIT_NAME"
+git -C "$WORKTREE" config user.email "$GIT_EMAIL"
 
 # --------------------------------------------------------------------------
 # Commit in budgeted chunks

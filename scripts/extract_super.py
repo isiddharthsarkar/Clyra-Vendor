@@ -26,6 +26,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import contextlib
 import json
 import os
 import shutil
@@ -272,51 +273,103 @@ class LpReader:
 
     # -- extraction --------------------------------------------------------- #
     def stream_partition(self, part: Partition, out_path: Path) -> int:
-        """Copy a partition's extents into `out_path`, streaming, no temp copy."""
-        out_path.parent.mkdir(parents=True, exist_ok=True)
-        written = 0
-        with open(out_path, "wb") as out:
-            for ext in part.extents:
-                if ext.target_type == LP_TARGET_TYPE_ZERO:
-                    remaining = ext.num_sectors * LP_SECTOR_SIZE
-                    zero = b"\x00" * (1 << 20)
-                    while remaining:
-                        n = min(remaining, 1 << 20)
-                        out.write(zero[:n])
-                        remaining -= n
-                    written += ext.num_sectors * LP_SECTOR_SIZE
-                    continue
-                if ext.target_type != LP_TARGET_TYPE_LINEAR:
-                    raise ExtractError(
-                        f"partition {part.name}: unsupported extent target type {ext.target_type}"
-                    )
+        """Copy a partition's extents into `out_path`, streaming, no temp copy.
 
-                remaining = ext.num_sectors * LP_SECTOR_SIZE
-                self.fh.seek(ext.target_data * LP_SECTOR_SIZE)
-                while remaining:
-                    buf = self.fh.read(min(remaining, 8 << 20))
-                    if not buf:
+        The image is written to a sibling `.partial` file and only renamed into
+        place once the full expected size has landed. A short write (ENOSPC, a
+        broken pipe, an interrupted run) therefore can never leave a truncated
+        `vendor.img` behind for a later step to publish as if it were complete.
+        """
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        tmp_path = out_path.with_name(out_path.name + ".partial")
+        expected = part.size
+        written = 0
+
+        try:
+            with open(tmp_path, "wb") as out:
+                for ext in part.extents:
+                    if ext.target_type == LP_TARGET_TYPE_ZERO:
+                        remaining = ext.num_sectors * LP_SECTOR_SIZE
+                        zero = b"\x00" * (1 << 20)
+                        while remaining:
+                            n = min(remaining, 1 << 20)
+                            out.write(zero[:n])
+                            remaining -= n
+                            written += n
+                        continue
+                    if ext.target_type != LP_TARGET_TYPE_LINEAR:
                         raise ExtractError(
-                            f"partition {part.name}: super.img ended mid-extent "
-                            f"({remaining} bytes short)"
+                            f"partition {part.name}: unsupported extent target "
+                            f"type {ext.target_type}"
                         )
-                    out.write(buf)
-                    remaining -= len(buf)
-                    written += len(buf)
+
+                    remaining = ext.num_sectors * LP_SECTOR_SIZE
+                    self.fh.seek(ext.target_data * LP_SECTOR_SIZE)
+                    while remaining:
+                        buf = self.fh.read(min(remaining, 8 << 20))
+                        if not buf:
+                            raise ExtractError(
+                                f"partition {part.name}: super.img ended "
+                                f"mid-extent ({remaining} bytes short)"
+                            )
+                        out.write(buf)
+                        remaining -= len(buf)
+                        written += len(buf)
+
+            if written != expected:
+                raise ExtractError(
+                    f"partition {part.name}: wrote {written} bytes, "
+                    f"expected {expected}"
+                )
+            out_path.unlink(missing_ok=True)
+            tmp_path.rename(out_path)
+        except OSError as exc:
+            tmp_path.unlink(missing_ok=True)
+            raise ExtractError(
+                f"partition {part.name}: could not write {out_path}: {exc}\n"
+                f"  needed {_human_size(expected)} for this partition alone; "
+                f"free space before starting: {_free_space(out_path)}"
+            ) from exc
+        except BaseException:
+            tmp_path.unlink(missing_ok=True)
+            raise
+
         return written
 
     def close(self) -> None:
-        try:
+        # Closing a read-only handle failing is not actionable; ignore it.
+        with contextlib.suppress(OSError):
             self.fh.close()
-        except Exception:
-            pass
+
+
+
+def _human_size(num: int) -> str:
+    value = float(num)
+    for unit in ("B", "KiB", "MiB", "GiB", "TiB"):
+        if value < 1024 or unit == "TiB":
+            return f"{value:.0f} {unit}" if unit == "B" else f"{value:.1f} {unit}"
+        value /= 1024
+    return f"{num} B"
+
+
+def _free_space(path: Path) -> str:
+    """Free space on the filesystem holding `path`, best effort."""
+    probe = path
+    while not probe.exists() and probe != probe.parent:
+        probe = probe.parent
+    try:
+        return _human_size(shutil.disk_usage(probe).free)
+    except OSError:
+        return "unknown"
 
 
 # --------------------------------------------------------------------------- #
 # filesystem layout helper
 # --------------------------------------------------------------------------- #
 def _run(cmd: list[str]) -> None:
-    proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+    proc = subprocess.run(
+        cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, check=False
+    )
     if proc.returncode != 0:
         raise ExtractError(f"command failed: {' '.join(cmd)}\n{proc.stdout}")
 
@@ -470,6 +523,24 @@ def main() -> int:
             )
 
         args.out_dir.mkdir(parents=True, exist_ok=True)
+
+        # Pre-flight: refuse to start a long extraction that cannot fit.
+        planned = sum(p.size for _, p in resolved)
+        free = shutil.disk_usage(args.out_dir).free
+        if planned > free:
+            raise ExtractError(
+                f"not enough free space in {args.out_dir}\n"
+                f"  need  : {_human_size(planned)} for {len(resolved)} partition(s)\n"
+                f"  free  : {_human_size(free)}\n"
+                "Free some space, or extract fewer partitions with "
+                "--partitions / firmware/vendor_list_ruan.txt."
+            )
+        print(
+            f"[super] plan: {len(resolved)} partition(s), "
+            f"{_human_size(planned)} total, {_human_size(free)} free",
+            flush=True,
+        )
+
         manifest = {
             "super": str(args.super),
             "layout": args.layout,
@@ -519,3 +590,10 @@ if __name__ == "__main__":
     except ExtractError as exc:
         print(f"error: {exc}", file=sys.stderr)
         sys.exit(1)
+    except OSError as exc:
+        # Bad --out-dir (a file, a read-only mount, ENOSPC).
+        print(f"error: {exc}", file=sys.stderr)
+        sys.exit(1)
+    except KeyboardInterrupt:
+        print("interrupted", file=sys.stderr)
+        sys.exit(130)

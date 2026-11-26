@@ -170,30 +170,33 @@ PY
 # --------------------------------------------------------------------------
 head_ "12. tree integrity & 64-bit architecture verification"
 # --------------------------------------------------------------------------
-python3 - "$ROOT" <<'PY' && ok "vendor.mk 100% files resolve on disk" || bad "vendor.mk missing files"
-import os, sys
-root = sys.argv[1]
-with open(os.path.join(root, "vendor.mk")) as f:
-    for line in f:
-        line = line.strip().rstrip(" \\")
-        if line.startswith("vendor/ruan/proprietary/") and ":" in line:
-            src, _ = line.split(":", 1)
-            rel = os.path.join(root, src.replace("vendor/ruan/", ""))
-            assert os.path.exists(rel), f"Missing: {rel}"
-PY
+# Delegate to the real checker so the test cannot drift from the generator.
+if python3 "$ROOT/scripts/tests/check_rules_resolve.py" \
+        "$ROOT/vendor.mk" "$ROOT" >/dev/null 2>&1; then
+    ok "vendor.mk rules all resolve on disk"
+else
+    bad "vendor.mk rules point at missing files"
+fi
 
-python3 - "$ROOT" <<'PY' && ok "zero broken symlinks across repository" || bad "broken symlinks found"
+# Vendor trees legitimately contain symlinks whose targets are absolute
+# *device* paths (/vendor/etc/...). Those cannot resolve on a build host and
+# are correct; only a broken *relative* link means a blob went missing.
+python3 - "$ROOT" <<'PY' && ok "no broken relative symlinks" || bad "broken symlinks found"
 import os, sys
 root = sys.argv[1]
 broken = []
 for r, dirs, files in os.walk(root):
-    if ".git" in r:
-        continue
+    dirs[:] = [d for d in dirs if d != ".git"]
     for name in dirs + files:
         p = os.path.join(r, name)
-        if os.path.islink(p) and not os.path.exists(p):
+        if not os.path.islink(p):
+            continue
+        target = os.readlink(p)
+        if os.path.isabs(target):
+            continue          # device-absolute, expected
+        if not os.path.exists(p):
             broken.append(p)
-assert len(broken) == 0, f"Broken: {broken}"
+assert not broken, f"Broken relative symlinks: {broken}"
 PY
 
 python3 - "$ROOT" <<'PY' && ok "pure 64-bit architecture (zero 32-bit CPU binaries/libraries)" || bad "32-bit CPU binary/library found"
@@ -253,6 +256,67 @@ for fstab in ["proprietary/vendor/etc/fstab.default", "proprietary/vendor/etc/fs
         assert "avb=" not in content, f"AVB found in {fstab}"
         assert "wrappedkey" not in content, f"wrappedkey found in {fstab}"
 PY
+
+# --------------------------------------------------------------------------
+head_ "16. every generated PRODUCT_COPY_FILES source resolves (regression)"
+# --------------------------------------------------------------------------
+# The generator used to emit `vendor/<codename>/proprietary/...` while blobs
+# were written to `<root>/proprietary/...`. make parsed it fine; every rule
+# pointed at a file that did not exist.
+mkdir -p "$TMP/res/proprietary/vendor/lib64"
+head -c 64 /dev/urandom > "$TMP/res/proprietary/vendor/lib64/libfoo.so"
+head -c 64 /dev/urandom > "$TMP/res/vendor.img"
+
+python3 "$ROOT/scripts/make_vendor_tree.py" \
+    --manifest "$TMP/res/absent.json" --root "$TMP/res" \
+    --device "$ROOT/firmware/device.json" --mode images >/dev/null 2>&1
+
+if python3 "$ROOT/scripts/tests/check_rules_resolve.py" \
+        "$TMP/res/vendor.mk" "$TMP/res" >"$TMP/res/check.txt" 2>&1; then
+    ok "all PRODUCT_COPY_FILES sources exist on disk"
+else
+    bad "generated rules point at missing files"
+    sed 's/^/      /' "$TMP/res/check.txt" >&2
+fi
+
+# --------------------------------------------------------------------------
+head_ "17. device-absolute symlinks are kept, broken ones reported"
+# --------------------------------------------------------------------------
+mkdir -p "$TMP/sym/proprietary/vendor/firmware"
+head -c 64 /dev/urandom > "$TMP/sym/vendor.img"
+ln -sf /vendor/etc/wifi/qca6490/WCNSS_qcom_cfg.ini \
+    "$TMP/sym/proprietary/vendor/firmware/dev_abs.ini"
+ln -sf ../../nowhere/missing.so \
+    "$TMP/sym/proprietary/vendor/firmware/broken.so"
+head -c 64 /dev/urandom > "$TMP/sym/proprietary/vendor/firmware/ok.bin"
+
+python3 "$ROOT/scripts/make_vendor_tree.py" \
+    --manifest "$TMP/sym/absent.json" --root "$TMP/sym" \
+    --device "$ROOT/firmware/device.json" --mode images >/dev/null 2>&1
+
+if grep -q 'dev_abs.ini' "$TMP/sym/vendor.mk"; then
+    ok "device-absolute symlink is referenced (not dropped)"
+else
+    bad "device-absolute symlink was dropped"
+fi
+
+if python3 "$ROOT/scripts/tests/check_blobs.py" "$TMP/sym" >"$TMP/sym/b.txt" 2>&1; then
+    bad "check_blobs accepted a broken relative symlink"
+else
+    ok "check_blobs flags the broken relative symlink"
+fi
+
+# --------------------------------------------------------------------------
+head_ "18. empty critical blobs are reported"
+# --------------------------------------------------------------------------
+mkdir -p "$TMP/empty/proprietary/vendor/firmware"
+: > "$TMP/empty/proprietary/vendor/firmware/evass.b10"
+if python3 "$ROOT/scripts/tests/check_blobs.py" "$TMP/empty" --strict \
+        >"$TMP/empty/b.txt" 2>&1; then
+    bad "check_blobs --strict accepted a 0-byte firmware blob"
+else
+    ok "check_blobs --strict rejects a 0-byte firmware blob"
+fi
 
 # --------------------------------------------------------------------------
 printf '\n\033[1m%d passed, %d failed\033[0m\n' "$PASS" "$FAIL"
